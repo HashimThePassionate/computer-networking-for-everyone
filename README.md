@@ -25,7 +25,7 @@ Welcome to the latest insights into networking technologies! This README highlig
 - **SDN and Network Management**: Enhanced focus on **Software Defined Networking** and modern protocols like **NETCONF** and **YANG**, reshaping how networks are managed.  
 - **Net Neutrality and Internet Architecture**: Discussions on principles ensuring fair and open access to the Internet.  
 
-📂 **[Network Layer Folder](./network-layer/)**  
+📂 **[Network Layer Folder](./01_computer_networks_and_internet/)**  
 
 ## 🔗 **Link Layer and Datacenter Networks**
 - **Advances in Ethernet**: Reflecting the continuing evolution of link-layer technologies.  
