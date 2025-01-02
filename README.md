@@ -6,7 +6,7 @@ Welcome to the latest insights into networking technologies! This README highlig
 - **Ever-expanding Internet Reach**: Emphasis on the evolution of global connectivity and the widespread adoption of **4G** and **5G** networks.  
 - **Enhanced Mobility**: Improved understanding of mobile device handovers, identity management, and global roaming across cellular networks.  
 
-📂 **[Internet and Wireless Networks Folder](./internet-wireless-networks/)**  
+📂 **[Internet and Wireless Networks Folder](./01_computer_networks_and_internet/)**  
 
 ## 🖥️ **Application Layer Updates**
 - **Modern Web Protocols**: Introduction to **HTTP/2** and **HTTP/3**, offering faster, more secure web experiences.  
