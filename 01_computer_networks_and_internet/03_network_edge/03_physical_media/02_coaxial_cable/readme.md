@@ -14,6 +14,10 @@
 2. **Insulation and Shielding**:  
    - The conductors are separated by a **dielectric insulator** and encased in a protective outer jacket, minimizing signal loss and external interference.
 
+<div align="center">
+  <img src="../images/coaxial_cable.png" alt="Coaxial Cable" width="70%"/>
+</div>
+
 ## 📊 **Characteristics of Coaxial Cable**
 
 ### 1. **High Data Transmission Rates**:
