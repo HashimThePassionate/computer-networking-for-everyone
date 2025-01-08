@@ -28,6 +28,11 @@
   - **Wire thickness**.  
   - **Distance** between the transmitter and receiver.  
 
+<div align="center">
+  <img src="../images/twisted_pair_cable.png" alt="Data Center" width="70%"/>
+</div>
+
+
 ## 🧩 **Applications of Twisted-Pair Copper Wire**
 
 ### 1. **LANs**:
