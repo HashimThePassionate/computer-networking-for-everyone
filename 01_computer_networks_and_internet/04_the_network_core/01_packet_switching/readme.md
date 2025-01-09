@@ -238,7 +238,8 @@ Packet switching involves:
 1. Breaking long messages into **packets**.
 2. Each packet is forwarded independently across the network.
 3. Routers use **forwarding tables** to determine the outgoing link for each packet.
-4. 
+
+
 ## 🧮 **Queuing Delay Calculation**
 
 ### **Factors Influencing Delay**:
