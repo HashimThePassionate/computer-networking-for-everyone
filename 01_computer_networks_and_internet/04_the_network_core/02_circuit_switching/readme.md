@@ -118,3 +118,130 @@ In a traditional telephone network:
 
 > New Section Begins
 
+# 🌐 **Multiplexing in Circuit-Switched Networks**
+
+## 🖥️ **Introduction**
+In **circuit-switched networks**, multiple connections share a single communication link. To manage these connections, the link can be divided using **multiplexing techniques**. The two primary methods are:
+- **Frequency-Division Multiplexing (FDM)**
+- **Time-Division Multiplexing (TDM)**
+
+These techniques ensure efficient utilization of the network's resources by allocating distinct portions of the link to each connection.
+
+---
+
+## 📌 **What Is Multiplexing?**
+
+### 🌟 **Definition**:
+**Multiplexing** is the process of combining multiple data streams or connections into a single shared communication link. This enables multiple circuits to coexist on the same physical medium.
+
+---
+
+## 🧩 **Key Multiplexing Techniques**
+
+### 1. **Frequency-Division Multiplexing (FDM)**
+
+- **How It Works**:
+  - The **frequency spectrum** of a link is divided into separate **frequency bands**.
+  - Each band is allocated to a specific connection for the entire session.
+  
+- **Example**:
+  - Telephone networks typically allocate a 4 kHz bandwidth per connection.
+  - FM radio uses FDM to assign specific frequency bands (e.g., 88 MHz to 108 MHz) to different stations.
+
+- **Visualization (Figure 1.14)**:
+  - Each circuit (connection) continuously occupies a specific frequency band on the link.
+
+<div align="center">
+  <img src="../images/03_multiplexing_circuit_switching.jpg" alt="FDM and TDM" width="500px"/>
+</div>
+
+### 2. **Time-Division Multiplexing (TDM)**
+
+- **How It Works**:
+  - Time is divided into **frames**, and each frame is further divided into **time slots**.
+  - A specific **time slot** in each frame is dedicated to a connection.
+  - Each connection gets the entire link bandwidth during its time slot.
+
+- **Example**:
+  - If a TDM link transmits 8,000 frames per second and each slot contains 8 bits, the transmission rate per circuit is:
+    \[
+    \text{Rate per circuit} = \text{Frame Rate} \times \text{Bits per Slot} = 8,000 \times 8 = 64 \, \text{kbps}.
+    \]
+
+- **Visualization (Figure 1.14)**:
+  - Each circuit periodically gets full bandwidth during its allocated time slots.
+
+
+<div align="center">
+  <img src="../images/03_multiplexing_circuit_switching.jpg" alt="FDM and TDM" width="500px"/>
+</div>
+
+## 🧮 **Numerical Example: File Transmission Over TDM**
+
+### Scenario:
+- File size: **640,000 bits**
+- TDM link:
+  - **24 slots**
+  - Bit rate: **1.536 Mbps**
+- Circuit setup time: **500 ms**
+
+**Steps**:
+1. **Transmission Rate Per Circuit**:
+   \[
+   \text{Rate per circuit} = \frac{1.536 \, \text{Mbps}}{24} = 64 \, \text{kbps}.
+   \]
+
+2. **Time to Transmit File**:
+   \[
+   \text{Transmission time} = \frac{\text{File size}}{\text{Rate per circuit}} = \frac{640,000 \, \text{bits}}{64,000 \, \text{bps}} = 10 \, \text{seconds}.
+   \]
+
+3. **Total Time** (Including Circuit Setup):
+   \[
+   \text{Total time} = \text{Setup time} + \text{Transmission time} = 0.5 \, \text{seconds} + 10 \, \text{seconds} = 10.5 \, \text{seconds}.
+   \]
+
+---
+
+## 📊 **FDM vs. TDM**
+
+| **Feature**                | **FDM**                                     | **TDM**                                   |
+|----------------------------|---------------------------------------------|------------------------------------------|
+| **Division Basis**          | Frequency spectrum                         | Time slots                               |
+| **Allocation**              | Continuous allocation of frequency band    | Periodic allocation of time slots        |
+| **Bandwidth Usage**         | Fixed bandwidth per connection             | Full bandwidth during allocated slot     |
+| **Efficiency**              | Wasted bandwidth during idle periods       | More efficient but still idle during silence in allocated slots. |
+
+---
+
+## 🔄 **Challenges in Circuit Switching**
+
+1. **Resource Wastage**:
+   - If a circuit is idle (e.g., during silent periods in a phone call), the allocated resources remain unused.
+
+2. **Complexity**:
+   - Establishing and maintaining circuits across multiple links requires sophisticated signaling mechanisms.
+
+3. **Scalability**:
+   - Limited capacity for handling many simultaneous connections due to fixed resource allocation.
+
+---
+
+## 🌟 **Key Takeaways**
+
+1. **Multiplexing in Circuit Switching**:
+   - Enables efficient use of communication links through **FDM** and **TDM**.
+
+2. **FDM**:
+   - Assigns a continuous **frequency band** to each connection.
+   - Common in analog communication like FM radio and telephony.
+
+3. **TDM**:
+   - Allocates periodic **time slots** to each connection.
+   - Common in digital communication systems.
+
+4. **Efficiency Considerations**:
+   - Both techniques face challenges during idle periods when allocated resources go unused.
+
+> New Section Begins
+
