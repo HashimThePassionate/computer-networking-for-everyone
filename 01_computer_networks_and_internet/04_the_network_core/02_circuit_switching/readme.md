@@ -243,5 +243,3 @@ These techniques ensure efficient utilization of the network's resources by allo
 4. **Efficiency Considerations**:
    - Both techniques face challenges during idle periods when allocated resources go unused.
 
-> New Section Begins
-
