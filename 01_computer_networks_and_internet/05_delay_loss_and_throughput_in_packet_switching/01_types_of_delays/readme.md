@@ -1,4 +1,4 @@
-# 📚 **Types of Delay**
+# 📚 **Types of Delays**
 
 This guide provides a detailed explanation of **Types of Delay** in computer networks, covering every aspect to help you understand the concept thoroughly. 🚀 Let’s break it down step by step with clear examples and formulas! 😊
 
@@ -33,7 +33,7 @@ Processing delay is the time a router takes to **examine the packet’s header**
 Imagine a packet arrives at **Router A**. The router reads the header to find that the destination is **Router B** and verifies that the packet is error-free. This decision-making and error-checking take a fraction of a second, contributing to the **processing delay**.  
 
 **Real-World Insight**:  
-In high-speed networks, processing delays are optimized to handle millions of packets per second, ensuring minimal delay. However, for older or overloaded routers, this delay can become a bottleneck.  
+In high-speed networks, processing delays are optimized to handle millions of packets per second, ensuring minimal delay. However, for older or overloaded routers, this delay can become a bottleneck. [Bottleneck](../bottleneck.md)  
 
 ---
 
