@@ -27,12 +27,27 @@ A great way to understand layered networking is by comparing it to **taking an a
 This analogy helps illustrate how **network protocols function** in a systematic, structured manner, ensuring that data reaches its destination just like a traveler reaches theirs.
 
 <div align="center">
-  <img src="./images/taking_an_airplane.jpg" alt="Taking an Airplane" width="500px"/>
+  <img src="./images/taking_an_airplane.jpg" alt="Taking an Airplane" width="600px"/>
 
   **Figure 1.21**: Taking an airplane trip: actions
 
 </div>
 
+### ✈️ **Horizontal Layering Breakdown**
+| **Layer** | **Functionality** | **Description** |
+|-----------|----------------|----------------|
+| 🎫 **Ticketing Layer** | Ticket purchase & complaints | Ensures passengers are registered for flights and can report issues. |
+| 🧳 **Baggage Layer** | Baggage check & claim | Handles checked luggage from origin to destination. |
+| 🚪 **Gate Layer** | Loading & unloading passengers | Manages passenger boarding and deplaning. |
+| 🏃 **Takeoff/Landing Layer** | Runway handling | Ensures smooth departure and arrival on runways. |
+| ✈️ **Airplane Routing Layer** | Flight path coordination | Manages in-flight routing between airports. |
+
+<div align="center">
+  <img src="./images/horizontal_layer_of_airplane_functionality.jpg" alt="Functionality of Airplane" width="600px"/>
+
+  **Figure e 1.22**: Horizontal layering of airline functionality
+
+</div>
 
 <div align="center">
 
