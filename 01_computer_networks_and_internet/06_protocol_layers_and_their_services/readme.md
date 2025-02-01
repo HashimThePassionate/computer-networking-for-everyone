@@ -274,6 +274,59 @@ At the **Network Layer**, the unit of data transmission is called a **datagram**
 
 <div align="center">
 
+# `New Section Link Layer`
+
+</div>
+
+# 🔗 **Link Layer** 🚀
+The **Link Layer** facilitates communication between devices on the same physical or logical link. While the **Network Layer** determines the end-to-end route of a **datagram**, the **Link Layer** ensures that the datagram is delivered from **one node to the next** along this route.
+
+### 💡 Key Functions of the Link Layer:
+- **Transfers data between directly connected nodes (hosts or routers).**
+- **Encapsulates network-layer datagrams into link-layer frames.**
+- **Handles error detection, retransmission, and flow control (depending on the protocol).**
+- **Uses different protocols for different types of network links.**
+
+---
+
+## 📡 How the Link Layer Works
+When a **datagram** reaches a network node (such as a router or host), the **Network Layer** hands it over to the **Link Layer** for **local delivery**. The Link Layer then:
+
+1️⃣ **Encapsulates the datagram into a frame** that is compatible with the specific link-layer protocol in use.  
+2️⃣ **Transmits the frame** over the physical link to the next node (router or host).  
+3️⃣ **At the receiving node, the Link Layer extracts the datagram** from the frame and passes it up to the **Network Layer**.  
+
+This process is repeated at every hop along the route until the datagram reaches its final destination.
+
+---
+
+## 🌍 Key Link Layer Protocols
+Different types of **link-layer protocols** are used depending on the network link:
+
+| **Protocol** | **Purpose** | **Example Use Case** |
+|-------------|------------|------------------|
+| 📶 **WiFi (802.11)** | Wireless communication | Home and enterprise wireless networks |
+| 🔗 **Ethernet (802.3)** | Wired LAN communication | Office and data center networking |
+| 🌍 **PPP (Point-to-Point Protocol)** | Direct connection between two nodes | DSL and dial-up connections |
+| 📡 **DOCSIS (Data Over Cable Service Interface Specification)** | Broadband over cable | Cable internet connections |
+
+A **datagram** often needs to traverse multiple links using **different link-layer protocols**. For example:
+- A datagram may travel over **WiFi** from a laptop to a router.
+- It may then be transmitted over **Ethernet** to an ISP.
+- Finally, it may be carried over **DOCSIS** via a cable network to reach a server.
+
+Each link-layer protocol provides **different services** based on its technology.
+
+---
+
+## 📦 Link Layer Data Unit: Frames
+At the **Link Layer**, the unit of data transmission is called a **frame**. A frame contains:
+✅ **A header** (which includes addressing information like MAC addresses).  
+✅ **A payload** (which contains the network-layer datagram).  
+✅ **Error-checking information** (used for data integrity and reliability).  
+
+<div align="center">
+
 # `New Section Starts here`
 
 </div>
