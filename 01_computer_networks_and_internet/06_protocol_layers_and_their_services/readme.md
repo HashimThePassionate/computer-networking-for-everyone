@@ -1,4 +1,4 @@
-# ✈️ **Protocol Layers and Their Service Models** 🚀
+# **Protocol Layers and Their Service Models** 🚀
 
 ## 📌 Introduction
 The Internet is a highly complex system with numerous components, including **applications, protocols, end systems, packet switches, and link-level media**. To simplify this complexity, a **layered architecture** is used to structure networking functions, making them easier to manage and troubleshoot.
@@ -367,8 +367,69 @@ When data is passed down from the **Link Layer**, the Physical Layer performs th
 
 <div align="center">
 
-# `New Section Starts here`
+# `New Section Data Encapsulation`
 
 </div>
+
+# 📦 **Data Encapsulation** 🚀
+
+Encapsulation occurs when data is passed **from an upper-layer protocol to a lower-layer protocol** in the network stack. Each layer **wraps the received data** by adding a **header** (and sometimes a trailer) containing information needed for processing at that layer.
+Figure 1.24 illustrates how data moves **down the protocol stack** in a sending system, through intermediary network devices, and then **up the protocol stack** in the receiving system.
+
+<div align="center">
+  <img src="./images/encapsulate.jpg" alt="Encapsulation" width="600px"/>
+
+  **Figure 1.24**: Hosts, routers, and link-layer switches; each contains a
+different set of layers, reflecting their differences in functionality-
+
+</div>
+
+### 💡 Key Steps in Data Encapsulation:
+1️⃣ The **Application Layer** creates the original **message (M)**.  
+2️⃣ The **Transport Layer** encapsulates the message into a **segment** by adding a transport-layer **header (Ht)**.  
+3️⃣ The **Network Layer** encapsulates the segment into a **datagram** by adding a network-layer **header (Hn)**.  
+4️⃣ The **Link Layer** encapsulates the datagram into a **frame** by adding a link-layer **header (Hl)**.  
+5️⃣ The **Physical Layer** transmits the raw bits over the network medium.  
+
+At the **receiving end**, the encapsulation process is reversed:
+- The **Link Layer** extracts the **datagram** from the frame.
+- The **Network Layer** extracts the **segment** from the datagram.
+- The **Transport Layer** extracts the **original message** from the segment and delivers it to the **Application Layer**.
+
+---
+
+## 📡 Headers at Each Layer
+Each layer's **header information** helps with specific networking functions:
+
+| **Layer** | **Header** | **Purpose** |
+|----------|----------|-------------|
+| 🌍 **Application Layer** | M | The original message from the user application. |
+| 🚀 **Transport Layer** | Ht | Adds information for **error-checking, sequencing, and delivery** (e.g., TCP/UDP headers). |
+| 🌐 **Network Layer** | Hn | Adds **IP source/destination addresses** to route the data. |
+| 🔗 **Link Layer** | Hl | Adds **MAC addresses** to ensure proper transmission within a network. |
+| ⚡ **Physical Layer** | Bits | Converts data into **electrical, optical, or radio signals** for transmission. |
+
+Each **header field** ensures that the data is successfully delivered to the next stage in the network journey.
+
+---
+
+## 📦 A Real-World Analogy: Sending a Memo
+A useful analogy to encapsulation is **sending an interoffice memo via postal mail**:
+
+1️⃣ **Memo Creation:** Alice writes a memo (similar to an application-layer message).  
+2️⃣ **Interoffice Envelope:** She places it inside an interoffice envelope, addressed to Bob (similar to a transport-layer segment).  
+3️⃣ **Postal Envelope:** The office mailroom places this envelope inside a larger **postal envelope** with destination addresses (similar to a network-layer datagram).  
+4️⃣ **Mailing Process:** The envelope is handed to the postal service for delivery (similar to the link layer forwarding data).  
+5️⃣ **Delivery & Unpacking:** The receiving mailroom removes the postal envelope, extracts the interoffice memo, and delivers it to Bob (similar to de-encapsulation in networking).  
+
+This analogy illustrates how **each layer encapsulates and transports data**, ensuring it reaches the final recipient correctly.
+
+---
+
+## 🔗 Fragmentation & Reassembly
+In some cases, **large messages must be divided into smaller packets** for transmission:
+- **The Transport Layer** may break a large message into **multiple segments**.
+- **The Network Layer** may further divide a segment into **multiple datagrams**.
+- At the receiving end, these **fragments are reassembled** before being passed to higher layers.
 
 
