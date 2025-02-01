@@ -146,6 +146,68 @@ At the **Application Layer**, we refer to the **data exchanged** as a **message*
 
 <div align="center">
 
+# `New Section Transport Layer`
+
+</div>
+
+# 🚀 **Transport Layer**
+
+## 🏛 What is the Transport Layer? 
+The **Transport Layer** is responsible for **delivering data** from one **application endpoint to another** across the Internet. It acts as a **bridge** between the **Application Layer** and the **lower network layers**, ensuring that messages from applications are delivered efficiently and reliably. The **Transport Layer** is the second-highest layer in the Internet protocol stack. It ensures that **application-layer messages** are properly **transmitted and received** between end systems, regardless of the underlying network conditions.
+
+### 💡 Key Functions of the Transport Layer:
+- **Transfers application-layer messages** between source and destination endpoints.
+- **Provides reliability and flow control** (in the case of TCP) to prevent network congestion.
+- **Segments long messages** into smaller packets and reassembles them at the destination.
+- **Offers different levels of service** depending on the protocol used (TCP vs. UDP).
+
+---
+
+## 🌐 Transport Layer Protocols
+The Internet primarily uses two **Transport Layer protocols**:
+
+| **Protocol** | **Type** | **Functionality** |
+|-------------|---------|------------------|
+| ⚡ **TCP (Transmission Control Protocol)** | Connection-oriented | Provides reliable, ordered, and error-checked delivery of data. |
+| 🌍 **UDP (User Datagram Protocol)** | Connectionless | Provides fast but unreliable, unordered delivery of data. |
+
+Each protocol serves different types of applications based on their communication needs.
+
+---
+
+## 📡 TCP (Transmission Control Protocol)
+TCP is a **connection-oriented** protocol that ensures **reliable** data transmission. It is used for applications that require:
+✅ **Guaranteed message delivery** – Ensures that data reaches its destination correctly.  
+✅ **Flow control** – Matches sender/receiver speeds to prevent data loss.  
+✅ **Congestion control** – Prevents overwhelming the network by adjusting transmission rates.  
+✅ **Data segmentation and reassembly** – Breaks large messages into smaller packets and reassembles them upon arrival.  
+
+TCP is commonly used in applications like:
+- 🌍 **Web browsing (HTTP, HTTPS)**
+- 📩 **Email (SMTP, IMAP, POP3)**
+- 🎮 **Online gaming (when reliability is needed)**
+
+---
+
+## ⚡ UDP (User Datagram Protocol)
+UDP is a **connectionless** protocol designed for applications that require **speed over reliability**. It provides:
+❌ **No guaranteed delivery** – Packets may be lost in transit.  
+❌ **No flow control** – Data is sent at the application’s speed, regardless of network congestion.  
+❌ **No congestion control** – Does not adjust transmission rates in response to network conditions.  
+
+UDP is commonly used in:
+- 📺 **Streaming (YouTube, Netflix, VoIP, Video Calls)**
+- 🎮 **Real-time gaming (fast but lossy connections)**
+- 📡 **DNS lookups (quick, one-time queries)**
+
+---
+
+## 🔗 Transport Layer Data Unit: Segments
+In the Transport Layer, the unit of data transmission is called a **segment**. A segment carries **application-layer messages**, along with **headers** containing important metadata such as **source/destination ports, sequence numbers, and error-checking fields**.
+
+
+<div align="center">
+
 # `New Section Starts here`
 
 </div>
