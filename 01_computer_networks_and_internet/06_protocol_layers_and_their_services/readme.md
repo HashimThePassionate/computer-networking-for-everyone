@@ -105,6 +105,47 @@ Each layer provides services to the layer **above** it while depending on the se
 
 <div align="center">
 
+# `New Section Application Layer`
+
+</div>
+
+# 🌍 **Application Layer** 🚀
+
+The **Application Layer** is the topmost layer of the **Internet protocol stack**. It is responsible for **network applications and their corresponding application-layer protocols**. This layer provides the **interface for end-users and applications** to communicate over the network.The **Application Layer** houses network applications and the **protocols** that enable communication between devices. These protocols define **how messages are structured, sent, and processed** between applications on different end systems.
+
+### 💡 Key Functions of the Application Layer:
+- **Enables network communication for user applications** (e.g., web browsing, email, file transfer).
+- **Provides protocols for specific tasks**, such as requesting webpages, sending emails, or transferring files.
+- **Handles name resolution** (e.g., converting human-readable domain names to IP addresses).
+- **Ensures proper data formatting, encoding, and encryption for secure communication.**
+
+---
+
+## 🌐 Key Protocols in the Application Layer
+| **Protocol** | **Purpose** | **Functionality** |
+|-------------|------------|------------------|
+| 🌍 **HTTP (Hypertext Transfer Protocol)** | Web browsing | Requests and transfers web documents (e.g., HTML, CSS, images). |
+| 📩 **SMTP (Simple Mail Transfer Protocol)** | Email services | Transfers email messages between mail servers. |
+| 📁 **FTP (File Transfer Protocol)** | File sharing | Transfers files between end systems. |
+| 🔎 **DNS (Domain Name System)** | Name resolution | Converts human-friendly domain names (e.g., www.ietf.org) into IP addresses. |
+
+These protocols enable communication between applications running on different devices across the Internet. 
+
+---
+
+## 🖥️ How Does the Application Layer Work?
+An **Application-Layer Protocol** operates **across multiple end systems**. It enables communication between applications running on different devices, following these steps:
+
+1️⃣ **A user application (like a web browser) initiates a request** using an application-layer protocol (e.g., HTTP). </br>
+2️⃣ **A message is generated** containing necessary information for communication.  </br>
+3️⃣ **The message is transmitted** across the network using lower-layer protocols.  </br>
+4️⃣ **The receiving application interprets and processes the message**, enabling a response or action.  </br>
+
+At the **Application Layer**, we refer to the **data exchanged** as a **message**. These messages encapsulate application-specific information that is **interpreted and processed** at the destination system.
+
+
+<div align="center">
+
 # `New Section Starts here`
 
 </div>
