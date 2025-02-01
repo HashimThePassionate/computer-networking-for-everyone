@@ -208,7 +208,74 @@ In the Transport Layer, the unit of data transmission is called a **segment**. A
 
 <div align="center">
 
+# `New Section Network Layer`
+
+</div>
+
+# 🌐 **Network Layer** 🚀
+
+The **Network Layer** is responsible for **delivering data packets** from one host to another across the Internet. It acts as the **backbone** of network communication, ensuring that data is efficiently routed and delivered between source and destination devices 
+The **Network Layer** is the third layer in the Internet protocol stack. It plays a crucial role in **addressing, routing, and forwarding** data to ensure successful communication between devices located in different networks.
+
+### 💡 Key Functions of the Network Layer:
+- **Transfers packets (datagrams) between hosts.**
+- **Uses logical addressing (IP addresses) to identify source and destination devices.**
+- **Determines the best routes for packets using routing protocols.**
+- **Handles packet fragmentation and reassembly when necessary.**
+
+---
+
+## 🌍 Core Components of the Network Layer
+The Network Layer consists of two main components:
+
+1️⃣ **The IP Protocol (Internet Protocol)**  
+2️⃣ **Routing Protocols**  
+
+Let's explore each of these in detail.
+
+---
+
+## 📡 The IP Protocol (Internet Protocol)
+The **IP protocol** is the **heart of the Network Layer**. It defines the **structure of datagrams** (network-layer packets) and specifies how devices handle and forward these packets.
+
+✅ **IP is the universal protocol that all Internet-enabled devices must use.**  
+✅ **IP defines the structure of datagram headers**, including source/destination addresses.  
+✅ **IP enables end-to-end communication between hosts across different networks.**  
+✅ **IP provides best-effort delivery**, meaning it does not guarantee packet arrival but relies on higher layers for error checking.  
+
+### 📌 IP Addressing
+Each device connected to the Internet is assigned a **unique IP address** that identifies it within the network. There are two major versions of IP:
+- **IPv4 (32-bit addresses, widely used)**
+- **IPv6 (128-bit addresses, designed for future scalability)**
+
+---
+
+## 🔗 Routing Protocols
+The **Network Layer** also includes **routing protocols**, which determine the **best path** for delivering datagrams from the source to the destination.
+
+| **Routing Protocol Type** | **Examples** | **Functionality** |
+|-----------------|--------------------|------------------|
+| 📡 **Interior Gateway Protocols (IGPs)** | OSPF, RIP, EIGRP | Used within a single organization’s network. |
+| 🌍 **Exterior Gateway Protocols (EGPs)** | BGP | Used to route data between different organizations (Autonomous Systems). |
+
+### 📌 Role of Routing Protocols
+- **Routing protocols help routers decide the most efficient paths for data transmission.**
+- **They enable dynamic path selection, ensuring optimal data flow.**
+- **Routers use these protocols to communicate and exchange network topology information.**
+
+---
+
+## 📦 Network Layer Data Unit: Datagrams
+At the **Network Layer**, the unit of data transmission is called a **datagram**. A datagram contains:
+✅ **A header** (which includes source/destination IP addresses).  
+✅ **A payload** (which contains the actual data being transmitted).  
+✅ **Control information** (used for routing and delivery).
+
+
+<div align="center">
+
 # `New Section Starts here`
 
 </div>
+
 
