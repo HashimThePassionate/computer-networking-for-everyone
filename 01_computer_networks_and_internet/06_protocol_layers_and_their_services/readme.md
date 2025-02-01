@@ -327,6 +327,46 @@ At the **Link Layer**, the unit of data transmission is called a **frame**. A fr
 
 <div align="center">
 
+# `New Section Physical Layer`
+
+</div>
+
+# ⚡ **Physical Layer** 🚀
+The **Physical Layer** is the **lowest layer** in the Internet protocol stack. It is responsible for **transmitting raw bits** from one network device to another over a communication medium. Unlike higher layers that deal with structured data (such as frames or packets), the **Physical Layer** focuses on the fundamental task of moving individual bits across a physical connection. The **Physical Layer** ensures that **bits are transmitted as electrical signals, optical pulses, or radio waves** over a medium such as copper wires, fiber optics, or wireless channels. It provides the foundation for all network communication by defining how data is physically sent and received.
+
+### 💡 Key Functions of the Physical Layer:
+- **Transfers individual bits** across a communication link.
+- **Defines transmission medium characteristics** (copper, fiber, radio waves, etc.).
+- **Handles bit encoding and modulation** for efficient transmission.
+- **Specifies data rates and synchronization mechanisms.**
+- **Manages physical network topology and hardware interfaces.**
+
+---
+
+## 📡 Physical Layer Technologies
+Different communication mediums require different **Physical Layer protocols** to ensure reliable bit transmission. 
+
+| **Technology** | **Transmission Medium** | **Usage** |
+|--------------|------------------|------------------|
+| 🔌 **Twisted-Pair Copper Wire** | Electrical signals | Ethernet LAN connections |
+| 📡 **Coaxial Cable** | Electrical signals | Cable networks (DOCSIS) |
+| 🔦 **Fiber Optics** | Light pulses | High-speed backbone networks |
+| 📶 **Wireless (WiFi, Cellular)** | Radio waves | Mobile and WiFi networks |
+
+Each medium requires a specific method to convert **bits into signals** that can be transmitted efficiently over that medium.
+
+---
+
+## 📦 How the Physical Layer Works
+When data is passed down from the **Link Layer**, the Physical Layer performs the following steps:
+
+1️⃣ **Bit Encoding & Modulation:** The data is converted into signals (electrical, optical, or radio) for transmission.  
+2️⃣ **Signal Transmission:** The encoded signals travel through the transmission medium to the next network device.  
+3️⃣ **Reception & Decoding:** The receiving device converts the incoming signals back into bits.  
+4️⃣ **Bit Synchronization:** Ensures that both sender and receiver maintain proper timing during data transmission.  
+
+<div align="center">
+
 # `New Section Starts here`
 
 </div>
