@@ -142,6 +142,75 @@ A **botnet** is a network of compromised devices that **cybercriminals control r
 
 <div align="center">
 
+# `New Section Denial-of-Service`
+
+</div>
+
+# 🔥 **Denial-of-Service (DoS) Attacks** 🚀
+
+## 📌 Introduction
+As the Internet has become essential for individuals, businesses, and institutions, **attackers continuously exploit vulnerabilities** in network infrastructure to disrupt services. One of the most severe threats is a **Denial-of-Service (DoS) attack**, which aims to **render a network, host, or service unusable** for legitimate users.
+---
+
+## 🏛 What is a Denial-of-Service (DoS) Attack?
+A **Denial-of-Service (DoS) attack** is a malicious attempt to **overwhelm a target system, network, or service** so that it can no longer respond to legitimate requests. **Web servers, email servers, DNS servers, and entire networks** are frequent targets of DoS attacks.
+
+**Key consequences of DoS attacks:**
+
+✅ **Service Disruptions** – Users cannot access critical applications and services.  
+✅ **Financial Losses** – Businesses lose revenue due to prolonged downtime.  
+✅ **Reputational Damage** – Organizations suffer credibility loss if frequently attacked.  
+✅ **Security Risks** – DoS attacks may be used as a diversion for more dangerous intrusions.  
+
+---
+
+## ⚔️ Types of DoS Attacks
+Most DoS attacks fall into one of the following **three categories**:
+
+| **Attack Type** | **Description** | **Impact** |
+|--------------|------------------|------------------|
+| 🔓 **Vulnerability Attack** | Exploits weaknesses in a system by sending well-crafted packets to crash an application or OS. | Service failure, system crashes, or data loss. |
+| 🌊 **Bandwidth Flooding** | Overwhelms the target’s access link by sending a massive volume of traffic. | Prevents legitimate users from accessing the service. |
+| 🔗 **Connection Flooding** | Attacker opens numerous half-open or full TCP connections to exhaust system resources. | Prevents new legitimate connections from being established. |
+
+Each of these attacks can **cripple** an online service, but **DDoS attacks** pose an even greater threat.
+
+---
+
+## 📡 Distributed Denial-of-Service (DDoS) Attacks
+### 🕷 **How DDoS Attacks Work**
+Unlike traditional **single-source DoS attacks**, a **Distributed Denial-of-Service (DDoS) attack** involves **multiple compromised machines (zombies or botnets)** attacking a single target. These zombie machines are controlled by an attacker and **generate overwhelming amounts of traffic simultaneously**, making it difficult to block the attack.
+
+### 📌 **Why DDoS Attacks Are More Dangerous**
+✅ **Difficult to Detect** – Since traffic originates from multiple sources, identifying malicious traffic is complex.  
+✅ **Harder to Block** – Blocking a single attacking IP does not stop the attack, as multiple machines are involved.  
+✅ **Massive Impact** – DDoS attacks can **cripple large organizations, financial institutions, and government agencies**.  
+
+### 📊 **Example of a DDoS Attack**
+If a **server has an access rate of R bps**, a DoS attacker must send traffic at **approximately R bps** to be effective. However, if **R is very large**, a single attacker may not generate enough traffic. **This is where DDoS attacks become effective**—by coordinating thousands of infected machines, attackers can **aggregate their bandwidth** to overwhelm the target system.
+
+<div align="center">
+  <img src="./images/zoobies.jpg" alt="DOS" width="600px"/>
+
+  **Figure 1.25**: A distributed denial-of-service attack
+
+</div>
+
+
+---
+
+## 🛡️ How to Defend Against DoS & DDoS Attacks
+### ✅ **Best Practices for Preventing DoS Attacks**
+- **📊 Traffic Monitoring & Anomaly Detection** – Identify unusual spikes in network traffic.
+- **🛑 Firewalls & Rate Limiting** – Limit the number of connections per second from a single IP.
+- **🕵️ Intrusion Detection Systems (IDS)** – Identify and block suspicious activity before damage occurs.
+- **🔗 Content Delivery Networks (CDNs)** – Use distributed infrastructure to absorb high-traffic attacks.
+- **🌍 Anycast Network Routing** – Distribute attack traffic across multiple servers to reduce impact.
+- **🚫 Blackhole Routing** – Filter and discard malicious traffic before it reaches critical systems.
+
+
+<div align="center">
+
 # `New Section Starts here`
 
 </div>
