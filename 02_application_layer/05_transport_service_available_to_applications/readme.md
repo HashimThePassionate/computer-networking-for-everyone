@@ -225,3 +225,82 @@ print(f"Data sent in {duration:.2f} seconds")
 - `b'X' * 1024 * 1024`: Creates **1MB** of dummy data.
 - `sendall()`: Ensures the **entire message** is sent before closing.
 
+---
+
+# ⏳ **Timing Guarantees in Transport-Layer Protocols**
+
+## 📌 Overview
+Transport-layer protocols can provide **timing guarantees**, ensuring that **data arrives within a specific timeframe**. Similar to **throughput guarantees**, timing constraints vary depending on the application’s needs.
+
+An example of a **timing guarantee** is ensuring that every bit sent into a socket **arrives within 100 milliseconds** at the receiving socket.
+
+This is **critical** for **real-time applications**, such as:
+- 🎤 **Internet Telephony (VoIP)** – Avoids unnatural conversation pauses.
+- 🎮 **Multiplayer Gaming** – Ensures smooth and responsive gameplay.
+- 🖥️ **Virtual Environments** – Maintains immersive interaction.
+- 📹 **Teleconferencing** – Reduces lag for effective communication.
+
+For **non-real-time applications** (e.g., **email, file transfer, web browsing**), lower delays are preferable, but **strict constraints aren’t necessary**.
+
+## 🔹 Why Timing Guarantees Matter?
+Without proper timing, real-time applications suffer from:
+- **🛑 Increased Latency:** Causes noticeable pauses and interruptions.
+- **🔄 Jitter Issues:** Uneven delay variations affect streaming and gaming.
+- **⏳ Poor User Experience:** Delayed responses impact interactivity.
+
+## 📜 Code Example: Measuring Network Delay
+The following **Python script** demonstrates how to measure **network timing (latency/delay)** using **UDP sockets**.
+
+### **🔹 Server Code (Receiver Side)**
+```python
+import socket
+import time
+
+# Create a UDP socket
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+server_socket.bind(('localhost', 8080))
+print("Server is ready to receive data...")
+
+while True:
+    data, addr = server_socket.recvfrom(1024)  # Receive data
+    receive_time = time.time()
+    print(f"Received: {data.decode()} from {addr} at {receive_time:.6f} seconds")
+    
+    # Sending response with timestamp
+    server_socket.sendto(str(receive_time).encode(), addr)
+```
+
+### **🔍 Code Breakdown**
+- `socket.SOCK_DGRAM`: Uses **UDP** for faster, connectionless communication.
+- `recvfrom(1024)`: Receives data packets (max **1024 bytes**).
+- `time.time()`: Captures **timestamp** when the message arrives.
+- `sendto()`: Sends the **timestamp back** to the sender for latency calculation.
+
+### **🔹 Client Code (Sender Side)**
+```python
+import socket
+import time
+
+# Create a UDP socket
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+server_address = ('localhost', 8080)
+
+message = "Timing Test"
+start_time = time.time()
+client_socket.sendto(message.encode(), server_address)  # Send message
+
+# Receive response with timestamp
+data, _ = client_socket.recvfrom(1024)
+end_time = time.time()
+server_timestamp = float(data.decode())
+
+# Calculate delay
+delay = (end_time - start_time) * 1000  # Convert to milliseconds
+print(f"Round Trip Time (RTT): {delay:.2f} ms")
+```
+
+### **🔍 Code Breakdown**
+- `socket.SOCK_DGRAM`: Uses **UDP** for faster communication.
+- `sendto()`: Sends a **timing test message** to the server.
+- `recvfrom(1024)`: Receives the **timestamp from the server**.
+- `end_time - start_time`: Computes **Round Trip Time (RTT)** in **milliseconds**.
