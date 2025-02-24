@@ -20,6 +20,8 @@ Transport-layer services can be classified into four broad dimensions:
 3. **⏳ Timing** – Guarantees specific delays or ensures timely delivery.
 4. **🔒 Security** – Provides encryption and data integrity mechanisms.
 
+---
+
 # **Reliable Data Transfer** 🚀
 
 ## 📌 Overview
@@ -118,3 +120,108 @@ client_socket.close()  # Close the connection
 - `connect(('localhost', 8080))`: Connects to the **server**.
 - `send()`: Sends **reliable** data to the server.
 - `recv(1024)`: Receives an acknowledgment ensuring **successful delivery**.
+
+---
+
+#  **Throughput in Network Communication** 🚀
+
+## 📌 Overview
+**Throughput** refers to the rate at which the **sending process delivers bits** to the **receiving process** in a communication session over a network path. Since multiple sessions share bandwidth, the **available throughput fluctuates** over time.
+
+A **transport-layer protocol** can offer a service to guarantee a **minimum available throughput**. This is particularly crucial for **bandwidth-sensitive applications**, which require a consistent rate to function effectively.
+
+## 🔹 Importance of Guaranteed Throughput
+A **guaranteed throughput service** ensures that an application always receives a specified data rate **r bits/sec**. This is essential for:
+- 🎤 **Internet Telephony** (e.g., VoIP) requiring **32 kbps** for proper voice transmission.
+- 🎥 **Streaming video** needing a **minimum throughput** to maintain video quality.
+- 🎶 **Live audio broadcasting** that relies on **stable data flow**.
+
+If the network **cannot** meet the application's required throughput, the application may:
+- **Lower its data rate** using adaptive encoding.
+- **Fail to function properly**, causing disruptions.
+
+## 🔹 Bandwidth-Sensitive vs. Elastic Applications
+### **🎯 Bandwidth-Sensitive Applications**
+Require a **specific amount of throughput** to function correctly. If the required throughput isn’t met, the application performance **significantly degrades**.
+Examples:
+- **VoIP calls**
+- **Live video streaming**
+- **Online gaming**
+
+### **📈 Elastic Applications**
+Can function with **varying levels of throughput**. Higher throughput improves performance but is **not mandatory**.
+Examples:
+- 📧 **Email**
+- 📂 **File transfer (FTP, cloud backups)**
+- 🌐 **Web browsing**
+
+## 📜 Code Example: Measuring Network Throughput
+The following **Python program** demonstrates how to measure the **throughput** of a network connection using a TCP socket.
+
+### **🔹 Server Code (Receiver Side)**
+```python
+import socket
+import time
+
+# Server setup
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(('localhost', 8080))
+server_socket.listen(1)
+
+print("Server waiting for connection...")
+conn, addr = server_socket.accept()
+print(f"Connected to {addr}")
+
+start_time = time.time()
+data_received = 0
+
+while True:
+    data = conn.recv(4096)  # Receive 4KB chunks
+    if not data:
+        break
+    data_received += len(data)
+
+end_time = time.time()
+throughput = (data_received * 8) / (end_time - start_time)  # Convert to bits/sec
+
+print(f"Throughput: {throughput:.2f} bps")
+conn.close()
+```
+
+### **🔍 Code Breakdown**
+- `socket.AF_INET`: Uses **IPv4 addressing**.
+- `socket.SOCK_STREAM`: Uses **TCP** for reliable communication.
+- `bind(('localhost', 8080))`: Binds the server to **port 8080**.
+- `listen(1)`: Allows **one** client connection.
+- `recv(4096)`: Receives **4KB** of data at a time.
+- Calculates **throughput in bits/sec** using:
+  ```python
+  throughput = (data_received * 8) / (end_time - start_time)
+  ```
+
+### **🔹 Client Code (Sender Side)**
+```python
+import socket
+import time
+
+# Client setup
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect(('localhost', 8080))
+
+message = b'X' * 1024 * 1024  # Send 1MB of data
+start_time = time.time()
+
+client_socket.sendall(message)
+client_socket.close()
+
+end_time = time.time()
+duration = end_time - start_time
+print(f"Data sent in {duration:.2f} seconds")
+```
+
+### **🔍 Code Breakdown**
+- `socket.SOCK_STREAM`: Establishes a **TCP connection**.
+- `connect(('localhost', 8080))`: Connects to the **server**.
+- `b'X' * 1024 * 1024`: Creates **1MB** of dummy data.
+- `sendall()`: Ensures the **entire message** is sent before closing.
+
