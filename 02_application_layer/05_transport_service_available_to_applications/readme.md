@@ -304,3 +304,104 @@ print(f"Round Trip Time (RTT): {delay:.2f} ms")
 - `sendto()`: Sends a **timing test message** to the server.
 - `recvfrom(1024)`: Receives the **timestamp from the server**.
 - `end_time - start_time`: Computes **Round Trip Time (RTT)** in **milliseconds**.
+
+---
+
+# 🔒 **Security in Transport-Layer Protocols**
+
+## 📌 Overview
+
+A **transport-layer protocol** can enhance an application's **security** by offering services such as:
+
+- 🔐 **Confidentiality** – Encrypting transmitted data to prevent unauthorized access.
+- ✅ **Data Integrity** – Ensuring that the received data is not tampered with.
+- 🆔 **End-Point Authentication** – Verifying the identity of communication parties.
+
+These security measures protect data even if intercepted during transmission between the **sending** and **receiving** processes.
+
+## 🔹 Security Services in Transport Protocols
+
+### **1️⃣ Confidentiality (Encryption & Decryption)**
+
+- Encryption at the **sending host** ensures that data remains unreadable to unauthorized entities.
+- Decryption at the **receiving host** ensures that only intended recipients can access the original message.
+
+### **2️⃣ Data Integrity**
+
+- Ensures that data is not **modified** during transmission.
+- Prevents **man-in-the-middle (MITM) attacks** from altering messages.
+
+### **3️⃣ End-Point Authentication**
+
+- Verifies that the sender and receiver are legitimate parties.
+- Prevents **impersonation attacks** by requiring credentials.
+
+## 📜 Code Example: Implementing Secure Transport with Python (TLS Encryption)
+
+### **🔹 Secure Server Code (TLS-Enabled)**
+
+```python
+import socket
+import ssl
+
+# Create a standard socket
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(('localhost', 8443))
+server_socket.listen(1)
+
+# Wrap the socket with SSL
+context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+context.load_cert_chain(certfile="server.crt", keyfile="server.key")
+
+print("🔒 Secure Server is running...")
+conn, addr = server_socket.accept()
+secure_conn = context.wrap_socket(conn, server_side=True)
+
+# Receiving encrypted data
+data = secure_conn.recv(1024).decode()
+print(f"Received: {data}")
+
+# Sending encrypted response
+secure_conn.send("Secure connection established!".encode())
+secure_conn.close()
+```
+
+### **🔍 Code Breakdown**
+
+- `ssl.create_default_context()`: Creates a **TLS/SSL security context**.
+- `context.load_cert_chain(certfile, keyfile)`: Loads the **server's certificate and key**.
+- `wrap_socket(conn, server_side=True)`: Secures the connection with **TLS encryption**.
+- `recv(1024)`: Receives **encrypted data** securely.
+- `send()`: Sends **encrypted responses**.
+
+### **🔹 Secure Client Code (TLS-Enabled)**
+
+```python
+import socket
+import ssl
+
+# Create a standard socket
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Wrap socket with SSL for secure communication
+context = ssl.create_default_context()
+secure_socket = context.wrap_socket(client_socket, server_hostname='localhost')
+secure_socket.connect(('localhost', 8443))
+
+# Sending encrypted data
+secure_socket.send("Hello Secure Server!".encode())
+
+# Receiving encrypted response
+response = secure_socket.recv(1024).decode()
+print(f"Server Response: {response}")
+
+secure_socket.close()
+```
+
+### **🔍 Code Breakdown**
+
+- `wrap_socket(client_socket, server_hostname='localhost')`: Enables **TLS encryption** for the client.
+- `connect(('localhost', 8443))`: Connects to the **secure server**.
+- `send()`: Sends **encrypted** data to the server.
+- `recv(1024)`: Receives the **server's secure response**.
+
