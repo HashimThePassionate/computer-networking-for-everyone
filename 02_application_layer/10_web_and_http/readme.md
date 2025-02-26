@@ -160,3 +160,110 @@ HTTP supports both models, though **persistent connections** are the default. Ho
 
 ---
 
+# **HTTP with Non-Persistent Connections** 🚀
+
+## Overview 📚
+This document explains the process of transferring a web page from a server to a client using HTTP with non-persistent connections. It covers how the base HTML file and associated JPEG images are transferred, step by step, along with a back-of-the-envelope calculation of response times based on the round-trip time (RTT). 😊
+
+---
+
+## Detailed Explanation 🔍
+
+### 1. Introduction to Non-Persistent Connections 💡
+- **Context:**  
+  In non-persistent HTTP, each object (like HTML files or images) is transferred over a separate TCP connection.  
+  - **Example:** A web page composed of a base HTML file and 10 JPEG images means 11 objects in total.  
+  - **Server Location:**  
+    All objects are on the same server, e.g., at the URL:  
+    `http://www.someSchool.edu/someDepartment/home.index`  
+  - **Note:** This method is used by HTTP/1.0 and involves creating a new TCP connection for each object requested. 😃
+
+### 2. Step-by-Step Walkthrough 📑
+
+#### **Step 1:** TCP Connection Establishment 🌐
+- **What Happens:**  
+  The HTTP client initiates a TCP connection to `www.someSchool.edu` on port `80` (the default for HTTP).  
+- **Technical Details:**  
+  - Two sockets are created: one at the client and one at the server.
+- **under the hood**  
+  This step is like "knocking on the door" of the server! 🚪😊
+
+#### **Step 2:** HTTP Request Message Sent ✉️
+- **What Happens:**  
+  The client sends an HTTP request message through its socket.  
+- **Included Detail:**  
+  - The message contains the path `/someDepartment/home.index`.  
+- **under the hood**  
+  Think of this as sending an invitation to the server to deliver the requested content! 📬✨
+
+#### **Step 3:** Server Processes and Responds 🖥️
+- **What Happens:**  
+  The server receives the request, retrieves the requested object (the HTML file) from its storage (RAM or disk), and encapsulates it in an HTTP response message.  
+- **Subsequent Action:**  
+  The response is sent back to the client through the server’s socket.
+- **under the hood**  
+  It’s like the server preparing a package and sending it off to you! 📦🚀
+
+#### **Step 4:** Connection Closure Initiated 🔒
+- **What Happens:**  
+  The server signals TCP to close the connection.  
+- **Technical Note:**  
+  - TCP waits until it is sure the client received the response correctly before fully terminating the connection.
+- **under the hood**  
+  This step ensures that the “door” is securely closed after the package is delivered! 🔐😊
+
+#### **Step 5:** Client Receives and Processes Response 📥
+- **What Happens:**  
+  - The client receives the response message containing the HTML file.  
+  - It extracts and processes the file, then identifies references to 10 JPEG images embedded within the HTML.
+- **under the hood**  
+  The client unpacks and reads the message like opening a letter and discovering more details inside! 💌🌟
+
+#### **Step 6:** Repeating the Process for JPEG Images 🔄
+- **What Happens:**  
+  The previous four steps are repeated individually for each of the 10 JPEG images.
+- **Parallelism Consideration:**  
+  - Browsers might use parallel TCP connections to fetch multiple images simultaneously.
+- **under the hood**  
+  Imagine multiple messengers running off to collect each piece of the puzzle simultaneously! 🏃‍♂️🏃‍♀️💨
+
+---
+
+<div align="center">
+  <img src="./images/02.jpg" alt="" width="600px"/>
+
+  **Figure 2.7**: Back-of-the-envelope calculation for the time needed
+  to request and receive an HTML file
+
+</div>
+
+
+### 3. Back-of-the-Envelope Calculation of Response Time ⏱️
+
+#### **Understanding Round-Trip Time (RTT)**
+- **Definition:**  
+  RTT is the time taken for a small packet to travel from the client to the server and back.  
+- **Components Include:**  
+  - Packet-propagation delays  
+  - Queuing delays in routers and switches  
+  - Processing delays at each intermediate node  
+- **under the hood**  
+  RTT is like the round trip of a message in a relay race! 🏅📡
+
+#### **TCP Three-Way Handshake and Data Transfer**
+- **Three-Way Handshake:**  
+  - **Sequence:**  
+    1. Client sends a TCP segment to the server.  
+    2. Server acknowledges with a TCP segment.  
+    3. Client sends a final acknowledgment.  
+  - **Time Consumption:**  
+    The first two steps take one RTT.
+- **Data Transfer:**  
+  - After the handshake, the client sends the HTTP request (combined with the third handshake step) and receives the HTML file in one additional RTT.
+- **Total Response Time:**  
+  Roughly equals two RTTs plus the transmission time for the HTML file from the server.
+- **under the hood**  
+  Visualize this as a two-step dance: handshake first and then the data exchange! 💃🕺✨
+
+---
+
