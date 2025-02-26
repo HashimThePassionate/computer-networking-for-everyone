@@ -54,6 +54,13 @@ The Web is not just about static pages; it serves as the foundation for numerous
 
 ---
 
+<div align="center">
+
+# `New Section Overview of HTTP`
+
+</div>
+
+
 # 📌 Overview of HTTP
 
 ## 🌍 Introduction
@@ -143,6 +150,11 @@ HTTP does not manage network reliability directly. Instead, it relies on **lower
   - Header compression
   - Improved performance
 
+<div align="center">
+
+# `New Section Non-Persistent and Persistent Connections`
+
+</div>
 
 # 🔄 Non-Persistent and Persistent Connections
 
@@ -280,14 +292,14 @@ This document describes HTTP persistent connections, a technique designed to ove
 - **Connection Overhead:**  
   - In non-persistent connections, a new TCP connection is established for each requested object.  
   - This means that for every object (like images, HTML files, etc.), the system allocates new TCP buffers and maintains state variables on both the client and server.  
-  - **Emoji Insight:**  
+  - **Under the hood**  
     Imagine having to open a new door for every single item you want to receive—it quickly becomes overwhelming! 🚪💥
 
 - **Delivery Delay:**  
   - Each object delivery incurs a delay of two round-trip times (RTTs):  
     1. One RTT to establish the TCP connection.  
     2. Another RTT to request and receive the object.  
-  - **Emoji Insight:**  
+  - **Under the hood**  
     It’s like waiting in line twice for every item—time adds up fast! ⏱️🔁
 
 ---
@@ -296,7 +308,7 @@ This document describes HTTP persistent connections, a technique designed to ove
 - **Persistent Connection Mechanism:**  
   - With HTTP/1.1 persistent connections, the server keeps the TCP connection open after sending the initial response.  
   - Subsequent requests and responses between the same client and server reuse this connection.
-  - **Emoji Insight:**  
+  - **Under the hood**  
     Think of it as keeping a door open for multiple deliveries rather than closing it after every package! 🚪➡️🚚
 
 - **Benefits:**  
@@ -306,12 +318,12 @@ This document describes HTTP persistent connections, a technique designed to ove
     - Multiple web pages from the same server can be fetched using the same connection, reducing the load on both client and server.  
   - **Pipelining:**  
     - Requests for objects can be sent back-to-back (pipelining) without waiting for responses to previous requests, further reducing delays.  
-  - **Emoji Insight:**  
+  - **Under the hood**  
     Picture a streamlined assembly line where items are processed continuously without unnecessary stops! 🚀🛠️
 
 - **Timeout Behavior:**  
   - Servers typically close a persistent connection after a certain period of inactivity (a configurable timeout interval).  
-  - **Emoji Insight:**  
+  - **Under the hood**  
     Even an open door may eventually be closed if left unattended for too long! ⏳🚪
 
 ---
@@ -324,13 +336,311 @@ This document describes HTTP persistent connections, a technique designed to ove
   - **HTTP/1.1:**  
     - Introduced persistent connections as the default behavior.  
     - Added pipelining capabilities, allowing multiple requests to be sent without waiting for each corresponding response.
-  - **Emoji Insight:**  
+  - **Under the hood**  
     Think of HTTP/1.1 as a modern upgrade that enhances communication efficiency, much like upgrading from a dial-up connection to high-speed broadband! 🌐⚡
 
 - **Performance Comparison:**  
   - Persistent connections can significantly reduce the total response time and improve overall performance, especially under heavy loads.  
   - Detailed quantitative comparisons between non-persistent and persistent connections are often explored in academic and industry research (see references: [Heidemann 1997; Nielsen 1997; RFC 7540]).  
-  - **Emoji Insight:**  
+  - **Under the hood**  
     It’s like comparing a sprint with constant rest stops versus running continuously with optimized energy use! 🏃‍♂️💨
 
 ---
+
+<div align="center">
+
+# `New Section HTTP Request Message`
+
+</div>
+
+# **HTTP Message Format** 🌐✨
+
+## Overview 📚
+This document describes the two types of HTTP messages—request messages and response messages—according to the HTTP specifications [RFC 1945; RFC 7230; RFC 7540]. It focuses on the **HTTP request message** format, demonstrating its typical structure through an example and a general format diagram. 😊
+
+---
+
+## 1. Introduction to HTTP Messages 🔎
+- **HTTP Message Types:**  
+  1. **Request Messages**  
+  2. **Response Messages**  
+
+In this README, we concentrate on **HTTP Request Messages**. Both message types are defined in the official HTTP specifications:  
+- **RFC 1945** (HTTP/1.0)  
+- **RFC 7230** (HTTP/1.1)  
+- **RFC 7540** (HTTP/2)
+
+---
+
+## 2. Example of an HTTP Request Message 📝
+
+### Typical Request Message
+```
+GET /somedir/page.html HTTP/1.1
+Host: www.someschool.edu
+Connection: close
+User-agent: Mozilla/5.0
+Accept-language: fr
+```
+
+1. **Readable ASCII Text:**  
+   - HTTP request messages are written in ordinary ASCII text, making them human-readable.  
+   - **Emoji Insight:** Think of it as a simple letter you can easily read! ✉️👀
+
+2. **Lines and Carriage Returns:**  
+   - Each line is followed by a carriage return (`cr`) and a line feed (`lf`).  
+   - The final line is followed by an additional `cr` and `lf`.  
+   - **Emoji Insight:** It’s like pressing **Enter** at the end of each line to keep them separate! ⏎😊
+
+3. **Request Line vs. Header Lines:**  
+   - **Request Line:** The first line (e.g., `GET /somedir/page.html HTTP/1.1`)  
+     - **Fields:**  
+       1. **Method Field** (e.g., `GET`)  
+       2. **URL Field** (e.g., `/somedir/page.html`)  
+       3. **HTTP Version Field** (e.g., `HTTP/1.1`)  
+   - **Header Lines:** The lines that follow (e.g., `Host: www.someschool.edu`, `Connection: close`, etc.).  
+
+---
+
+## 3. Fields in the Request Line 🔗
+
+1. **Method Field:**  
+   - Common methods include **GET**, **POST**, **HEAD**, **PUT**, and **DELETE**.  
+   - **GET** is used when the browser requests an object identified by the URL.  
+   - **Emoji Insight:** It’s like asking politely, “Can I get this resource?” 🙋‍♂️📄
+
+2. **URL Field:**  
+   - Specifies the path to the desired resource (e.g., `/somedir/page.html`).  
+
+3. **HTTP Version Field:**  
+   - Indicates the HTTP protocol version (e.g., `HTTP/1.1`).  
+   - **Emoji Insight:** Think of it as stating which “language” of HTTP you’re speaking! 🌐🗣️
+
+---
+
+## 4. Header Lines Breakdown 📑
+
+1. **Host: www.someschool.edu**  
+   - Specifies the host on which the requested object resides.  
+   - Necessary for Web proxy caches and virtual hosting.  
+
+2. **Connection: close**  
+   - Indicates the client does **not** want to use persistent connections.  
+   - Tells the server to close the connection after sending the requested object.  
+   - **Emoji Insight:** Like saying, “Please shut the door after you’re done!” 🚪❌
+
+3. **User-agent: Mozilla/5.0**  
+   - Identifies the browser type making the request.  
+   - Servers can use this info to send different versions of the same resource to different user agents.  
+   - **Emoji Insight:** It’s your browser’s “business card”! 💳🖥️
+
+4. **Accept-language: fr**  
+   - Indicates the user prefers a French version of the resource if available.  
+   - Part of **content negotiation** headers in HTTP.  
+   - **Emoji Insight:** It’s like politely asking, “Bonjour! Do you have this in French?” 🥖🇫🇷
+
+---
+
+## 5. General Format of an HTTP Request Message (Figure 2.8) 🏗️
+
+<div align="center">
+  <img src="./images/03.jpg" alt="" width="600px"/>
+
+  **Figure 2.8**:  General format of an HTTP request message
+
+</div>
+
+1. **Request Line**  
+2. **Header Lines**  
+3. **Blank Line**  
+4. **Entity Body** (optional)
+
+### Entity Body Details
+- **GET Method:**  
+  - The **entity body** is empty.  
+- **POST Method:**  
+  - The **entity body** contains user-provided data (e.g., form fields).  
+  - **Emoji Insight:** Imagine attaching a filled-out form to your letter! 📝📬
+
+---
+
+## 6. HTTP Methods Explained ⚙️
+
+1. **GET**  
+   - Most common method.  
+   - Used to request a resource (like `/somedir/page.html`).  
+
+2. **POST**  
+   - Used typically when a user fills out a form.  
+   - The form data is included in the **entity body** of the request.  
+   - The server responds with a web page customized based on the form inputs.  
+   - **Emoji Insight:** Think of it as sending a filled-out questionnaire to the server! 🤓📄
+
+3. **HEAD**  
+   - Similar to **GET**, but the server only returns the headers (no actual resource).  
+   - Useful for debugging or checking resource metadata.  
+   - **Emoji Insight:** It’s like peeking at the cover without reading the entire book! 📘🔎
+
+4. **PUT**  
+   - Used to **upload** an object to a specific path on the server.  
+   - Often used with web publishing tools or applications that need to store files on the server.  
+
+5. **DELETE**  
+   - Allows a user/application to **delete** a resource on the server.  
+   - **Emoji Insight:** It’s like telling the server, “Please remove this file from your folder!” 🗑️🚮
+
+---
+
+## 7. GET vs. POST for Forms ⚖️
+- **GET Method with Forms:**  
+  - Form data is appended to the URL, like:  
+    `www.somesite.com/animalsearch?monkeys&bananas`  
+  - You might see long, extended URLs in your browser’s address bar.  
+- **POST Method with Forms:**  
+  - Form data is sent in the **entity body**.  
+  - The URL remains shorter.  
+  - **Emoji Insight:** One is like scribbling your request on the outside of an envelope, and the other is tucking it inside! ✏️📨
+
+---
+
+Below is a **new** professional README file discussing **additional HTTP request headers** that were not covered in the previous text. It includes detailed explanations and beautiful emojis, as requested. Enjoy! 😊
+
+---
+
+# **Additional HTTP Request Headers** 🌐✨
+
+## Overview 📚
+In this document, we’ll delve into **common HTTP request header fields** beyond the ones already mentioned (e.g., `Host`, `Connection`, `User-Agent`, `Accept-Language`). Understanding these headers is crucial for fine-tuning client-server interactions, managing caching, controlling authentication, and handling other advanced features in modern web applications.
+
+---
+
+## 1. Accept Headers 📝
+These headers indicate the **media types** or **formats** that the client can process. They help servers perform **content negotiation**—deciding how best to deliver the requested resource.
+
+1. **Accept**  
+   - **Meaning:** Lists the media types the client is prepared to accept.  
+   - **Example:** `Accept: text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8`  
+   - **Emoji Insight:** It’s like telling the server, “I can read HTML, XML, or anything else if needed!” 🤓📄
+
+2. **Accept-Charset**  
+   - **Meaning:** Specifies the character sets (e.g., `UTF-8`) the client can handle.  
+   - **Example:** `Accept-Charset: utf-8, iso-8859-1;q=0.5`  
+   - **Emoji Insight:** Think of it as saying, “I can read these alphabets!” 🔤🌐
+
+3. **Accept-Encoding**  
+   - **Meaning:** Lists the content encodings (e.g., `gzip`, `deflate`, `br`) the client supports.  
+   - **Example:** `Accept-Encoding: gzip, deflate, br`  
+   - **Emoji Insight:** This is like telling the server, “Feel free to compress the data in these ways to save bandwidth!” 💨📦
+
+4. **Accept-Ranges** (less common in requests, more in responses, but can appear)  
+   - **Meaning:** Indicates if the client supports partial downloads (byte serving).  
+   - **Example:** `Accept-Ranges: bytes`  
+   - **Emoji Insight:** It’s like saying, “I can handle receiving chunks of the file if needed!” 📥🔀
+
+---
+
+## 2. Authentication and Security Headers 🔒
+
+1. **Authorization**  
+   - **Meaning:** Contains credentials to authenticate the client with the server (e.g., Basic or Bearer tokens).  
+   - **Example:** `Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==`  
+   - **Emoji Insight:** It’s your VIP pass to access protected resources! 🎫🔐
+
+2. **Proxy-Authorization**  
+   - **Meaning:** Similar to `Authorization` but for authenticating with a proxy server instead of the origin server.  
+   - **Example:** `Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==`  
+   - **Emoji Insight:** A pass for getting through a gatekeeper (proxy) before reaching the final destination! 🚧🚀
+
+---
+
+## 3. Caching and Conditional Request Headers ⚙️
+
+1. **Cache-Control**  
+   - **Meaning:** Directs cache behavior in both client and intermediate caches (e.g., `no-cache`, `max-age`).  
+   - **Example:** `Cache-Control: no-cache`  
+   - **Emoji Insight:** Think of it as instructions on how long and under what conditions your data can be stored! ⏲️📦
+
+2. **If-Modified-Since**  
+   - **Meaning:** Used to make a request conditional; if the requested resource has **not** changed since the specified date/time, the server can return a `304 Not Modified`.  
+   - **Example:** `If-Modified-Since: Wed, 21 Oct 2015 07:28:00 GMT`  
+   - **Emoji Insight:** It’s like asking, “Send me this file only if it’s newer than the last time I checked!” 🔄📆
+
+3. **If-Unmodified-Since**  
+   - **Meaning:** Opposite of `If-Modified-Since`; the request proceeds only if the resource has **not** changed since the specified time.  
+   - **Emoji Insight:** “I only want this operation to succeed if the file is unchanged!” 🛑📝
+
+4. **If-Match** / **If-None-Match**  
+   - **Meaning:** These headers use **ETags** (Entity Tags) to check if a resource matches a known version.  
+     - **If-Match:** Proceed only if the resource **matches** the given ETag.  
+     - **If-None-Match:** Proceed only if the resource **does not match** the given ETag.  
+   - **Emoji Insight:** It’s like verifying, “Is this still the same version of the document I had before?” 🔖✅
+
+5. **Range**  
+   - **Meaning:** Requests only a portion of a resource (e.g., specific bytes).  
+   - **Example:** `Range: bytes=500-999`  
+   - **Emoji Insight:** Great for resuming interrupted downloads—just pick up where you left off! 🎬⏪
+
+---
+
+## 4. Other Common Headers 🧩
+
+1. **Referer** (intentionally spelled “Referer” instead of “Referrer” due to historical reasons)  
+   - **Meaning:** Indicates the URL of the resource from which the current request originated.  
+   - **Example:** `Referer: https://www.google.com/search?q=HTTP+Headers`  
+   - **Emoji Insight:** It’s like saying, “I got here from this link!” 🌐🔗
+
+2. **Cookie**  
+   - **Meaning:** Sends stored cookies from the client to the server, enabling session management and personalization.  
+   - **Example:** `Cookie: sessionId=abc123; theme=dark`  
+   - **Emoji Insight:** It’s like handing the server your membership card and preferences! 🍪🤝
+
+3. **Content-Type** (typically used with POST, PUT)  
+   - **Meaning:** Tells the server the **MIME type** of the request body.  
+   - **Example:** `Content-Type: application/json`  
+   - **Emoji Insight:** “This is the format of the data I’m sending you!” 📨📑
+
+4. **Content-Length**  
+   - **Meaning:** Indicates the size of the request body (in bytes).  
+   - **Example:** `Content-Length: 3495`  
+   - **Emoji Insight:** It’s like saying, “Here’s how many bytes I’m sending!” 📏💾
+
+5. **TE (Transfer Encodings)**  
+   - **Meaning:** Specifies which **transfer encodings** the client will accept (e.g., `chunked`).  
+   - **Example:** `TE: chunked`  
+   - **Emoji Insight:** This helps manage how data is sent in segments! 🍰🧩
+
+6. **Expect**  
+   - **Meaning:** Used to indicate particular server behaviors required by the client.  
+   - **Example:** `Expect: 100-continue` (client expects a `100 Continue` response before sending a large request body).  
+   - **Emoji Insight:** It’s like politely asking, “Please let me know you can handle this before I send more data!” 🙋‍♂️✔️
+
+7. **Pragma**  
+   - **Meaning:** A legacy HTTP/1.0 header, often used for cache control (e.g., `no-cache`).  
+   - **Example:** `Pragma: no-cache`  
+   - **Emoji Insight:** Old-school directive, similar to `Cache-Control` for older HTTP versions! 🏫🕰️
+
+8. **Date**  
+   - **Meaning:** Indicates the date and time at which the message was originated.  
+   - **Example:** `Date: Tue, 15 Nov 1994 08:12:31 GMT`  
+   - **Emoji Insight:** It’s a timestamp for the request, like a postmark on a letter! 📆✉️
+
+9. **From**  
+   - **Meaning:** Provides an email address for the user making the request (rarely used, mostly for automated requests).  
+   - **Example:** `From: user@example.com`  
+   - **Emoji Insight:** “Here’s my contact info if you need to reach me!” 💌📨
+
+10. **Upgrade**  
+    - **Meaning:** Instructs the server to switch to a different protocol if available (e.g., upgrading from HTTP/1.1 to HTTP/2).  
+    - **Emoji Insight:** “Let’s shift to a better communication channel if we both can!” 🚀🔧
+
+11. **Via**  
+    - **Meaning:** Indicates intermediate proxies or gateways that the request has passed through.  
+    - **Example:** `Via: 1.1 vegur`  
+    - **Emoji Insight:** It’s like reading the itinerary of your request’s journey! 🗺️🏙️
+
+12. **Warning**  
+    - **Meaning:** Provides additional information about potential issues with the request or response.  
+    - **Emoji Insight:** “Heads up! Something might be off here!” ⚠️⚡
+
+---
+
