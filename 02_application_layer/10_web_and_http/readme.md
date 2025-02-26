@@ -644,3 +644,116 @@ These headers indicate the **media types** or **formats** that the client can pr
 
 ---
 
+# **HTTP Response Message** 🌐✨
+
+## Overview 📚
+This document explains the **HTTP Response Message** format, using a typical response message example. It highlights the status line, header lines, and the entity body, which together form a complete HTTP response. We also discuss **common status codes** and their meanings. Understanding these components is crucial for anyone working with HTTP-based applications.
+
+---
+
+## 1. Typical HTTP Response Message 📝
+
+```
+HTTP/1.1 200 OK
+Connection: close
+Date: Tue, 18 Aug 2015 15:44:04 GMT
+Server: Apache/2.2.3 (CentOS)
+Last-Modified: Tue, 18 Aug 2015 15:11:03 GMT
+Content-Length: 6821
+Content-Type: text/html
+
+(data data data data data ...)
+```
+
+### Breakdown of Each Part 🔍
+
+1. **Status Line:**  
+   - **HTTP/1.1 200 OK**  
+     - **Protocol Version:** `HTTP/1.1`  
+     - **Status Code:** `200`  
+     - **Reason Phrase:** `OK`  
+   - **Emoji Insight:** Think of it as the server saying, “All good! Here’s your requested content.” ✅💯
+
+2. **Header Lines:**  
+   - **Connection: close**  
+     - Tells the client that the server will close the TCP connection after sending this response.  
+     - **Emoji Insight:** “I’m wrapping things up once I’ve sent you the data!” 🔒
+   - **Date: Tue, 18 Aug 2015 15:44:04 GMT**  
+     - Indicates the time and date when the response was created and sent by the server.  
+     - **Emoji Insight:** A timestamp for when the server prepared this message! ⏰🗓️
+   - **Server: Apache/2.2.3 (CentOS)**  
+     - Identifies the server software that generated the response.  
+     - Analogous to the `User-agent` header in a request.  
+     - **Emoji Insight:** It’s the server’s “signature” or brand! 🏷️💻
+   - **Last-Modified: Tue, 18 Aug 2015 15:11:03 GMT**  
+     - Indicates when the requested object was last modified on the server.  
+     - Important for **caching** (both client and proxy caches).  
+     - **Emoji Insight:** “Here’s the date I last changed this file!” 📝♻️
+   - **Content-Length: 6821**  
+     - Specifies the size (in bytes) of the object being sent in the entity body.  
+     - **Emoji Insight:** “I’m sending you 6,821 bytes of data!” 📏📦
+   - **Content-Type: text/html**  
+     - Tells the client that the object in the **entity body** is HTML text.  
+     - The official type is determined by this header, not the file extension.  
+     - **Emoji Insight:** “I’m sending you an HTML document!” 🌐📝
+
+3. **Entity Body:**  
+   - **(data data data data data …)**  
+   - This is the **actual content** (HTML, image data, etc.) requested by the client.  
+   - **Emoji Insight:** It’s the “meat” of the response! 🍖📄
+
+---
+
+## 2. General Format of an HTTP Response Message 🏗️
+
+According to **Figure 2.9**, the HTTP response message typically follows this structure:
+
+
+<div align="center">
+  <img src="./images/04.jpg" alt="" width="600px"/>
+
+  **Figure 2.9**: General format of an HTTP response message
+
+</div>
+
+1. **Status Line**  
+   - **version**: e.g., `HTTP/1.1`  
+   - **status code**: e.g., `200`  
+   - **phrase**: e.g., `OK`  
+
+2. **Header Lines**  
+   - Similar to request headers but specific to response context (e.g., `Server`, `Last-Modified`, `Content-Type`, etc.).  
+
+3. **Blank Line**  
+   - Separates the header section from the entity body.  
+
+4. **Entity Body**  
+   - Contains the **requested object** (HTML page, JSON data, image, etc.).  
+
+---
+
+## 3. Common HTTP Status Codes and Phrases 🏷️
+
+1. **200 OK**  
+   - **Meaning:** The request succeeded, and the information is returned in the response.  
+   - **Emoji Insight:** “Here you go—everything’s fine!” ✅🎉
+
+2. **301 Moved Permanently**  
+   - **Meaning:** The requested object has been permanently moved to a new URL, which is specified in the `Location:` header.  
+   - The client will automatically request the new URL.  
+   - **Emoji Insight:** “That page now lives somewhere else—let me redirect you!” 🔀🏠
+
+3. **400 Bad Request**  
+   - **Meaning:** Generic error code indicating the request was malformed or couldn’t be understood by the server.  
+   - **Emoji Insight:** “Hmm, I can’t make sense of what you asked for!” 🤔❌
+
+4. **404 Not Found**  
+   - **Meaning:** The requested document does not exist on the server.  
+   - **Emoji Insight:** “Sorry, I don’t have what you’re looking for!” 🕵️‍♂️🚫
+
+5. **505 HTTP Version Not Supported**  
+   - **Meaning:** The requested HTTP protocol version is not supported by the server.  
+   - **Emoji Insight:** “I don’t speak that version of HTTP!” 🌐🗯️
+
+
+---
