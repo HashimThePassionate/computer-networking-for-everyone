@@ -144,3 +144,19 @@ HTTP does not manage network reliability directly. Instead, it relies on **lower
   - Improved performance
 
 
+# 🔄 Non-Persistent and Persistent Connections
+
+## 🌐 Introduction
+In many **Internet applications**, clients and servers engage in communication for an extended period, exchanging multiple requests and responses. These requests can be:
+- 📌 **Back-to-back** – Continuous, without delays.
+- 📌 **Periodic** – Sent at regular time intervals.
+- 📌 **Intermittent** – Occasional, based on demand.
+
+When this interaction happens over **TCP (Transmission Control Protocol)**, developers must choose how to manage connections:
+1. **Non-Persistent Connections** – Each request/response pair uses a **separate TCP connection**.
+2. **Persistent Connections** – All requests and responses share a **single TCP connection**.
+
+HTTP supports both models, though **persistent connections** are the default. However, **clients and servers can be configured** to use non-persistent connections if needed.
+
+---
+
