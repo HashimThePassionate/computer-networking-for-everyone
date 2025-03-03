@@ -385,12 +385,12 @@ Accept-language: fr
 
 1. **Readable ASCII Text:**  
    - HTTP request messages are written in ordinary ASCII text, making them human-readable.  
-   - **Emoji Insight:** Think of it as a simple letter you can easily read! ✉️👀
+   - **Under the hood** Think of it as a simple letter you can easily read! ✉️👀
 
 2. **Lines and Carriage Returns:**  
    - Each line is followed by a carriage return (`cr`) and a line feed (`lf`).  
    - The final line is followed by an additional `cr` and `lf`.  
-   - **Emoji Insight:** It’s like pressing **Enter** at the end of each line to keep them separate! ⏎😊
+   - **Under the hood** It’s like pressing **Enter** at the end of each line to keep them separate! ⏎😊
 
 3. **Request Line vs. Header Lines:**  
    - **Request Line:** The first line (e.g., `GET /somedir/page.html HTTP/1.1`)  
@@ -407,14 +407,14 @@ Accept-language: fr
 1. **Method Field:**  
    - Common methods include **GET**, **POST**, **HEAD**, **PUT**, and **DELETE**.  
    - **GET** is used when the browser requests an object identified by the URL.  
-   - **Emoji Insight:** It’s like asking politely, “Can I get this resource?” 🙋‍♂️📄
+   - **Under the hood** It’s like asking politely, “Can I get this resource?” 🙋‍♂️📄
 
 2. **URL Field:**  
    - Specifies the path to the desired resource (e.g., `/somedir/page.html`).  
 
 3. **HTTP Version Field:**  
    - Indicates the HTTP protocol version (e.g., `HTTP/1.1`).  
-   - **Emoji Insight:** Think of it as stating which “language” of HTTP you’re speaking! 🌐🗣️
+   - **Under the hood** Think of it as stating which “language” of HTTP you’re speaking! 🌐🗣️
 
 ---
 
@@ -427,17 +427,17 @@ Accept-language: fr
 2. **Connection: close**  
    - Indicates the client does **not** want to use persistent connections.  
    - Tells the server to close the connection after sending the requested object.  
-   - **Emoji Insight:** Like saying, “Please shut the door after you’re done!” 🚪❌
+   - **Under the hood** Like saying, “Please shut the door after you’re done!” 🚪❌
 
 3. **User-agent: Mozilla/5.0**  
    - Identifies the browser type making the request.  
    - Servers can use this info to send different versions of the same resource to different user agents.  
-   - **Emoji Insight:** It’s your browser’s “business card”! 💳🖥️
+   - **Under the hood** It’s your browser’s “business card”! 💳🖥️
 
 4. **Accept-language: fr**  
    - Indicates the user prefers a French version of the resource if available.  
    - Part of **content negotiation** headers in HTTP.  
-   - **Emoji Insight:** It’s like politely asking, “Bonjour! Do you have this in French?” 🥖🇫🇷
+   - **Under the hood** It’s like politely asking, “Bonjour! Do you have this in French?” 🥖🇫🇷
 
 ---
 
@@ -460,7 +460,7 @@ Accept-language: fr
   - The **entity body** is empty.  
 - **POST Method:**  
   - The **entity body** contains user-provided data (e.g., form fields).  
-  - **Emoji Insight:** Imagine attaching a filled-out form to your letter! 📝📬
+  - **Under the hood** Imagine attaching a filled-out form to your letter! 📝📬
 
 ---
 
@@ -474,12 +474,12 @@ Accept-language: fr
    - Used typically when a user fills out a form.  
    - The form data is included in the **entity body** of the request.  
    - The server responds with a web page customized based on the form inputs.  
-   - **Emoji Insight:** Think of it as sending a filled-out questionnaire to the server! 🤓📄
+   - **Under the hood** Think of it as sending a filled-out questionnaire to the server! 🤓📄
 
 3. **HEAD**  
    - Similar to **GET**, but the server only returns the headers (no actual resource).  
    - Useful for debugging or checking resource metadata.  
-   - **Emoji Insight:** It’s like peeking at the cover without reading the entire book! 📘🔎
+   - **Under the hood** It’s like peeking at the cover without reading the entire book! 📘🔎
 
 4. **PUT**  
    - Used to **upload** an object to a specific path on the server.  
@@ -487,7 +487,7 @@ Accept-language: fr
 
 5. **DELETE**  
    - Allows a user/application to **delete** a resource on the server.  
-   - **Emoji Insight:** It’s like telling the server, “Please remove this file from your folder!” 🗑️🚮
+   - **Under the hood** It’s like telling the server, “Please remove this file from your folder!” 🗑️🚮
 
 ---
 
@@ -499,7 +499,7 @@ Accept-language: fr
 - **POST Method with Forms:**  
   - Form data is sent in the **entity body**.  
   - The URL remains shorter.  
-  - **Emoji Insight:** One is like scribbling your request on the outside of an envelope, and the other is tucking it inside! ✏️📨
+  - **Under the hood** One is like scribbling your request on the outside of an envelope, and the other is tucking it inside! ✏️📨
 
 ---
 
@@ -520,22 +520,22 @@ These headers indicate the **media types** or **formats** that the client can pr
 1. **Accept**  
    - **Meaning:** Lists the media types the client is prepared to accept.  
    - **Example:** `Accept: text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8`  
-   - **Emoji Insight:** It’s like telling the server, “I can read HTML, XML, or anything else if needed!” 🤓📄
+   - **Under the hood** It’s like telling the server, “I can read HTML, XML, or anything else if needed!” 🤓📄
 
 2. **Accept-Charset**  
    - **Meaning:** Specifies the character sets (e.g., `UTF-8`) the client can handle.  
    - **Example:** `Accept-Charset: utf-8, iso-8859-1;q=0.5`  
-   - **Emoji Insight:** Think of it as saying, “I can read these alphabets!” 🔤🌐
+   - **Under the hood** Think of it as saying, “I can read these alphabets!” 🔤🌐
 
 3. **Accept-Encoding**  
    - **Meaning:** Lists the content encodings (e.g., `gzip`, `deflate`, `br`) the client supports.  
    - **Example:** `Accept-Encoding: gzip, deflate, br`  
-   - **Emoji Insight:** This is like telling the server, “Feel free to compress the data in these ways to save bandwidth!” 💨📦
+   - **Under the hood** This is like telling the server, “Feel free to compress the data in these ways to save bandwidth!” 💨📦
 
 4. **Accept-Ranges** (less common in requests, more in responses, but can appear)  
    - **Meaning:** Indicates if the client supports partial downloads (byte serving).  
    - **Example:** `Accept-Ranges: bytes`  
-   - **Emoji Insight:** It’s like saying, “I can handle receiving chunks of the file if needed!” 📥🔀
+   - **Under the hood** It’s like saying, “I can handle receiving chunks of the file if needed!” 📥🔀
 
 ---
 
@@ -544,12 +544,12 @@ These headers indicate the **media types** or **formats** that the client can pr
 1. **Authorization**  
    - **Meaning:** Contains credentials to authenticate the client with the server (e.g., Basic or Bearer tokens).  
    - **Example:** `Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==`  
-   - **Emoji Insight:** It’s your VIP pass to access protected resources! 🎫🔐
+   - **Under the hood** It’s your VIP pass to access protected resources! 🎫🔐
 
 2. **Proxy-Authorization**  
    - **Meaning:** Similar to `Authorization` but for authenticating with a proxy server instead of the origin server.  
    - **Example:** `Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==`  
-   - **Emoji Insight:** A pass for getting through a gatekeeper (proxy) before reaching the final destination! 🚧🚀
+   - **Under the hood** A pass for getting through a gatekeeper (proxy) before reaching the final destination! 🚧🚀
 
 ---
 
@@ -558,27 +558,27 @@ These headers indicate the **media types** or **formats** that the client can pr
 1. **Cache-Control**  
    - **Meaning:** Directs cache behavior in both client and intermediate caches (e.g., `no-cache`, `max-age`).  
    - **Example:** `Cache-Control: no-cache`  
-   - **Emoji Insight:** Think of it as instructions on how long and under what conditions your data can be stored! ⏲️📦
+   - **Under the hood** Think of it as instructions on how long and under what conditions your data can be stored! ⏲️📦
 
 2. **If-Modified-Since**  
    - **Meaning:** Used to make a request conditional; if the requested resource has **not** changed since the specified date/time, the server can return a `304 Not Modified`.  
    - **Example:** `If-Modified-Since: Wed, 21 Oct 2015 07:28:00 GMT`  
-   - **Emoji Insight:** It’s like asking, “Send me this file only if it’s newer than the last time I checked!” 🔄📆
+   - **Under the hood** It’s like asking, “Send me this file only if it’s newer than the last time I checked!” 🔄📆
 
 3. **If-Unmodified-Since**  
    - **Meaning:** Opposite of `If-Modified-Since`; the request proceeds only if the resource has **not** changed since the specified time.  
-   - **Emoji Insight:** “I only want this operation to succeed if the file is unchanged!” 🛑📝
+   - **Under the hood** “I only want this operation to succeed if the file is unchanged!” 🛑📝
 
 4. **If-Match** / **If-None-Match**  
    - **Meaning:** These headers use **ETags** (Entity Tags) to check if a resource matches a known version.  
      - **If-Match:** Proceed only if the resource **matches** the given ETag.  
      - **If-None-Match:** Proceed only if the resource **does not match** the given ETag.  
-   - **Emoji Insight:** It’s like verifying, “Is this still the same version of the document I had before?” 🔖✅
+   - **Under the hood** It’s like verifying, “Is this still the same version of the document I had before?” 🔖✅
 
 5. **Range**  
    - **Meaning:** Requests only a portion of a resource (e.g., specific bytes).  
    - **Example:** `Range: bytes=500-999`  
-   - **Emoji Insight:** Great for resuming interrupted downloads—just pick up where you left off! 🎬⏪
+   - **Under the hood** Great for resuming interrupted downloads—just pick up where you left off! 🎬⏪
 
 ---
 
@@ -587,60 +587,60 @@ These headers indicate the **media types** or **formats** that the client can pr
 1. **Referer** (intentionally spelled “Referer” instead of “Referrer” due to historical reasons)  
    - **Meaning:** Indicates the URL of the resource from which the current request originated.  
    - **Example:** `Referer: https://www.google.com/search?q=HTTP+Headers`  
-   - **Emoji Insight:** It’s like saying, “I got here from this link!” 🌐🔗
+   - **Under the hood** It’s like saying, “I got here from this link!” 🌐🔗
 
 2. **Cookie**  
    - **Meaning:** Sends stored cookies from the client to the server, enabling session management and personalization.  
    - **Example:** `Cookie: sessionId=abc123; theme=dark`  
-   - **Emoji Insight:** It’s like handing the server your membership card and preferences! 🍪🤝
+   - **Under the hood** It’s like handing the server your membership card and preferences! 🍪🤝
 
 3. **Content-Type** (typically used with POST, PUT)  
    - **Meaning:** Tells the server the **MIME type** of the request body.  
    - **Example:** `Content-Type: application/json`  
-   - **Emoji Insight:** “This is the format of the data I’m sending you!” 📨📑
+   - **Under the hood** “This is the format of the data I’m sending you!” 📨📑
 
 4. **Content-Length**  
    - **Meaning:** Indicates the size of the request body (in bytes).  
    - **Example:** `Content-Length: 3495`  
-   - **Emoji Insight:** It’s like saying, “Here’s how many bytes I’m sending!” 📏💾
+   - **Under the hood** It’s like saying, “Here’s how many bytes I’m sending!” 📏💾
 
 5. **TE (Transfer Encodings)**  
    - **Meaning:** Specifies which **transfer encodings** the client will accept (e.g., `chunked`).  
    - **Example:** `TE: chunked`  
-   - **Emoji Insight:** This helps manage how data is sent in segments! 🍰🧩
+   - **Under the hood** This helps manage how data is sent in segments! 🍰🧩
 
 6. **Expect**  
    - **Meaning:** Used to indicate particular server behaviors required by the client.  
    - **Example:** `Expect: 100-continue` (client expects a `100 Continue` response before sending a large request body).  
-   - **Emoji Insight:** It’s like politely asking, “Please let me know you can handle this before I send more data!” 🙋‍♂️✔️
+   - **Under the hood** It’s like politely asking, “Please let me know you can handle this before I send more data!” 🙋‍♂️✔️
 
 7. **Pragma**  
    - **Meaning:** A legacy HTTP/1.0 header, often used for cache control (e.g., `no-cache`).  
    - **Example:** `Pragma: no-cache`  
-   - **Emoji Insight:** Old-school directive, similar to `Cache-Control` for older HTTP versions! 🏫🕰️
+   - **Under the hood** Old-school directive, similar to `Cache-Control` for older HTTP versions! 🏫🕰️
 
 8. **Date**  
    - **Meaning:** Indicates the date and time at which the message was originated.  
    - **Example:** `Date: Tue, 15 Nov 1994 08:12:31 GMT`  
-   - **Emoji Insight:** It’s a timestamp for the request, like a postmark on a letter! 📆✉️
+   - **Under the hood** It’s a timestamp for the request, like a postmark on a letter! 📆✉️
 
 9. **From**  
    - **Meaning:** Provides an email address for the user making the request (rarely used, mostly for automated requests).  
    - **Example:** `From: user@example.com`  
-   - **Emoji Insight:** “Here’s my contact info if you need to reach me!” 💌📨
+   - **Under the hood** “Here’s my contact info if you need to reach me!” 💌📨
 
 10. **Upgrade**  
     - **Meaning:** Instructs the server to switch to a different protocol if available (e.g., upgrading from HTTP/1.1 to HTTP/2).  
-    - **Emoji Insight:** “Let’s shift to a better communication channel if we both can!” 🚀🔧
+    - **Under the hood** “Let’s shift to a better communication channel if we both can!” 🚀🔧
 
 11. **Via**  
     - **Meaning:** Indicates intermediate proxies or gateways that the request has passed through.  
     - **Example:** `Via: 1.1 vegur`  
-    - **Emoji Insight:** It’s like reading the itinerary of your request’s journey! 🗺️🏙️
+    - **Under the hood** It’s like reading the itinerary of your request’s journey! 🗺️🏙️
 
 12. **Warning**  
     - **Meaning:** Provides additional information about potential issues with the request or response.  
-    - **Emoji Insight:** “Heads up! Something might be off here!” ⚠️⚡
+    - **Under the hood** “Heads up! Something might be off here!” ⚠️⚡
 
 ---
 
@@ -672,35 +672,35 @@ Content-Type: text/html
      - **Protocol Version:** `HTTP/1.1`  
      - **Status Code:** `200`  
      - **Reason Phrase:** `OK`  
-   - **Emoji Insight:** Think of it as the server saying, “All good! Here’s your requested content.” ✅💯
+   - **Under the hood** Think of it as the server saying, “All good! Here’s your requested content.” ✅💯
 
 2. **Header Lines:**  
    - **Connection: close**  
      - Tells the client that the server will close the TCP connection after sending this response.  
-     - **Emoji Insight:** “I’m wrapping things up once I’ve sent you the data!” 🔒
+     - **Under the hood** “I’m wrapping things up once I’ve sent you the data!” 🔒
    - **Date: Tue, 18 Aug 2015 15:44:04 GMT**  
      - Indicates the time and date when the response was created and sent by the server.  
-     - **Emoji Insight:** A timestamp for when the server prepared this message! ⏰🗓️
+     - **Under the hood** A timestamp for when the server prepared this message! ⏰🗓️
    - **Server: Apache/2.2.3 (CentOS)**  
      - Identifies the server software that generated the response.  
      - Analogous to the `User-agent` header in a request.  
-     - **Emoji Insight:** It’s the server’s “signature” or brand! 🏷️💻
+     - **Under the hood** It’s the server’s “signature” or brand! 🏷️💻
    - **Last-Modified: Tue, 18 Aug 2015 15:11:03 GMT**  
      - Indicates when the requested object was last modified on the server.  
      - Important for **caching** (both client and proxy caches).  
-     - **Emoji Insight:** “Here’s the date I last changed this file!” 📝♻️
+     - **Under the hood** “Here’s the date I last changed this file!” 📝♻️
    - **Content-Length: 6821**  
      - Specifies the size (in bytes) of the object being sent in the entity body.  
-     - **Emoji Insight:** “I’m sending you 6,821 bytes of data!” 📏📦
+     - **Under the hood** “I’m sending you 6,821 bytes of data!” 📏📦
    - **Content-Type: text/html**  
      - Tells the client that the object in the **entity body** is HTML text.  
      - The official type is determined by this header, not the file extension.  
-     - **Emoji Insight:** “I’m sending you an HTML document!” 🌐📝
+     - **Under the hood** “I’m sending you an HTML document!” 🌐📝
 
 3. **Entity Body:**  
    - **(data data data data data …)**  
    - This is the **actual content** (HTML, image data, etc.) requested by the client.  
-   - **Emoji Insight:** It’s the “meat” of the response! 🍖📄
+   - **Under the hood** It’s the “meat” of the response! 🍖📄
 
 ---
 
@@ -736,24 +736,24 @@ According to **Figure 2.9**, the HTTP response message typically follows this st
 
 1. **200 OK**  
    - **Meaning:** The request succeeded, and the information is returned in the response.  
-   - **Emoji Insight:** “Here you go—everything’s fine!” ✅🎉
+   - **Under the hood** “Here you go—everything’s fine!” ✅🎉
 
 2. **301 Moved Permanently**  
    - **Meaning:** The requested object has been permanently moved to a new URL, which is specified in the `Location:` header.  
    - The client will automatically request the new URL.  
-   - **Emoji Insight:** “That page now lives somewhere else—let me redirect you!” 🔀🏠
+   - **Under the hood** “That page now lives somewhere else—let me redirect you!” 🔀🏠
 
 3. **400 Bad Request**  
    - **Meaning:** Generic error code indicating the request was malformed or couldn’t be understood by the server.  
-   - **Emoji Insight:** “Hmm, I can’t make sense of what you asked for!” 🤔❌
+   - **Under the hood** “Hmm, I can’t make sense of what you asked for!” 🤔❌
 
 4. **404 Not Found**  
    - **Meaning:** The requested document does not exist on the server.  
-   - **Emoji Insight:** “Sorry, I don’t have what you’re looking for!” 🕵️‍♂️🚫
+   - **Under the hood** “Sorry, I don’t have what you’re looking for!” 🕵️‍♂️🚫
 
 5. **505 HTTP Version Not Supported**  
    - **Meaning:** The requested HTTP protocol version is not supported by the server.  
-   - **Emoji Insight:** “I don’t speak that version of HTTP!” 🌐🗯️
+   - **Under the hood** “I don’t speak that version of HTTP!” 🌐🗯️
 
 
 ---
@@ -770,23 +770,23 @@ In this document, we delve into **common HTTP response header fields** beyond th
 1. **Age**  
    - **Meaning:** Indicates how long (in seconds) the response has been in a proxy cache.  
    - **Example:** `Age: 3600` (the content has been cached for an hour).  
-   - **Emoji Insight:** Think of it as a “freshness timer” for cached content! ⏳🔄
+   - **Under the hood** Think of it as a “freshness timer” for cached content! ⏳🔄
 
 2. **ETag**  
    - **Meaning:** Provides a unique identifier (entity tag) for the version of the resource.  
    - **Example:** `ETag: "686897696a7c876b7e"`  
    - **Usage:** Useful for **conditional requests**—clients can compare ETag values to check if the resource has changed.  
-   - **Emoji Insight:** Like a digital fingerprint for your content! 🏷️🔍
+   - **Under the hood** Like a digital fingerprint for your content! 🏷️🔍
 
 3. **Expires**  
    - **Meaning:** Specifies the date/time after which the response is considered stale.  
    - **Example:** `Expires: Wed, 21 Oct 2025 07:28:00 GMT`  
-   - **Emoji Insight:** It’s like a “best before” date for your web resource! 🥫⏰
+   - **Under the hood** It’s like a “best before” date for your web resource! 🥫⏰
 
 4. **Cache-Control** (often seen in **responses** too)  
    - **Meaning:** Directives for caching mechanisms in both requests and responses.  
    - **Example:** `Cache-Control: max-age=3600, public`  
-   - **Emoji Insight:** Tells browsers and proxies how to cache or not cache the resource! 🗃️⚙️
+   - **Under the hood** Tells browsers and proxies how to cache or not cache the resource! 🗃️⚙️
 
 ---
 
@@ -795,12 +795,12 @@ In this document, we delve into **common HTTP response header fields** beyond th
 1. **Location**  
    - **Meaning:** Indicates the **URL** to redirect a client to, often used with `3xx` status codes (like `301 Moved Permanently` or `302 Found`).  
    - **Example:** `Location: https://www.newlocation.com/updated-page`  
-   - **Emoji Insight:** “This resource has moved—head over here instead!” 🏠➡️
+   - **Under the hood** “This resource has moved—head over here instead!” 🏠➡️
 
 2. **Retry-After**  
    - **Meaning:** Tells the client how long to wait before making a follow-up request (often used with `503 Service Unavailable` or `3xx` redirection).  
    - **Example:** `Retry-After: 120` (wait 120 seconds before retrying).  
-   - **Emoji Insight:** “Please try again later—maybe in two minutes!” ⏱️🔄
+   - **Under the hood** “Please try again later—maybe in two minutes!” ⏱️🔄
 
 ---
 
@@ -809,17 +809,17 @@ In this document, we delve into **common HTTP response header fields** beyond th
 1. **WWW-Authenticate**  
    - **Meaning:** Used with `401 Unauthorized` responses to indicate the **authentication scheme** (e.g., Basic, Bearer).  
    - **Example:** `WWW-Authenticate: Basic realm="Access to the staging site"`  
-   - **Emoji Insight:** The server saying, “Who are you? Please authenticate!” 🏷️🔐
+   - **Under the hood** The server saying, “Who are you? Please authenticate!” 🏷️🔐
 
 2. **Proxy-Authenticate**  
    - **Meaning:** Similar to `WWW-Authenticate` but for **proxy servers**, used with `407 Proxy Authentication Required`.  
    - **Example:** `Proxy-Authenticate: Basic realm="Proxy Access"`  
-   - **Emoji Insight:** A challenge from a gatekeeper before you can proceed! 🚧🛂
+   - **Under the hood** A challenge from a gatekeeper before you can proceed! 🚧🛂
 
 3. **Set-Cookie**  
    - **Meaning:** Instructs the client to **store a cookie** for future requests (session IDs, preferences, etc.).  
    - **Example:** `Set-Cookie: sessionId=abc123; Path=/; HttpOnly`  
-   - **Emoji Insight:** “I’m giving you a token—bring it back next time!” 🍪🤝
+   - **Under the hood** “I’m giving you a token—bring it back next time!” 🍪🤝
 
 ---
 
@@ -828,22 +828,22 @@ In this document, we delve into **common HTTP response header fields** beyond th
 1. **Content-Encoding**  
    - **Meaning:** Tells the client **how the entity body is encoded** (e.g., `gzip`, `deflate`).  
    - **Example:** `Content-Encoding: gzip`  
-   - **Emoji Insight:** “Unzip me before reading!” 💨📂
+   - **Under the hood** “Unzip me before reading!” 💨📂
 
 2. **Content-Language**  
    - **Meaning:** Describes the **natural language** of the intended audience for the resource.  
    - **Example:** `Content-Language: en-US`  
-   - **Emoji Insight:** “This content is primarily in American English!” 🇺🇸🗣️
+   - **Under the hood** “This content is primarily in American English!” 🇺🇸🗣️
 
 3. **Content-Disposition**  
    - **Meaning:** Instructs how content should be handled—inline or as an attachment to be downloaded.  
    - **Example:** `Content-Disposition: attachment; filename="example.pdf"`  
-   - **Emoji Insight:** “Download me as a file named ‘example.pdf’!” 📄⬇️
+   - **Under the hood** “Download me as a file named ‘example.pdf’!” 📄⬇️
 
 4. **Transfer-Encoding**  
    - **Meaning:** Tells how the message body is **transferred** to the client (e.g., `chunked`).  
    - **Example:** `Transfer-Encoding: chunked`  
-   - **Emoji Insight:** “I’ll send you this data in pieces!” 🍰🧩
+   - **Under the hood** “I’ll send you this data in pieces!” 🍰🧩
 
 ---
 
@@ -852,36 +852,145 @@ In this document, we delve into **common HTTP response header fields** beyond th
 1. **Vary**  
    - **Meaning:** Informs caches which **request headers** should trigger a new cached response.  
    - **Example:** `Vary: Accept-Encoding, User-Agent`  
-   - **Emoji Insight:** “Store different versions depending on these request headers!” 🔀📂
+   - **Under the hood** “Store different versions depending on these request headers!” 🔀📂
 
 2. **Via**  
    - **Meaning:** Lists intermediate proxies or gateways the response passed through.  
    - **Example:** `Via: 1.1 example-proxy`  
-   - **Emoji Insight:** “Here’s the path I took to reach you!” 🗺️🏙️
+   - **Under the hood** “Here’s the path I took to reach you!” 🗺️🏙️
 
 3. **Access-Control-Allow-Origin** (CORS)  
    - **Meaning:** Specifies which **origins** can access resources from the server.  
    - **Example:** `Access-Control-Allow-Origin: *`  
-   - **Emoji Insight:** “I’m allowing any website to fetch this resource!” 🌐✅
+   - **Under the hood** “I’m allowing any website to fetch this resource!” 🌐✅
 
 4. **Access-Control-Allow-Methods** (CORS)  
    - **Meaning:** Lists **HTTP methods** permitted for cross-origin requests.  
    - **Example:** `Access-Control-Allow-Methods: GET, POST, PUT, DELETE`  
-   - **Emoji Insight:** “Here’s what you can do from another domain!” ✋🤝
+   - **Under the hood** “Here’s what you can do from another domain!” ✋🤝
 
 5. **Access-Control-Allow-Headers** (CORS)  
    - **Meaning:** Specifies **which headers** can be used during a cross-origin request.  
    - **Example:** `Access-Control-Allow-Headers: Content-Type, Authorization`  
-   - **Emoji Insight:** “You’re allowed to include these headers in your request!” 📨🔓
+   - **Under the hood** “You’re allowed to include these headers in your request!” 📨🔓
 
 6. **Allow**  
    - **Meaning:** Tells the client which **HTTP methods** are supported by the server on the requested resource.  
    - **Example:** `Allow: GET, POST, HEAD`  
-   - **Emoji Insight:** “I only accept these methods for this endpoint!” 🏁✅
+   - **Under the hood** “I only accept these methods for this endpoint!” 🏁✅
 
 7. **Pragma** (Legacy)  
    - **Meaning:** Provides backward-compatible **caching directives** (mostly HTTP/1.0).  
    - **Example:** `Pragma: no-cache`  
-   - **Emoji Insight:** “Old-school instruction for no caching!” 🏫🕰️
+   - **Under the hood** “Old-school instruction for no caching!” 🏫🕰️
 
 ---
+
+<div align="center">
+
+# `New Section Cookies`
+
+</div>
+
+
+# **User-Server Interaction with Cookies** 🍪✨
+
+## Overview 📚
+This document discusses how **cookies** are used in HTTP to maintain state between a client (browser) and a server, despite the fact that HTTP is fundamentally **stateless**. Cookies enable websites to identify and track users, maintain shopping carts, remember user preferences, and provide personalized experiences. However, they also raise privacy concerns.
+
+---
+
+## 1. Why HTTP Is Stateless and the Role of Cookies 🏷️
+
+- **Stateless Nature of HTTP:**  
+  - Each time a client sends a request to a server, the server treats it independently of previous requests.  
+  - This simplifies server design and supports high performance for many simultaneous connections.  
+- **Need for State:**  
+  - Some sites want to restrict access, tailor content, or offer personalized features.  
+  - **Cookies** fill this gap by providing a mechanism to remember and identify users across multiple requests and sessions.  
+- **Under the hood**  
+  - Think of HTTP as a polite host who forgets you after every conversation. Cookies act like a **name tag** reminding the host who you are! 💭🔖
+
+---
+
+## 2. The Four Components of Cookie Technology 🔍
+
+1. **Cookie Header in the HTTP Response**  
+   - Sent by the server to the client, typically labeled `Set-cookie: <someID>`.  
+2. **Cookie Header in the HTTP Request**  
+   - Sent by the client back to the server on subsequent requests, labeled `Cookie: <someID>`.  
+3. **Cookie File on the Client**  
+   - Maintained by the user’s browser, storing cookie values (like `1678` in our example).  
+4. **Back-End Database on the Server**  
+   - Stores user data, indexed by the **unique cookie identification number**.  
+- **Under the hood**  
+  - It’s like a **four-step dance** between client and server to keep track of user identity! 💃🕺
+
+---
+
+<div align="center">
+  <img src="./images/05.jpg" alt="" width="600px"/>
+</div>
+
+## 3. Walkthrough Example: Susan and Amazon.com 🛒
+
+1. **First Visit**  
+   - Susan visits **Amazon.com** for the first time (already has a cookie from eBay in her cookie file).  
+   - The Amazon server generates a unique ID (e.g., `1678`) and creates an entry in its database indexed by this ID.  
+   - The server includes `Set-cookie: 1678` in the **HTTP response**.  
+   - **Under the hood**  
+     - Amazon says, “I’ll call you **1678**—remember that!” 🏷️🤝
+
+2. **Browser Updates Cookie File**  
+   - Susan’s browser sees the `Set-cookie: 1678` header.  
+   - It appends a new line in its cookie file with the host (`amazon.com`) and the unique ID (`1678`).  
+
+3. **Subsequent Requests**  
+   - Each time Susan requests another page on Amazon, her browser includes `Cookie: 1678` in the **HTTP request** header.  
+   - The server checks its database for user `1678` and tracks her activity.  
+   - **Under the hood**  
+     - It’s like handing over your **membership card** each time you enter a new store section! 💳🏬
+
+4. **Return Visits**  
+   - Even a week later, Susan’s browser will still send `Cookie: 1678` to Amazon.  
+   - Amazon can then tailor the experience, recommend items, and retrieve her past activities.  
+
+5. **User Registration**  
+   - If Susan registers with personal info (name, email, credit card), Amazon links that info to `1678`.  
+   - **One-Click Shopping** is possible because Amazon **already knows** her identity.  
+
+---
+
+## 4. Technical Functionality of Cookies 🏗️
+
+- **Identifying a User:**  
+  - First visit: user provides some identification (optional).  
+  - **Subsequent visits:** The cookie automatically identifies the user to the server.  
+  - **Under the hood**  
+    - It’s like having an **ID badge** for every session, so the server never forgets you! 🏷️🔒
+
+- **Session Layer on Top of Stateless HTTP:**  
+  - Cookies add a **user session** layer.  
+  - For example, logging into a web-based email (e.g., Hotmail) uses cookies to identify you during your entire session.  
+
+---
+
+## 5. Privacy Considerations 🔐
+
+- **Potential Invasion of Privacy:**  
+  - Combining cookies with user-supplied account info lets sites gather detailed user data (browsing patterns, preferences).  
+  - Sites can **sell** this data to third parties.  
+- **Trade-Off:**  
+  - Cookies **enhance convenience** (e.g., shopping carts, personalized experiences).  
+  - But they also **raise questions** about how much personal data is tracked and shared.  
+- **Under the hood**  
+  - It’s like the convenience of a membership card but at the cost of letting the store know **everything** you buy! 🏬🕵️‍♂️
+
+---
+
+
+<div align="center">
+
+# `New Section Starts here`
+
+</div>
