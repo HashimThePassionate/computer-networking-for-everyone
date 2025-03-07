@@ -1437,3 +1437,69 @@ It’s like switching from long, handwritten notes to concise digital messages t
 
 ---
 
+# **Response Message Prioritization and Server Push** 🚀📤
+
+## Overview 📚  
+HTTP/2 introduces two powerful features that improve the efficiency and performance of web communications: **message prioritization** and **server push**. These features work together to ensure that the most important data reaches the client as quickly as possible, reducing wait times and enhancing the overall user experience.
+
+---
+
+## Message Prioritization 🎯
+
+HTTP/2 allows clients to control the order in which responses are sent by assigning a **priority weight** to each request. Here’s how it works:
+
+- **Priority Weights:**  
+  - When a client sends multiple requests, it can assign each request a weight between **1 and 256**.  
+  - A higher number indicates a higher priority, meaning that the response for that request should be delivered sooner.
+  
+- **Dependencies:**  
+  - Clients can also specify that certain messages depend on others by using message IDs.  
+  - This means the client tells the server which responses are more critical and which ones can wait until the more important data has been delivered.
+
+**Example:**  
+Imagine you’re loading a webpage. The main HTML content is crucial because it forms the structure of the page, while images and stylesheets, though important, can arrive shortly after. The browser can mark the HTML as high priority (e.g., weight 256) and images as lower priority (e.g., weight 100). This way, the server sends the HTML content first, ensuring that the page begins to display quickly.
+
+**Under the hood**  
+Think of it as a to-do list where you mark the most urgent tasks in bright red, ensuring they get done first while the less urgent ones follow afterward. 🔴✅
+
+---
+
+## Server Push 🎁
+
+Server push is another feature of HTTP/2 that further speeds up webpage loading by proactively sending additional resources to the client. Here’s a detailed explanation:
+
+- **How It Works:**  
+  - When a client requests a primary resource (like an HTML page), the server not only sends the requested resource but also "pushes" additional resources that the client is likely to need.
+  - These extra resources might include CSS files, JavaScript files, or images that are referenced in the HTML.
+  
+- **Benefits:**  
+  - **Eliminates Extra Latency:**  
+    - Instead of waiting for the client to parse the HTML and then send additional requests for each linked resource, the server anticipates the needs and sends them immediately.
+  - **Enhanced Performance:**  
+    - This reduces the number of round trips between the client and server, thereby reducing overall latency and speeding up page rendering.
+
+**Example:**  
+Imagine you order a pizza (the main HTML page) and, at the same time, the pizzeria automatically includes a side of garlic bread and a drink (CSS, JavaScript, and images) with your order. Even though you only requested the pizza, you receive a complete meal without having to ask for extras—making your dining experience smoother and faster.
+
+**Under the hood**  
+It’s like a thoughtful waiter who knows your favorite sides and serves them along with your main course—saving you time and ensuring you have everything you need right away! 🍕🍟🥤
+
+---
+
+## How They Work Together 🛠️
+
+When combined, message prioritization and server push in HTTP/2 create a highly efficient system:
+
+- **Optimized Delivery:**  
+  - The client prioritizes which responses it needs first, ensuring that critical resources like the HTML page are delivered immediately.
+  
+- **Proactive Resource Delivery:**  
+  - Simultaneously, the server pushes additional resources that are anticipated to be needed, further reducing the time the client would otherwise spend waiting to request these resources.
+
+- **Efficient Use of Connection:**  
+  - Both features operate over a single, multiplexed TCP connection, which helps manage network resources better and prevents delays that can occur with multiple connections.
+
+**Under the hood**  
+Imagine a well-organized kitchen where orders are prioritized, and chefs prepare all the necessary dishes concurrently, ensuring that your complete meal is served quickly and efficiently. 🍽️
+
+---
