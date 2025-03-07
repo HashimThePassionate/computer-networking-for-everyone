@@ -1363,3 +1363,77 @@ Imagine you visit a website that includes:
 It's like receiving all parts of your meal at once, with the best dishes served first—ensuring a fast and efficient dining experience! 🍽️🚀
 
 ---
+
+# **HTTP/2 Framing**🚀📦
+
+## Overview 📚  
+HTTP/2 Framing is a key mechanism that overcomes the Head-of-Line (HOL) blocking problem. Instead of sending whole HTTP messages as one unit, HTTP/2 breaks them down into smaller, fixed-length pieces called **frames**. These frames can be interleaved and sent concurrently over a single TCP connection, ensuring that large messages (like videos) do not block smaller ones from arriving quickly. This framing process greatly improves the speed and efficiency of data delivery.
+
+---
+
+## How Framing Works 🔄  
+Imagine a webpage that includes one large video clip and eight smaller objects. In a traditional HTTP/1.1 setup, the server would send the large video first, potentially delaying the small objects. With HTTP/2 framing, the server breaks each response into small frames. For example, suppose the video is made up of 1000 frames and each smaller object is made up of 2 frames. The server can send one frame of the video, then send the first frame of each small object, followed by the next video frame and the remaining small object frames. In our example, all the small objects are completely sent after only 18 frames, instead of waiting for all 1016 video frames if no interleaving were used.
+
+### Given Data:
+- **Video clip:** 1000 frames  
+- **Each small object:** 2 frames  
+- **Total small objects:** 8  
+- **Total small object frames:** 8 × 2 = 16 frames
+
+### Non-Interleaved (Sequential) Approach:
+If the entire video is sent first:
+- First, the 1000 video frames are sent, then the 16 frames for the small objects  
+- **Total frames:** 1000 + 16 = **1016 frames**  
+  In this approach, the small objects are only displayed after all 1016 frames have been transmitted.
+
+### Interleaved (HTTP/2) Approach:
+In HTTP/2, the responses are broken into small frames, and the server interleaves these frames.
+
+**Step-by-Step Interleaving:**
+
+1. **Step 1:**  
+   - Send the first video frame: **Frame V1**  
+   - Total frames so far: **1**
+
+2. **Step 2:**  
+   - Now, send the first frame of each of the 8 small objects:  
+     - 8 small objects × 1 frame each = **8 frames**  
+   - Total frames so far: 1 (V1) + 8 (first frames of small objects) = **9 frames**
+
+3. **Step 3:**  
+   - Next, send the second video frame: **Frame V2**  
+   - Total frames so far: 9 + 1 = **10 frames**
+
+4. **Step 4:**  
+   - Finally, send the second (final) frame of each of the 8 small objects:  
+     - 8 small objects × 1 frame each = **8 frames**  
+   - Total frames so far: 10 + 8 = **18 frames**
+
+### Calculation Summary:
+- **After 18 frames:**  
+  - Video: 2 frames (V1 and V2) have been sent  
+  - Small Objects: 2 frames per object have been sent, meaning 8 objects × 2 = 16 frames are complete  
+
+Thus, through interleaving, the small objects are fully transmitted in just **18 frames**, instead of waiting for all 1016 frames as in the sequential method. This approach helps to display important, smaller elements (the small objects) to the user much sooner, even if the video is not yet fully sent.
+
+**Under the hood**  
+Imagine watching a movie where scenes from multiple shows are mixed together, so you see bits of all your favorite programs at once rather than waiting for one show to finish completely. This interleaving means you get a more responsive and smoother experience! 🎬✨
+
+---
+
+## The Role of the Framing Sublayer 🔧  
+HTTP/2 introduces a dedicated **framing sublayer** that manages this process. When a server prepares an HTTP response, the framing sublayer breaks the response into independent frames. The header and the body of the message become separate frames, which can then be interleaved with frames from other responses over the same TCP connection. At the client side, these frames are reassembled back into the original HTTP messages before being processed by the browser.
+
+**Under the hood**  
+Think of the framing sublayer as a skilled packer who breaks down a large shipment into smaller boxes, mixes them for efficient transport, and then a receiver reassembles them into the original package. 📦🔄
+
+---
+
+## Benefits of Binary Encoding and Frame Interleaving 💡  
+Beyond splitting messages into frames, HTTP/2 encodes these frames in binary. This binary format is more efficient to parse and results in slightly smaller, less error-prone frames. By interleaving frames from different messages, HTTP/2 avoids the delay caused by one large message blocking smaller ones, significantly reducing user-perceived delay.
+
+**Under the hood**  
+It’s like switching from long, handwritten notes to concise digital messages that are faster to read and less likely to have errors—everything flows smoother and faster! 💻⚡
+
+---
+
