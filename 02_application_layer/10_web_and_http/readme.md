@@ -1277,5 +1277,89 @@ It’s like getting a quick call saying, "No new edition—just keep using your 
 **Under the hood**  
 Think of it as an efficient check-up that saves you time and resources while ensuring you have the best, most current information! ⏱️💡
 
+---
+
+<div align="center">
+
+# `New Section HTTP/2`
+
+</div>
+
+# **HTTP/2** 🚀
+
+## Overview 📚
+HTTP/2 is the modern upgrade to the HTTP protocol, standardized in 2015. Unlike HTTP/1.1, which has been around since 1997, HTTP/2 changes **how** data is sent—not what is sent. Its improvements help web pages load faster, make better use of network resources, and provide a smoother browsing experience.
+
+---
+
+## Multiplexing: Sending Multiple Streams at Once 🔄
+HTTP/2 allows multiple requests and responses to travel over one single TCP connection simultaneously.  
+Imagine you're at a busy restaurant. Instead of ordering one dish at a time and waiting for each to be served, you can order your entire meal at once. Even if one dish takes longer to prepare, the others are served without delay.  
+**Under the hood**  
+This is like enjoying your full meal without waiting for each course one by one! 🍽️⏱️
+
+---
+
+## Header Compression: Less is More ✂️📜
+In HTTP/1.1, headers (extra information attached to requests and responses) are sent in plain text, which can be bulky and repetitive.  
+HTTP/2 uses HPACK, a header compression mechanism, which reduces the amount of data transferred.  
+Think of it as summarizing long paragraphs into short, efficient bullet points—making communication faster and more efficient.  
+**Under the hood**  
+It's like turning a lengthy story into a concise summary—saving time and space! 📝⚡
+
+---
+
+## Stream Prioritization: What Matters Most 🎯
+HTTP/2 lets browsers tell servers which data is most important.  
+For example, the main HTML content can be marked as high priority, while less critical elements (like images or ads) are set as lower priority.  
+This ensures that the essential parts of a webpage load first, improving the overall user experience.  
+**Under the hood**  
+Imagine giving VIP treatment to the most important items—so you get what you need faster! 🏆🚀
+
+---
+
+## Server Push: Proactive Data Delivery 🎁
+HTTP/2 introduces server push, where the server sends additional resources (like CSS or JavaScript files) to your browser before it even requests them.  
+This proactive behavior reduces the number of back-and-forth communications between the browser and server, speeding up the page load process.  
+**Under the hood**  
+It's like a helpful waiter who brings you extra items without you having to ask—enhancing your overall dining experience! ☕🍪
+
+---
+
+## Overcoming Head-of-Line Blocking 🛑➡️
+In HTTP/1.1, if one large or slow file (like a video) is at the front of the queue, it can delay the delivery of other smaller, faster-loading elements.  
+This is known as Head-of-Line (HOL) blocking. HTTP/1.1 browsers often opened multiple TCP connections to work around this problem, but that can lead to inefficient use of network resources.  
+HTTP/2 solves this by allowing all data to flow through a single connection with multiple streams, ensuring that one slow element doesn't block the others.  
+**Under the hood**  
+Think of it as having several checkout lanes instead of one long line—everyone gets through faster! 🛒✨
+
+---
+
+## Efficient Use of TCP Connections 🚗🛣️
+HTTP/1.1 sometimes required multiple TCP connections to fetch all parts of a webpage, which could overload the network and reduce efficiency.  
+HTTP/2 uses a single TCP connection to handle all streams. This not only simplifies the connection management on servers but also allows the TCP congestion control to work as intended, sharing bandwidth fairly among all data streams.  
+**Under the hood**  
+It's like using one wide, efficient highway instead of many small roads—traffic flows smoothly and evenly! 🚦🛤️
+
+---
+
+## Real-World Example: Loading a Webpage 🌐💡
+Imagine you visit a website that includes:
+- The main HTML page
+- A large video
+- Several small images
+
+**In HTTP/1.1:**
+- The browser might open multiple TCP connections.
+- The large video could block the smaller images, causing delays.
+- Workarounds involve opening more connections, which wastes network resources.
+
+**In HTTP/2:**
+- All elements are sent concurrently over one TCP connection.
+- The video and images are broken into smaller pieces (streams) and delivered simultaneously.
+- The browser prioritizes the main content, while the server may even push extra resources.
+  
+**Under the hood**  
+It's like receiving all parts of your meal at once, with the best dishes served first—ensuring a fast and efficient dining experience! 🍽️🚀
 
 ---
