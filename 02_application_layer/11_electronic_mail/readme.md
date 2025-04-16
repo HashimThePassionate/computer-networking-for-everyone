@@ -50,6 +50,10 @@ Imagine mail servers as central postal hubs that store and forward your letters 
 
 ---
 
+<div align="center">
+  <img src="./images/01.jpg" alt="" width="600px"/>
+</div>
+
 ### 3. Simple Mail Transfer Protocol (SMTP) 📤➡️📥  
 - **Definition:**  
   SMTP is the core protocol used for transferring e-mail messages between mail servers on the Internet.  
