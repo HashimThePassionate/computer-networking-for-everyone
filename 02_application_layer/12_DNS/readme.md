@@ -141,3 +141,152 @@ To overcome these challenges, DNS is designed as a **distributed database**. Ins
 - **Scalable**: It can handle the internet’s growth.
 
 ---
+
+# **DNS: A Distributed, Hierarchical Database** 🌐📚
+
+The **Domain Name System (DNS)** is a globally distributed and hierarchically organized system designed to handle the vast scale of the internet. Instead of relying on a single server to store all hostname-to-IP mappings, DNS distributes this responsibility across a network of servers arranged in a tree-like structure. This section explains how DNS servers are organized, how they work together, and the query resolution process, with insights from Figures 2.17, 2.18, and 2.19. 🚀
+
+---
+
+<div align="center">
+  <img src="./images/01.jpg" alt="" width="400px"/>
+</div>
+
+## DNS Server Hierarchy (Figure 2.17) 🌳
+
+DNS servers are structured in a hierarchical, tree-like model, as illustrated in **Figure 2.17**. The hierarchy consists of three main levels:
+
+1. **Root DNS Servers** (Top Level) 🌍\\
+
+   - The highest level in the DNS hierarchy.
+   - Responsible for providing IP addresses of **Top-Level Domain (TLD)** servers.
+   - Example: For a query involving `.com` or `.edu`, the root server directs to the appropriate TLD server.
+
+2. **Top-Level Domain (TLD) Servers** (Middle Level) 🏷️\\
+
+   - Manage top-level domains like `.com`, `.org`, `.edu`, `.net`, and country-specific domains (e.g., `.uk`, `.jp`).
+   - Provide IP addresses of **Authoritative DNS Servers** for specific domains.
+   - Example: The `.com` TLD server can provide the IP address of the authoritative server for `amazon.com`.
+
+3. **Authoritative DNS Servers** (Bottom Level) 🖥️\\
+
+   - Owned by organizations, these servers store the actual hostname-to-IP mappings.
+   - Example: The authoritative server for `amazon.com` holds the IP address for `www.amazon.com`.
+
+**Figure 2.17 Explanation** 📊\\
+
+- Depicts a tree structure with:
+  - **Root DNS Servers** at the top.
+  - Branches for TLDs like `.com`, `.org`, and `.edu`.
+  - Sub-branches for specific domains (e.g., `facebook.com`, `pbs.org`, `nyu.edu`).
+- Shows how DNS queries are resolved step-by-step through the hierarchy.
+
+---
+
+<div align="center">
+  <img src="./images/02.jpg" alt="" width="400px"/>
+</div>
+
+## Root DNS Servers: Global Distribution (Figure 2.18) 🗺️
+
+Root DNS servers are spread worldwide to ensure reliability and efficiency, as shown in **Figure 2.18**.
+
+- **Key Details**:
+
+  - There are **13 logical root servers**, but they have over **1000 instances** globally.
+  - Managed by **12 organizations** under the coordination of **IANA (Internet Assigned Numbers Authority)**.
+  - Their role is to provide IP addresses for TLD servers.
+
+- **Figure 2.18 Explanation** 🌐\\
+
+  - A world map highlighting root server locations:
+    - **0 Servers**: White (no servers, e.g., some regions in Africa).
+    - **1-10 Servers**: Light blue (sparse coverage, e.g., parts of Africa).
+    - **11-20 Servers**: Medium blue (moderate coverage, e.g., Europe, China).
+    - **21+ Servers**: Dark blue (dense coverage, e.g., USA, Brazil, India).
+  - More servers are placed in high-traffic regions like North America and Europe to handle query volume efficiently.
+
+---
+
+<div align="center">
+  <img src="./images/03.jpg" alt="" width="400px"/>
+</div>
+
+## How DNS Resolves Queries (Figure 2.19) 🔍
+
+DNS query resolution involves multiple servers working together to translate a hostname (e.g., `gaia.cs.umass.edu`) into an IP address. **Figure 2.19** illustrates this process.
+
+### Key Servers Involved:
+
+1. **Local DNS Server** 🏠\\
+
+   - Not part of the official hierarchy but critical for query resolution.
+   - Operated by your **Internet Service Provider (ISP)** or organization, located close to your device.
+   - Acts as the first point of contact for DNS queries.
+
+2. **Root DNS Server** 🌍\\
+
+   - Provides IP addresses of TLD servers.
+
+3. **TLD DNS Server** 🏷️\\
+
+   - Responsible for TLDs (e.g., `.edu`) and provides IP addresses of authoritative servers.
+
+4. **Authoritative DNS Server** 🖥️\\
+
+   - Holds the final hostname-to-IP mapping.
+
+### Example: Resolving `gaia.cs.umass.edu`
+
+**Figure 2.19** outlines the steps for resolving the IP address of `gaia.cs.umass.edu`:
+
+- **Requesting Host**: `cse.nyu.edu` (your computer sending the query).
+- **Local DNS Server**: `dns.nyu.edu` (NYU’s local server).
+- **TLD DNS Server**: Server for `.edu`.
+- **Authoritative DNS Server**: `dns.umass.edu` (UMass’s server).
+- **Target Host**: `gaia.cs.umass.edu` (the host whose IP is needed).
+
+**Steps**:
+
+1. **Step 1**: `cse.nyu.edu` sends a query to `dns.nyu.edu`: “What’s the IP address of `gaia.cs.umass.edu`?”.
+2. **Step 2**: `dns.nyu.edu` contacts a **root DNS server**.
+3. **Step 3**: The root server sees the `.edu` TLD and returns IP addresses of `.edu` TLD servers.
+4. **Step 4**: `dns.nyu.edu` queries the `.edu` TLD server.
+5. **Step 5**: The TLD server identifies `umass.edu` and returns the IP address of `dns.umass.edu` (UMass’s authoritative server).
+6. **Step 6**: `dns.nyu.edu` queries `dns.umass.edu`.
+7. **Step 7**: `dns.umass.edu` responds with the IP address of `gaia.cs.umass.edu`.
+8. **Step 8**: `dns.nyu.edu` forwards the IP address to `cse.nyu.edu`.
+
+**Total Messages**: 8 (4 queries, 4 replies).
+
+### Recursive vs. Iterative Queries 🔄
+
+- **Recursive Query**: The local DNS server (`dns.nyu.edu`) handles the entire process and delivers the final IP address to the requesting host (Steps 1 and 8).
+- **Iterative Query**: The local DNS server queries the root, TLD, and authoritative servers individually, with each server responding directly (Steps 2–7).
+
+---
+
+## Complex Case: Additional Hierarchy 📚
+
+In some cases, an extra layer of DNS servers is involved:
+
+- Example: If UMass has department-specific DNS servers, like `dns.cs.umass.edu` for the Computer Science department.
+- Process:
+  - `dns.umass.edu` acts as an intermediate server and provides the IP address of `dns.cs.umass.edu`.
+  - `dns.nyu.edu` then queries `dns.cs.umass.edu` for the final IP address.
+- **Total Messages**: 10 (5 queries, 5 replies).
+
+---
+
+## Summary ✨
+
+- **Hierarchy**: DNS servers are organized in a tree-like structure (Root → TLD → Authoritative).
+- **Local DNS Server**: Your nearby server that initiates and forwards queries.
+- **Query Process**: Starts at the root, moves to TLD, then authoritative servers, delivering the IP address (8 messages in the standard case).
+- **Figures**:
+  - **2.17**: Shows the DNS hierarchy (Root, TLD, Authoritative).
+  - **2.18**: Maps root server locations globally.
+  - **2.19**: Details the query resolution process (8 messages).
+- **Distributed Design**: DNS’s distributed and hierarchical nature ensures it can scale, remain reliable, and avoid single points of failure.
+
+---
