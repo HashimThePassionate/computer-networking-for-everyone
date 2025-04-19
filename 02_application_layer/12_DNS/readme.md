@@ -290,3 +290,87 @@ In some cases, an extra layer of DNS servers is involved:
 - **Distributed Design**: DNS’s distributed and hierarchical nature ensures it can scale, remain reliable, and avoid single points of failure.
 
 ---
+
+# **DNS: Recursive Queries and Caching Explained** 🔄💾
+
+The **Domain Name System (DNS)** uses two types of queries—**recursive** and **iterative**—to resolve hostnames into IP addresses. While iterative queries were covered previously (Figure 2.19), this section dives into **recursive queries** as illustrated in **Figure 2.20**, followed by an explanation of **DNS caching**, a critical feature for performance and efficiency. Let’s explore these concepts step-by-step with clarity and simplicity! 🚀
+
+---
+
+<div align="center">
+  <img src="./images/04.jpg" alt="" width="400px"/>
+</div>
+
+## Recursive Queries in DNS (Figure 2.20) 🔍
+
+In a **recursive query**, each DNS server takes full responsibility for resolving the query and forwards it to the next server in the chain, rather than just providing partial information. **Figure 2.20** demonstrates this process for resolving the IP address of `gaia.cs.umass.edu`.
+
+### Servers Involved:
+
+- **Requesting Host**: `cse.nyu.edu` (the computer initiating the query).
+- **Local DNS Server**: `dns.nyu.edu` (NYU’s local server).
+- **Root DNS Server**: Provides IP addresses of TLD servers.
+- **TLD DNS Server**: Handles `.edu` domain queries.
+- **Authoritative DNS Server**: `dns.umass.edu` (UMass’s server).
+- **Target Host**: `gaia.cs.umass.edu` (the host whose IP address is needed).
+
+### Steps (Figure 2.20):
+
+1. **Step 1**: `cse.nyu.edu` sends a recursive query to `dns.nyu.edu`: “What’s the IP address of `gaia.cs.umass.edu`?”
+
+   - This is recursive, meaning `dns.nyu.edu` must find the complete answer.
+
+2. **Step 2**: `dns.nyu.edu` sends a recursive query to a **root DNS server**: “What’s the IP address of `gaia.cs.umass.edu`?”
+
+3. **Step 3**: The root server responds with the IP addresses of `.edu` **TLD servers** and sends this back to `dns.nyu.edu`.
+
+4. **Step 4**: `dns.nyu.edu` sends a recursive query to the `.edu` TLD server: “What’s the IP address of `gaia.cs.umass.edu`?”
+
+5. **Step 5**: The TLD server identifies `umass.edu` and responds with the IP address of the authoritative server, `dns.umass.edu`.
+
+6. **Step 6**: The TLD server sends a recursive query to `dns.umass.edu`: “What’s the IP address of `gaia.cs.umass.edu`?”
+
+7. **Step 7**: `dns.umass.edu` responds with the IP address of `gaia.cs.umass.edu`, which is sent back to `dns.nyu.edu` via the TLD server.
+
+8. **Step 8**: `dns.nyu.edu` delivers the final IP address to `cse.nyu.edu`.
+
+**Total Messages**: 8 (4 queries, 4 replies), all recursive in this scenario.
+
+### Recursive vs. Iterative Queries:
+
+- **Recursive Queries** (Figure 2.20): Each server fully resolves the query by forwarding it to the next server, taking on the responsibility of getting the final answer.
+- **Iterative Queries** (Figure 2.19): Each server provides only its part of the answer (e.g., the next server’s IP address), and the local DNS server continues querying.
+- **Common Practice**: Queries from the requesting host to the local DNS server are typically recursive, while queries between DNS servers (root, TLD, authoritative) are often iterative. Figure 2.20 shows a fully recursive scenario for illustration.
+
+---
+
+## DNS Caching: Boosting Efficiency 💾
+
+**DNS caching** is a technique that reduces query time and network traffic by storing DNS responses for future use. This ensures that repeated queries can be answered quickly without contacting multiple servers.
+
+### How Caching Works:
+
+- When a DNS server receives a response (e.g., a hostname-to-IP mapping), it stores it in its **cache** (temporary memory).
+- If another query for the same hostname arrives, the server retrieves the answer from the cache instead of querying root, TLD, or authoritative servers again.
+
+### Example:
+
+- **First Query**: A host, `apricot.nyu.edu`, asks `dns.nyu.edu`: “What’s the IP address of `cnn.com`?”
+
+  - `dns.nyu.edu` queries the root, TLD, and authoritative servers, receives the IP address, and caches it.
+
+- **Second Query**: Later, another host, `kiwi.nyu.edu`, asks `dns.nyu.edu` the same question.
+
+  - `dns.nyu.edu` retrieves the cached IP address and responds immediately, skipping the root, TLD, and authoritative servers.
+
+### Additional Benefits:
+
+- **Caching TLD Server Addresses**: Local DNS servers can cache IP addresses of TLD servers, allowing them to bypass root servers for future queries.
+- **Faster Responses**: Caching significantly reduces query resolution time, improving user experience.
+- **Reduced Traffic**: Fewer queries reach root and TLD servers, lowering the load on the DNS infrastructure.
+
+### Time Limit:
+
+- Cached data isn’t permanent. DNS servers delete cached entries after a **fixed time** (typically 2 days) to account for potential changes in hostname-to-IP mappings.
+
+---
