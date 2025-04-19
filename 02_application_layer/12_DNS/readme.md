@@ -98,3 +98,46 @@ DNS is a powerful, distributed system with several notable characteristics:
   DNS is defined in **RFC 1034** and **RFC 1035**, which outline its architecture and protocols.
 
 ---
+
+# **How DNS Works: A Simple Overview** 🛠️
+
+DNS acts like a translator, converting hostnames into IP addresses so your apps (like browsers or email clients) can connect to the right servers. Here’s how it happens:
+
+1. **Application Calls DNS** 📱\
+   When you enter a hostname (e.g., `www.google.com`) in a browser or email app, the app triggers the DNS client. On UNIX systems, this is often done using the `gethostbyname()` function.
+
+2. **DNS Query is Sent** 📡\
+   Your device’s DNS client sends a query message over the network using the **UDP protocol** on **port 53**. This message asks, “What’s the IP address for this hostname?”
+
+3. **DNS Reply is Received** ✅\
+   Within milliseconds to seconds, the DNS server responds with the IP address (e.g., `142.250.190.14`). The app uses this address to connect to the website or server.
+
+**For Apps, DNS is a Black Box** 🖤\
+From an app’s perspective, DNS is a simple service: give it a hostname, get an IP address. But behind the scenes, it’s a complex system involving a global network of DNS servers and an application-layer protocol.
+
+---
+
+## Why Not a Centralized DNS? 🤔
+
+You might wonder: why not have one giant DNS server that stores all hostnames and IP addresses? While simple in theory, this wouldn’t work for several reasons:
+
+1. **Single Point of Failure** ⚠️\
+   If the central server crashes, the entire internet would stop working!
+
+2. **Overwhelming Traffic** 📈\
+   A single server couldn’t handle the billions of DNS queries (from web browsing, emails, etc.) generated worldwide.
+
+3. **Geographic Delays** 🌍\
+   A server in one location (e.g., New York) would cause delays for users far away (e.g., Australia), slowing down the internet.
+
+4. **Maintenance Nightmare** 🛠️\
+   Keeping a single server updated with records for every internet host would be a massive, constantly changing task.
+
+**Why DNS is Distributed** 🌐\
+To overcome these challenges, DNS is designed as a **distributed database**. Instead of one server, it relies on a global network of DNS servers that work together. This makes DNS:
+
+- **Fast**: Queries are handled by nearby servers.
+- **Reliable**: No single point of failure.
+- **Scalable**: It can handle the internet’s growth.
+
+---
