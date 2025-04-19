@@ -374,3 +374,179 @@ In a **recursive query**, each DNS server takes full responsibility for resolvin
 - Cached data isn’t permanent. DNS servers delete cached entries after a **fixed time** (typically 2 days) to account for potential changes in hostname-to-IP mappings.
 
 ---
+
+# **DNS Records, Messages, and Database Entries Explained** 📝🔍
+
+The **Domain Name System (DNS)** relies on **resource records (RRs)**, **messages**, and a distributed database to map hostnames to IP addresses and perform other functions. This section explains DNS records, the structure of DNS messages (as shown in **Figure 2.21**), and how records are added to the DNS database, using a clear and detailed example. Let’s dive in! 🚀
+
+---
+
+## DNS Records: The Building Blocks 📚
+
+DNS servers form a distributed database that stores **resource records (RRs)**. These records link hostnames to IP addresses and support additional functionalities. Each DNS reply message contains one or more resource records.
+
+### Resource Record Format
+
+A resource record is a tuple with four components:\
+**(Name, Value, Type, TTL)**
+
+- **TTL (Time to Live)**: Specifies how long the record can be cached (ignored here for simplicity).
+- **Type**: Indicates the record’s purpose.
+- **Name and Value**: Their meaning depends on the record type.
+
+### Types of Resource Records
+
+1. **Type A** (Address) 🌐
+
+   - **Name**: Hostname (e.g., `relay1.bar.foo.com`).
+   - **Value**: IP address (e.g., `145.37.93.126`).
+   - **Purpose**: Maps a hostname to its IP address.
+   - **Example**: `(relay1.bar.foo.com, 145.37.93.126, A)` – Indicates `relay1.bar.foo.com` has the IP address `145.37.93.126`.
+
+2. **Type NS** (Name Server) 🖥️
+
+   - **Name**: Domain name (e.g., `foo.com`).
+   - **Value**: Hostname of the authoritative DNS server (e.g., `dns.foo.com`).
+   - **Purpose**: Specifies which DNS server is responsible for the domain.
+   - **Example**: `(foo.com, dns.foo.com, NS)` – Indicates `dns.foo.com` is the authoritative server for `foo.com`.
+
+3. **Type CNAME** (Canonical Name) 🔗
+
+   - **Name**: Alias hostname (e.g., `foo.com`).
+   - **Value**: Canonical (real) hostname (e.g., `relay1.bar.foo.com`).
+   - **Purpose**: Links an alias to the true hostname.
+   - **Example**: `(foo.com, relay1.bar.foo.com, CNAME)` – Indicates `foo.com` is an alias for `relay1.bar.foo.com`.
+
+4. **Type MX** (Mail Exchange) 📧
+
+   - **Name**: Alias hostname (e.g., `foo.com`).
+   - **Value**: Canonical hostname of the mail server (e.g., `mail.bar.foo.com`).
+   - **Purpose**: Maps an email domain to its mail server.
+   - **Example**: `(foo.com, mail.bar.foo.com, MX)` – Indicates `foo.com` emails are handled by `mail.bar.foo.com`.
+   - **Note**: A company can use the same alias (e.g., `foo.com`) for both web and mail servers.
+
+### Role of Records in Servers
+
+- **Authoritative Servers**: Store **Type A** records for hostnames they manage (or have them cached).
+- **Non-Authoritative Servers**: Store **Type NS** records pointing to the authoritative server for a domain, along with a **Type A** record for that server’s IP address.
+- **Example**: A `.edu` TLD server doesn’t have a direct record for `gaia.cs.umass.edu`, but it has:
+  - `(umass.edu, dns.umass.edu, NS)` – `dns.umass.edu` is authoritative for `umass.edu`.
+  - `(dns.umass.edu, 128.119.40.111, A)` – `dns.umass.edu`’s IP address is `128.119.40.111`.
+
+---
+
+<div align="center">
+  <img src="./images/05.jpg" alt="" width="400px"/>
+</div>
+
+
+## DNS Messages (Figure 2.21) 📬
+
+DNS uses only two types of messages: **Query** and **Reply**, both sharing the same format, as shown in **Figure 2.21**.
+
+### DNS Message Format
+
+A DNS message has five sections:
+
+1. **Header (12 Bytes)** 🏷️
+
+   - **Identification**: A 16-bit number unique to the query, copied in the reply for matching.
+   - **Flags**:
+     - Query/Reply: 0 for query, 1 for reply.
+     - Authoritative: 1 if the server is authoritative for the queried domain.
+     - Recursion-Desired: 1 if the client wants a recursive query.
+     - Recursion-Available: 1 if the server supports recursion.
+   - **Number Fields**: Indicate the count of entries in the sections below:
+     - Number of Questions
+     - Number of Answer RRs
+     - Number of Authority RRs
+     - Number of Additional RRs
+
+2. **Question Section** ❓
+
+   - Contains details of the query.
+   - **Name**: The queried hostname (e.g., `gaia.cs.umass.edu`).
+   - **Type**: The query type (e.g., Type A or Type MX).
+
+3. **Answer Section** ✅
+
+   - Contains resource records answering the query.
+   - **Example**: For a Type A query, this might include `(gaia.cs.umass.edu, 128.119.45.111, A)`.
+   - Multiple records can be included if a hostname has multiple IP addresses.
+
+4. **Authority Section** 🛡️
+
+   - Contains records for authoritative servers.
+   - **Example**: `(umass.edu, dns.umass.edu, NS)` – Provided by a TLD server.
+
+5. **Additional Section** ➕
+
+   - Includes extra helpful information.
+   - **Example**: For an MX query, the answer section might have `(foo.com, mail.bar.foo.com, MX)`, and the additional section could include `(mail.bar.foo.com, 145.37.93.126, A)`.
+
+### Example
+
+For a query asking for the MX record of `foo.com`:
+
+- **Answer Section**: `(foo.com, mail.bar.foo.com, MX)`
+- **Additional Section**: `(mail.bar.foo.com, 145.37.93.126, A)`
+
+---
+
+## Sending DNS Queries with nslookup 🛠️
+
+You can send DNS queries directly using the **nslookup** tool:
+
+- Open a Command Prompt on Windows or UNIX.
+- Type `nslookup`.
+- Send a query to a DNS server (root, TLD, or authoritative).
+- The response displays records in a human-readable format.
+- Alternatively, use online `nslookup` tools available via a web search.
+
+---
+
+## Adding Records to the DNS Database 📥
+
+To understand how records are added to the DNS database, let’s use an example of a startup called **Network Utopia** registering the domain `networkutopia.com`.
+
+### Steps to Register a Domain
+
+1. **Register with a Registrar** 📝
+
+   - A **registrar** (e.g., GoDaddy) verifies and registers domain names in the DNS database.
+   - You request `networkutopia.com` through the registrar, which checks its uniqueness and charges a fee.
+
+2. **Provide Authoritative DNS Server Details** 🖥️
+
+   - You specify your primary and secondary authoritative DNS servers.
+   - **Example**:
+     - Primary: `dns1.networkutopia.com`, IP: `212.212.212.1`
+     - Secondary: `dns2.networkutopia.com`, IP: `212.212.212.2`
+   - The registrar adds these records to the `.com` TLD servers:
+     - `(networkutopia.com, dns1.networkutopia.com, NS)`
+     - `(dns1.networkutopia.com, 212.212.212.1, A)`
+     - Similar records for the secondary server.
+
+3. **Add Records to Your Servers** 🌐
+
+   - You configure your authoritative servers (`dns1.networkutopia.com` and `dns2.networkutopia.com`) with the necessary records:
+     - **Web Server**: `(www.networkutopia.com, 212.212.71.4, A)`
+     - **Mail Server**: `(mail.networkutopia.com, 212.212.71.5, MX)`
+
+4. **Go Live** 🚀
+
+   - Your website (`www.networkutopia.com`) and email services are now accessible worldwide.
+
+### Example: How It Works for a User (Alice in Australia)
+
+- Alice wants to visit `www.networkutopia.com`.
+- **Step 1**: Alice’s computer queries her local DNS server.
+- **Step 2**: The local DNS server queries the `.com` TLD server (via the root server if the TLD’s address isn’t cached).
+- **Step 3**: The TLD server responds with:
+  - `(networkutopia.com, dns1.networkutopia.com, NS)`
+  - `(dns1.networkutopia.com, 212.212.212.1, A)`
+- **Step 4**: The local DNS server queries `212.212.212.1`: “What’s the IP address of `www.networkutopia.com`?”
+- **Step 5**: `dns1.networkutopia.com` responds: `(www.networkutopia.com, 212.212.71.4, A)`
+- **Step 6**: Alice’s browser connects to `212.212.71.4`, and the website loads.
+
+---
