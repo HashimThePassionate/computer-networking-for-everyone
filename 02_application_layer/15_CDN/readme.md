@@ -27,7 +27,7 @@ A CDN is a network of servers placed in many locations around the world. These s
 ---
 
 <div align="center">
-  <img src="./image/01.jpg" alt="" width="600px"/>
+  <img src="./image/01.jpg" alt="" width="400px"/>
 </div>
 
 ## How Does a CDN Work? The Process Explained 📋
@@ -92,3 +92,110 @@ CDNs use a **cluster selection strategy** to decide which server should deliver 
 - **Better User Experience** 😊: No buffering or freezing means users enjoy watching videos without interruptions.
 
 --- 
+
+# **Netflix Video Streaming Platform** 🌐
+
+<div align="center">
+  <img src="./image/02.jpg" alt="" width="400px"/>
+</div>
+
+## Overview of the Diagram 📊
+The diagram (Figure 2.26) illustrates how Netflix delivers its video content using the Amazon Cloud and its private Content Distribution Network (CDN). This process involves content processing in the Amazon Cloud and subsequent distribution to users via CDN servers. Let’s explore each step in detail.
+
+---
+
+## How Netflix’s System Works 🖥️
+
+Netflix is a leading provider of online movies and TV series, particularly in North America. Its video distribution system operates through two main components:
+1. **Amazon Cloud**: Handles content processing and uploading.
+2. **Netflix’s Private CDN**: Delivers videos to users.
+
+### Role of the Amazon Cloud 🌥️
+The Amazon Cloud hosts servers that perform critical tasks for Netflix. These tasks include:
+
+- **Content Ingestion (Receiving Content)** 📥:
+  - When Netflix receives a new movie (in the form of a studio master version), it uploads it to servers in the Amazon Cloud.
+  - This is the initial step where content is introduced into the system.
+
+- **Content Processing (Processing Content)** 🔧:
+  - Servers in the Amazon Cloud create multiple versions of each movie.
+  - These versions are tailored for various devices such as desktop computers, smartphones, and game consoles connected to TVs.
+  - Each version is produced at multiple bit rates to support **DASH** (Dynamic Adaptive Streaming over HTTP), ensuring video quality adapts to the user’s internet speed.
+
+- **Uploading Versions to CDN (Uploading to CDN Servers)** 📤:
+  - Once all versions are prepared, they are uploaded from the Amazon Cloud to Netflix’s CDN servers.
+
+---
+
+## Netflix’s Private CDN 🖇️
+Initially, when Netflix launched its streaming service in 2007, it relied on three third-party CDN companies (e.g., Akamai) to distribute its video content. However, Netflix has since developed its own private CDN, which it now uses exclusively. Here’s how this CDN operates:
+
+- **Server Locations** 🌍:
+  - Netflix has installed server racks in Internet Exchange Points (IXPs) and within residential ISPs.
+  - As of now, Netflix has server racks in over 200 IXP locations and hundreds of ISP locations.
+  - Each rack contains servers equipped with 10 Gbps Ethernet ports and over 100 terabytes of storage capacity.
+  - IXP installations typically include tens of servers that store the entire Netflix video library, including multiple versions to support DASH.
+
+- **Content Distribution Method** 📦:
+  - Netflix employs **push caching** rather than **pull caching**.
+  - This means videos are manually pushed to servers during off-peak hours (when network traffic is low).
+  - For locations unable to store the entire library, Netflix pushes only the most popular videos, determined on a daily basis.
+
+---
+
+
+## Step-by-Step Process from the Diagram 📋
+
+Let’s break down the diagram (Figure 2.26) to understand how a user watches a movie:
+
+### Step 1: Content Upload to Amazon Cloud 🖱️
+- The studio master version of a movie is uploaded to the Amazon Cloud.
+- This marks the beginning of the content processing phase.
+
+### Step 2: Uploading to CDN Servers from Amazon Cloud 📡
+- The Amazon Cloud generates different versions of the movie (varying bit rates and formats).
+- These versions are then uploaded to Netflix’s CDN servers.
+
+### Step 3: Client (User) Requests a Movie 🔄
+- When a user selects a movie to play on Netflix, their computer (client) sends a request to the Amazon Cloud.
+- Netflix’s software, running in the Amazon Cloud, checks which CDN servers have a copy of the movie.
+
+### Step 4: Selection of the Best CDN Server 🧠
+- The Netflix software determines the best CDN server for the client.
+  - If the client’s ISP has a Netflix server rack with the movie’s copy, that rack’s server is typically selected.
+  - If not, a server at a nearby IXP is chosen.
+
+### Step 5: Manifest File and IP Address Sent to Client 📩
+- Netflix provides the client with the IP address of the selected CDN server.
+- Along with this, a **manifest file** is sent, containing URLs for the different versions of the requested movie.
+
+### Step 6: Client Requests and Streams Video Chunks 🎥
+- The client connects directly to the CDN server and requests video chunks (approximately 4-second segments) using **DASH**.
+- The client measures its received throughput and runs a rate-determination algorithm to decide the quality of the next chunk.
+- This enables adaptive streaming, where video quality adjusts automatically.
+
+---
+
+## Unique Features of Netflix 🌟
+- **Private CDN**: Netflix uses its own CDN, dedicated solely to video distribution, not web pages, allowing for a simplified and tailored design.
+- **No DNS Redirect**: Unlike some CDNs (e.g., KingCDN), Netflix does not rely on DNS redirection. The Amazon Cloud directly provides the client with the server’s IP address.
+- **Push Caching**: Videos are pushed to servers during scheduled off-peak hours rather than pulled dynamically during cache misses.
+
+---
+
+## Brief Overview of YouTube 📺
+- YouTube is the world’s largest video-sharing platform, with hundreds of hours of video uploaded every minute.
+- Google (YouTube’s owner) uses its private CDN with **pull caching** and **DNS redirection**.
+- Unlike Netflix, YouTube does not use adaptive streaming (e.g., DASH); users must manually select the video version.
+- Videos are streamed using HTTP byte range requests to save bandwidth.
+
+---
+
+## Google’s Network Infrastructure 🌐
+Google supports its services (e.g., search, Gmail, YouTube) with an extensive private network and CDN infrastructure:
+- **19 Mega Data Centers**: Located in North America, Europe, and Asia, each with approximately 100,000 servers, handling dynamic content like search results.
+- **90 IXP Clusters**: Distributed globally, each with hundreds of servers, serving static content like YouTube videos.
+- **Hundreds of Enter-Deep Clusters**: Located within access ISPs, typically with tens of servers per rack, delivering static content.
+
+
+---
