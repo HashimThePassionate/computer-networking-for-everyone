@@ -1,5 +1,23 @@
 # 🌐 **The Network Edge**
 
+## 📑 **Table of Contents**
+- [🌐 **The Network Edge**](#-the-network-edge)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🖥️ **Introduction to the Network Edge**](#️-introduction-to-the-network-edge)
+  - [📌 **What Are End Systems?**](#-what-are-end-systems)
+    - [📄 **Types of End Systems**](#-types-of-end-systems)
+  - [🖥️ **End Systems as Hosts**](#️-end-systems-as-hosts)
+  - [👫 **Clients vs. Servers**](#-clients-vs-servers)
+  - [🏢 **Role of Data Centers**](#-role-of-data-centers)
+    - [🌟 **What Are Data Centers?**](#-what-are-data-centers)
+    - [📄 **Functions of Data Centers**](#-functions-of-data-centers)
+    - [🛠️ **Cloud Computing Example: Amazon Web Services (AWS)**](#️-cloud-computing-example-amazon-web-services-aws)
+    - [🔧 **Components of a Data Center**](#-components-of-a-data-center)
+  - [📊 **Visualization of the Network Edge**](#-visualization-of-the-network-edge)
+  - [🚀 **Why the Network Edge Matters**](#-why-the-network-edge-matters)
+
+
+
 ## 🖥️ **Introduction to the Network Edge**
 The **network edge** refers to the part of the Internet where users connect to the network. It consists of the devices we interact with daily, such as computers, smartphones, and other Internet-enabled devices.  
 
