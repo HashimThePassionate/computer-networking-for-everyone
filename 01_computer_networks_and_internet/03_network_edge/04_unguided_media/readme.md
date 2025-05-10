@@ -1,5 +1,40 @@
 # **🌟 Unguided Transmission Media 🌟**
 
+## 📑 **Table of Contents**
+- [**🌟 Unguided Transmission Media 🌟**](#-unguided-transmission-media-)
+  - [📑 **Table of Contents**](#-table-of-contents)
+- [🌐 **Terrestrial Radio Channels**](#-terrestrial-radio-channels)
+  - [🖥️ **Introduction**](#️-introduction)
+  - [📌 **What Are Terrestrial Radio Channels?**](#-what-are-terrestrial-radio-channels)
+    - [🌟 **Definition**:](#-definition)
+    - [🧩 **Key Features**:](#-key-features)
+  - [📊 **Characteristics of Terrestrial Radio Channels**](#-characteristics-of-terrestrial-radio-channels)
+    - [1. **Path Loss and Shadow Fading**:](#1-path-loss-and-shadow-fading)
+    - [2. **Multipath Fading**:](#2-multipath-fading)
+    - [3. **Interference**:](#3-interference)
+  - [🧩 **Types of Terrestrial Radio Channels**](#-types-of-terrestrial-radio-channels)
+    - [1. **Short-Distance Channels**:](#1-short-distance-channels)
+    - [2. **Local-Area Channels**:](#2-local-area-channels)
+    - [3. **Wide-Area Channels**:](#3-wide-area-channels)
+  - [🔧 **Advantages of Terrestrial Radio Channels**](#-advantages-of-terrestrial-radio-channels)
+  - [⚠️ **Challenges of Terrestrial Radio Channels**](#️-challenges-of-terrestrial-radio-channels)
+  - [🖼️ **Visualization: Types of Terrestrial Radio Channels**](#️-visualization-types-of-terrestrial-radio-channels)
+  - [🌟 **Conclusion**](#-conclusion)
+- [🌐 **Satellite Radio Channels**](#-satellite-radio-channels)
+  - [🖥️ **Introduction**](#️-introduction-1)
+  - [📌 **What Are Satellite Radio Channels?**](#-what-are-satellite-radio-channels)
+    - [🌟 **Definition**:](#-definition-1)
+    - [🧩 **Key Features**:](#-key-features-1)
+  - [🧩 **Types of Satellites in Communication**](#-types-of-satellites-in-communication)
+    - [1. **Geostationary Satellites**](#1-geostationary-satellites)
+    - [2. **Low-Earth Orbiting (LEO) Satellites**](#2-low-earth-orbiting-leo-satellites)
+  - [📊 **Key Differences Between Geostationary and LEO Satellites**](#-key-differences-between-geostationary-and-leo-satellites)
+  - [🔧 **Advantages of Satellite Radio Channels**](#-advantages-of-satellite-radio-channels)
+  - [⚠️ **Challenges of Satellite Radio Channels**](#️-challenges-of-satellite-radio-channels)
+  - [🖼️ **Visualization: Satellite Types and Characteristics**](#️-visualization-satellite-types-and-characteristics)
+  - [🌟 **Conclusion**](#-conclusion-1)
+
+
 # 🌐 **Terrestrial Radio Channels**
 
 ## 🖥️ **Introduction**
