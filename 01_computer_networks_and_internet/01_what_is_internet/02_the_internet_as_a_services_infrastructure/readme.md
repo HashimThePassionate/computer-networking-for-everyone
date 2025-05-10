@@ -1,5 +1,19 @@
 # 🌐 **The Internet as a Services Infrastructure**
 
+## 📑 **Table of Contents**
+- [🌐 **The Internet as a Services Infrastructure**](#-the-internet-as-a-services-infrastructure)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🖥️ **What is the Internet as a Service?**](#️-what-is-the-internet-as-a-service)
+  - [🛠️ **How Does the Internet Provide Services?**](#️-how-does-the-internet-provide-services)
+    - [💡 **Developing an Internet Application**](#-developing-an-internet-application)
+    - [🖧 **The Internet Socket Interface**](#-the-internet-socket-interface)
+      - [📜 **What is a Socket Interface?**](#-what-is-a-socket-interface)
+      - [✉️ **Analogy: The Postal Service**](#️-analogy-the-postal-service)
+    - [🌟 **Services Offered by the Internet**](#-services-offered-by-the-internet)
+  - [🌐 **Two Perspectives of the Internet**](#-two-perspectives-of-the-internet)
+  - [🤔 **Lingering Questions**](#-lingering-questions)
+
+
 ## 🖥️ **What is the Internet as a Service?**
 
 The Internet is more than just hardware and software; it is also an **infrastructure** that provides **services to applications**. These applications include not only traditional services like **email** and **web browsing** but also modern distributed applications, such as:  
