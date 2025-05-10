@@ -1,6 +1,14 @@
 
 # 🌐 **Understanding the Internet**
 
+## 📑 **Table of Contents**
+- [🌐 **Understanding the Internet**](#-understanding-the-internet)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🤔 **What is the Internet?**](#-what-is-the-internet)
+  - [🔍 **Our Approach**](#-our-approach)
+    - [📊 **Illustration**](#-illustration)
+    - [**🚀 What's Next?**](#-whats-next)
+
 ## 🤔 **What is the Internet?**
 The Internet can be described in two ways:  
 
