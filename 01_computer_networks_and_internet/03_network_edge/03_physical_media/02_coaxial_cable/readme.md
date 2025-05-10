@@ -1,5 +1,24 @@
 # 🌐 **Coaxial Cable**
 
+## 📑 **Table of Contents**
+- [🌐 **Coaxial Cable**](#-coaxial-cable)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🖥️ **Introduction**](#️-introduction)
+  - [📌 **What Is Coaxial Cable?**](#-what-is-coaxial-cable)
+    - [🌟 **Structure**:](#-structure)
+  - [📊 **Characteristics of Coaxial Cable**](#-characteristics-of-coaxial-cable)
+    - [1. **High Data Transmission Rates**:](#1-high-data-transmission-rates)
+    - [2. **Shared Medium**:](#2-shared-medium)
+  - [🧩 **Applications of Coaxial Cable**](#-applications-of-coaxial-cable)
+    - [1. **Cable Television Systems**:](#1-cable-television-systems)
+    - [2. **Cable Internet Access**:](#2-cable-internet-access)
+    - [3. **Shared Communication**:](#3-shared-communication)
+  - [📖 **How Coaxial Cable Works**](#-how-coaxial-cable-works)
+  - [🖼️ **Visualization**](#️-visualization)
+  - [🚀 **Advantages of Coaxial Cable**](#-advantages-of-coaxial-cable)
+  - [⚠️ **Limitations**](#️-limitations)
+  - [🌟 **Conclusion**](#-conclusion)
+
 ## 🖥️ **Introduction**
 **Coaxial cable** is a widely used **guided transmission medium** that consists of **two concentric copper conductors**, unlike the parallel arrangement in twisted-pair cables. Its unique design, combined with **special insulation and shielding**, allows for **high data transmission rates**. Coaxial cable is commonly utilized in **cable television systems** and **residential Internet access**.
 
