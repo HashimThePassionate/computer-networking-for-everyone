@@ -1,5 +1,19 @@
 # 🌐 **A Network of Networks**
 
+## 📑 **Table of Contents**
+- [🌐 **A Network of Networks**](#-a-network-of-networks)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [📌 **Internet Layers: Key Components**](#-internet-layers-key-components)
+  - [📊 **Evolution of Internet Structures**](#-evolution-of-internet-structures)
+    - [🌟 **Structure 1**: A Single Global ISP](#-structure-1-a-single-global-isp)
+    - [🌟 **Structure 2**: Multiple Global ISPs](#-structure-2-multiple-global-isps)
+    - [🌟 **Structure 3**: Multi-Tier Hierarchy](#-structure-3-multi-tier-hierarchy)
+    - [🌟 **Structure 4**: Adding IXPs, PoPs, and Multi-Homing](#-structure-4-adding-ixps-pops-and-multi-homing)
+    - [🌟 **Structure 5**: Content Provider Networks](#-structure-5-content-provider-networks)
+  - [🔑 **Today’s Internet**](#-todays-internet)
+  - [📖 **Key Takeaways**](#-key-takeaways)
+
+
 The Internet, as we know it, is not a single network but a **global network of interconnected networks**. It is designed to connect billions of end systems (such as PCs, smartphones, and servers) through a combination of ISPs (Internet Service Providers), regional networks, and global transit networks. Here's a deep dive into its intricate architecture:
 
 ---
