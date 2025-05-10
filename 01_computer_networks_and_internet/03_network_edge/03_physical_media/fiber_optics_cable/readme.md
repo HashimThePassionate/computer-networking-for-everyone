@@ -1,4 +1,22 @@
 # 🌐 **Fiber Optics**
+## 📑 **Table of Contents**
+- [🌐 **Fiber Optics**](#-fiber-optics)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🖥️ **Introduction**](#️-introduction)
+  - [📌 **What Are Fiber Optics?**](#-what-are-fiber-optics)
+    - [🌟 **Definition**:](#-definition)
+    - [🧩 **Key Features**:](#-key-features)
+  - [📊 **Characteristics of Fiber Optics**](#-characteristics-of-fiber-optics)
+  - [🧩 **Applications of Fiber Optics**](#-applications-of-fiber-optics)
+    - [1. **Long-Haul Communication**:](#1-long-haul-communication)
+    - [2. **Internet Backbone**:](#2-internet-backbone)
+    - [3. **High-Speed Standards (Optical Carrier)**:](#3-high-speed-standards-optical-carrier)
+    - [4. **Limited Short-Haul Use**:](#4-limited-short-haul-use)
+  - [🔧 **Advantages of Fiber Optics**](#-advantages-of-fiber-optics)
+  - [⚠️ **Limitations of Fiber Optics**](#️-limitations-of-fiber-optics)
+  - [🖼️ **Visualization: Fiber Optic Standards**](#️-visualization-fiber-optic-standards)
+  - [🚀 **Conclusion**](#-conclusion)
+
 
 ## 🖥️ **Introduction**
 **Fiber-optic cables** are thin, flexible mediums that transmit data using **pulses of light**, where each pulse represents a **bit** of information. With their exceptional speed, immunity to interference, and long-distance reliability, fiber optics have become the **preferred transmission medium** for **long-haul communication** and **Internet backbones**.
