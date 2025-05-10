@@ -1,5 +1,20 @@
 # 🌐 **Access Networks**
 
+## 📑 **Table of Contents**
+- [🌐 **Access Networks**](#-access-networks)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🖥️ **Introduction to Access Networks**](#️-introduction-to-access-networks)
+  - [📌 **Key Components of Access Networks**](#-key-components-of-access-networks)
+    - [**Edge Router**:](#edge-router)
+    - [**Access Network Types**:](#access-network-types)
+  - [🏠 **Types of Access Networks and Their Use Cases**](#-types-of-access-networks-and-their-use-cases)
+    - [1. **Home Networks**:](#1-home-networks)
+    - [2. **Enterprise Networks**:](#2-enterprise-networks)
+    - [3. **Mobile Networks**:](#3-mobile-networks)
+  - [🖼️ **Visualization of Access Networks**](#️-visualization-of-access-networks)
+  - [🚀 **Why Access Networks Are Important**](#-why-access-networks-are-important)
+
+
 ## 🖥️ **Introduction to Access Networks**
 Access networks form the critical connection between **end systems** and the **network core**. They physically link end systems (like your computer, smartphone, or IoT device) to the **first router** on the path toward communicating with another distant end system.
 
