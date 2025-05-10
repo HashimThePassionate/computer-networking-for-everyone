@@ -1,4 +1,38 @@
 # 🔒 **Networks Under Attack** 🚀
+## 📑 **Table of Contents**
+- [� **Networks Under Attack** 🚀](#-networks-under-attack-)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [📌 Introduction](#-introduction)
+  - [🏛 What is Network Security?](#-what-is-network-security)
+  - [🔥 Why is Network Security Important?](#-why-is-network-security-important)
+  - [⚠️ What Can Go Wrong?](#️-what-can-go-wrong)
+    - [🛑 **Types of Network Attacks**](#-types-of-network-attacks)
+  - [🛡️ How Can We Defend Against These Attacks?](#️-how-can-we-defend-against-these-attacks)
+    - [🔑 **Key Defense Strategies**](#-key-defense-strategies)
+- [`New Section Bad Guys Infect Your Devices`](#new-section-bad-guys-infect-your-devices)
+- [🦠 **How the Bad Guys Infect Your Devices** 🚀](#-how-the-bad-guys-infect-your-devices-)
+  - [📌 Introduction](#-introduction-1)
+  - [🔥 How Malware Infects Devices](#-how-malware-infects-devices)
+  - [🛑 What Can Malware Do?](#-what-can-malware-do)
+  - [🔄 How Self-Replicating Malware Spreads](#-how-self-replicating-malware-spreads)
+    - [🕷 **Botnets: A Network of Infected Devices**](#-botnets-a-network-of-infected-devices)
+  - [🛡️ How to Protect Yourself from Malware](#️-how-to-protect-yourself-from-malware)
+    - [✅ **Best Practices for Avoiding Malware Infections**](#-best-practices-for-avoiding-malware-infections)
+- [`New Section Denial-of-Service`](#new-section-denial-of-service)
+- [🔥 **Denial-of-Service (DoS) Attacks** 🚀](#-denial-of-service-dos-attacks-)
+  - [📌 Introduction](#-introduction-2)
+  - [As the Internet has become essential for individuals, businesses, and institutions, **attackers continuously exploit vulnerabilities** in network infrastructure to disrupt services. One of the most severe threats is a **Denial-of-Service (DoS) attack**, which aims to **render a network, host, or service unusable** for legitimate users.](#as-the-internet-has-become-essential-for-individuals-businesses-and-institutions-attackers-continuously-exploit-vulnerabilities-in-network-infrastructure-to-disrupt-services-one-of-the-most-severe-threats-is-a-denial-of-service-dos-attack-which-aims-to-render-a-network-host-or-service-unusable-for-legitimate-users)
+  - [🏛 What is a Denial-of-Service (DoS) Attack?](#-what-is-a-denial-of-service-dos-attack)
+  - [⚔️ Types of DoS Attacks](#️-types-of-dos-attacks)
+  - [📡 Distributed Denial-of-Service (DDoS) Attacks](#-distributed-denial-of-service-ddos-attacks)
+    - [🕷 **How DDoS Attacks Work**](#-how-ddos-attacks-work)
+    - [📌 **Why DDoS Attacks Are More Dangerous**](#-why-ddos-attacks-are-more-dangerous)
+    - [📊 **Example of a DDoS Attack**](#-example-of-a-ddos-attack)
+  - [🛡️ How to Defend Against DoS \& DDoS Attacks](#️-how-to-defend-against-dos--ddos-attacks)
+    - [✅ **Best Practices for Preventing DoS Attacks**](#-best-practices-for-preventing-dos-attacks)
+- [`New Section Starts here`](#new-section-starts-here)
+
+
 
 ## 📌 Introduction
 
