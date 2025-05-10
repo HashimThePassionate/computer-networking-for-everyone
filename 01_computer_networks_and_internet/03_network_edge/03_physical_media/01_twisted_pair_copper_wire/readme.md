@@ -1,5 +1,26 @@
 # 🌐 **Twisted-Pair Copper Wire**
 
+## 📑 **Table of Contents**
+- [🌐 **Twisted-Pair Copper Wire**](#-twisted-pair-copper-wire)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🖥️ **Introduction**](#️-introduction)
+  - [📌 **What Is Twisted-Pair Copper Wire?**](#-what-is-twisted-pair-copper-wire)
+    - [🌟 **Structure**:](#-structure)
+  - [📊 **Types of Twisted-Pair Copper Wire**](#-types-of-twisted-pair-copper-wire)
+    - [1. **Unshielded Twisted Pair (UTP)**:](#1-unshielded-twisted-pair-utp)
+  - [🔧 **Data Rates**](#-data-rates)
+  - [🧩 **Applications of Twisted-Pair Copper Wire**](#-applications-of-twisted-pair-copper-wire)
+    - [1. **LANs**:](#1-lans)
+    - [2. **Residential Internet Access**:](#2-residential-internet-access)
+  - [📖 **Historical Context**](#-historical-context)
+    - [🌟 **Twisted Pair vs. Fiber Optics**:](#-twisted-pair-vs-fiber-optics)
+    - [**Outcome**:](#outcome)
+  - [🖼️ **Visualization**](#️-visualization)
+  - [🚀 **Advantages of Twisted-Pair Copper Wire**](#-advantages-of-twisted-pair-copper-wire)
+  - [⚠️ **Limitations**](#️-limitations)
+  - [🌟 **Conclusion**](#-conclusion)
+
+
 ## 🖥️ **Introduction**
 **Twisted-pair copper wire** is the most inexpensive and widely used **guided transmission medium**. For over a century, it has been the backbone of telephone networks, connecting telephones to local telephone switches. Despite the emergence of advanced technologies like **fiber optics**, twisted-pair copper wire continues to dominate **high-speed LAN networking** due to its reliability, cost-effectiveness, and technological advancements.
 
