@@ -1,5 +1,35 @@
 # 🌐 **Circuit Switching**
 
+## 📑 **Table of Contents**
+- [🌐 **Circuit Switching**](#-circuit-switching)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🖥️ **Introduction**](#️-introduction)
+  - [📌 **What Is Circuit Switching?**](#-what-is-circuit-switching)
+    - [🌟 **Definition**:](#-definition)
+  - [🧩 **Key Features of Circuit Switching**](#-key-features-of-circuit-switching)
+  - [🖼️ **Illustration: Circuit-Switched Network**](#️-illustration-circuit-switched-network)
+  - [📊 **How Circuit Switching Works**](#-how-circuit-switching-works)
+  - [🧮 **Example: Circuit Allocation**](#-example-circuit-allocation)
+    - [Scenario:](#scenario)
+  - [🔄 **Circuit Switching vs. Packet Switching**](#-circuit-switching-vs-packet-switching)
+  - [🧩 **Advantages of Circuit Switching**](#-advantages-of-circuit-switching)
+  - [⚠️ **Disadvantages of Circuit Switching**](#️-disadvantages-of-circuit-switching)
+  - [🌟 **Real-Life Example: Traditional Telephony**](#-real-life-example-traditional-telephony)
+- [🌐 **Multiplexing in Circuit-Switched Networks**](#-multiplexing-in-circuit-switched-networks)
+  - [🖥️ **Introduction**](#️-introduction-1)
+  - [📌 **What Is Multiplexing?**](#-what-is-multiplexing)
+    - [🌟 **Definition**:](#-definition-1)
+  - [🧩 **Key Multiplexing Techniques**](#-key-multiplexing-techniques)
+    - [1. **Frequency-Division Multiplexing (FDM)**](#1-frequency-division-multiplexing-fdm)
+    - [2. **Time-Division Multiplexing (TDM)**](#2-time-division-multiplexing-tdm)
+  - [🧮 **Numerical Example: File Transmission Over TDM**](#-numerical-example-file-transmission-over-tdm)
+    - [Scenario:](#scenario-1)
+  - [📊 **FDM vs. TDM**](#-fdm-vs-tdm)
+  - [🔄 **Challenges in Circuit Switching**](#-challenges-in-circuit-switching)
+  - [🌟 **Key Takeaways**](#-key-takeaways)
+
+
+
 ## 🖥️ **Introduction**
 **Circuit switching** is one of the two fundamental methods used to transmit data through a network of links and switches, the other being **packet switching**. In circuit-switched networks, resources such as **link bandwidth** and **buffers** are **reserved** for the entire duration of a communication session. This approach provides a dedicated connection between the sender and receiver, guaranteeing a constant transmission rate.
 
