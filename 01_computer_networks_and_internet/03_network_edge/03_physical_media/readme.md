@@ -1,5 +1,28 @@
 # 🌐 **Physical Media**
 
+## 📑 **Table of Contents**
+- [🌐 **Physical Media**](#-physical-media)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🖥️ **Introduction**](#️-introduction)
+  - [📌 **What Is Physical Media?**](#-what-is-physical-media)
+    - [🌟 **Definition**:](#-definition)
+    - [🧩 **Life of a Bit**:](#-life-of-a-bit)
+  - [📊 **Categories of Physical Media**](#-categories-of-physical-media)
+    - [1. **Guided Media**:](#1-guided-media)
+    - [2. **Unguided Media**:](#2-unguided-media)
+  - [🧩 **Examples of Physical Media**](#-examples-of-physical-media)
+    - [1. **Twisted-Pair Copper Wire**:](#1-twisted-pair-copper-wire)
+    - [2. **Coaxial Cable**:](#2-coaxial-cable)
+    - [3. **Fiber-Optic Cable**:](#3-fiber-optic-cable)
+    - [4. **Terrestrial Radio Spectrum**:](#4-terrestrial-radio-spectrum)
+    - [5. **Satellite Radio Spectrum**:](#5-satellite-radio-spectrum)
+  - [💸 **Cost Considerations**](#-cost-considerations)
+    - [🌟 **Material Costs vs. Installation Costs**:](#-material-costs-vs-installation-costs)
+    - [🛠️ **Future-Proofing**:](#️-future-proofing)
+  - [🖼️ **Summary: Transmission Media Types**](#️-summary-transmission-media-types)
+  - [🚀 **Conclusion**](#-conclusion)
+
+
 ## 🖥️ **Introduction**
 In networking, **physical media** serve as the foundation for transmitting data between devices. When a bit travels from a source system to a destination, it passes through multiple **transmitter-receiver pairs**, propagating via different physical mediums like electromagnetic waves or optical pulses.  
 
