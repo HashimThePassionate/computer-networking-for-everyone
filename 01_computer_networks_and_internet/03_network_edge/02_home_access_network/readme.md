@@ -1,5 +1,27 @@
 # 🌐 **Home Access Networks**
 
+## 📑 **Table of Contents**
+- [🖥️ Overview](#-overview)
+- [📌 DSL Internet Access](#-dsl-internet-access)
+  - [What Is DSL?](#-what-is-dsl)
+  - [How DSL Works](#-how-dsl-works)
+  - [Frequency Allocation in DSL](#-frequency-allocation-in-dsl)
+  - [Transmission Rates](#-transmission-rates)
+- [🌐 Cable Internet Access](#-cable-internet-access)
+  - [How Cable Internet Works](#-how-cable-internet-works)
+  - [Transmission Rates](#-transmission-rates-1)
+  - [Shared Broadcast Medium](#️-shared-broadcast-medium)
+- [🌐 Fiber to the Home (FTTH) and 5G Fixed Wireless](#-fiber-to-the-home-ftth-and-5g-fixed-wireless)
+  - [Fiber to the Home (FTTH)](#-fiber-to-the-home-ftth)
+  - [5G Fixed Wireless](#-5g-fixed-wireless)
+- [🌐 Ethernet and WiFi](#-ethernet-and-wifi)
+  - [Ethernet Internet Access](#-ethernet-internet-access)
+  - [WiFi Internet Access](#-wifi-internet-access)
+- [🌐 Wide-Area Wireless Access](#-wide-area-wireless-access)
+  - [Home Networks](#-home-networks)
+  - [Wide-Area Wireless Access](#-wide-area-wireless-access-1)
+
+
 ## 🖥️ **Overview**
 By 2020, over **80% of households** in Europe and the USA had Internet access, highlighting the significance of home access networks in modern connectivity. This section focuses on how homes connect to the Internet, exploring **DSL (Digital Subscriber Line)**, one of the most widely used broadband technologies.
 
