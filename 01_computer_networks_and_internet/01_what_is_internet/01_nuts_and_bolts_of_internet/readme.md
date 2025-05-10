@@ -1,5 +1,23 @@
 # 🌐 **A Nuts-and-Bolts Description of the Internet**
 
+## 📑 **Table of Contents**
+- [🌐 **A Nuts-and-Bolts Description of the Internet**](#-a-nuts-and-bolts-description-of-the-internet)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🖥️ **What is the Internet?**](#️-what-is-the-internet)
+  - [🔗 **How End Systems Connect**](#-how-end-systems-connect)
+    - [1. **Communication Links**](#1-communication-links)
+    - [2. **Packet Switching**](#2-packet-switching)
+  - [🛣️ **Analogy: Transportation System**](#️-analogy-transportation-system)
+  - [🌐 **Role of Internet Service Providers (ISPs)**](#-role-of-internet-service-providers-isps)
+    - [1. **What Are ISPs?**](#1-what-are-isps)
+    - [2. **Structure of ISPs**](#2-structure-of-isps)
+    - [3. **Key Characteristics**](#3-key-characteristics)
+  - [📜 **Protocols and Standards**](#-protocols-and-standards)
+    - [1. **What Are Protocols?**](#1-what-are-protocols)
+    - [2. **Why Are Standards Important?**](#2-why-are-standards-important)
+  - [🖼️ **Visual Representation: Figure 1.1**](#️-visual-representation-figure-11)
+  - [🚀 **Why It Matters**](#-why-it-matters)
+
 ## 🖥️ **What is the Internet?**
 
 The Internet is an expansive **computer network** that interconnects billions of devices across the globe. Initially, it primarily linked **desktop computers**, **Linux workstations**, and **servers** that hosted and transmitted data like web pages and email messages. However, in today’s world, the Internet extends its reach to:  
