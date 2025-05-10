@@ -2,6 +2,47 @@
 # 📚 **Queuing Delay and Packet Loss**
 This README provides a **comprehensive explanation** of **queuing delay** and **packet loss**, one of the most fascinating and dynamic aspects of computer networks. Queuing delays are influenced by several factors, and understanding these delays is key to designing efficient and high-performing networks. 🚀✨
 
+## 📑 **Table of Contents**
+- [� **Queuing Delay and Packet Loss**](#-queuing-delay-and-packet-loss)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🔍 **Introduction to Queuing Delay**](#-introduction-to-queuing-delay)
+  - [🕒 **What Factors Influence Queuing Delay?**](#-what-factors-influence-queuing-delay)
+    - [1. 📥 **Arrival Rate of Packets ((a))**](#1--arrival-rate-of-packets-a)
+    - [2. 🚀 **Transmission Rate of the Link ((R))**](#2--transmission-rate-of-the-link-r)
+    - [3. 📊 **Traffic Intensity ((\\frac{La}{R}))**](#3--traffic-intensity-fraclar)
+    - [4. 🔄 **Arrival Patterns**](#4--arrival-patterns)
+  - [📊 **Traffic Intensity and Queuing Delay**](#-traffic-intensity-and-queuing-delay)
+    - [1. 🌟 **Low Traffic Intensity ((La/R \\approx 0))**](#1--low-traffic-intensity-lar-approx-0)
+    - [2. ⚖️ **Moderate Traffic Intensity ((La/R \< 1))**](#2-️-moderate-traffic-intensity-lar--1)
+    - [3. 🚦 **High Traffic Intensity ((La/R \\rightarrow 1))**](#3--high-traffic-intensity-lar-rightarrow-1)
+    - [4. ❌ **Traffic Intensity ((La/R \> 1))**](#4--traffic-intensity-lar--1)
+  - [🛣️ **Real-World Analogy: Highways and Traffic Congestion**](#️-real-world-analogy-highways-and-traffic-congestion)
+  - [🔬 **Periodic vs. Random Traffic Patterns**](#-periodic-vs-random-traffic-patterns)
+    - [1. **Periodic Arrivals**](#1-periodic-arrivals)
+    - [2. **Random Arrivals**](#2-random-arrivals)
+  - [🛠️ **Key Observations from Figure 1.18**](#️-key-observations-from-figure-118)
+  - [📚 **Formula Recap: Queuing Delay and Traffic Intensity**](#-formula-recap-queuing-delay-and-traffic-intensity)
+    - [1. **Traffic Intensity ((La/R))**](#1-traffic-intensity-lar)
+    - [2. **Queuing Delay ((d\_{\\text{queue}}))**](#2-queuing-delay-d_textqueue)
+- [🔍 **Packet Loss**](#-packet-loss)
+    - [🛠️ **What is Packet Loss?**](#️-what-is-packet-loss)
+    - [📥 **Why Does Packet Loss Happen?**](#-why-does-packet-loss-happen)
+    - [📊 **Impact of Packet Loss**](#-impact-of-packet-loss)
+  - [🌐 **2. End-to-End Delay**](#-2-end-to-end-delay)
+    - [🛠️ **What is End-to-End Delay?**](#️-what-is-end-to-end-delay)
+    - [🧮 **Formula for End-to-End Delay**](#-formula-for-end-to-end-delay)
+    - [🔍 **Key Insights**](#-key-insights)
+  - [🚦 **3. Traceroute: Measuring Network Paths and Delays**](#-3-traceroute-measuring-network-paths-and-delays)
+    - [🛠️ **What is Traceroute?**](#️-what-is-traceroute)
+    - [📥 **How Does Traceroute Work?**](#-how-does-traceroute-work)
+    - [📊 **Key Outputs of Traceroute**](#-key-outputs-of-traceroute)
+    - [📚 **Example Output**](#-example-output)
+  - [⚠️ **4. Observations and Insights**](#️-4-observations-and-insights)
+  - [📦 **5. Additional Delays in Networks**](#-5-additional-delays-in-networks)
+    - [🛠️ **End-System Delays**](#️-end-system-delays)
+  - [🌟 **Conclusion**](#-conclusion)
+
+
 ---
 
 ## 🔍 **Introduction to Queuing Delay**
