@@ -1,5 +1,15 @@
 # 🌐 **Delay, Loss, and Throughput in Packet-Switched Networks**
 
+## 📑 **Table of Contents**
+- [🌐 **Delay, Loss, and Throughput in Packet-Switched Networks**](#-delay-loss-and-throughput-in-packet-switched-networks)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🖥️ **Introduction**](#️-introduction)
+  - [🔄 **Key Concepts**](#-key-concepts)
+  - [📌 **Overview of Delay in Packet-Switched Networks**](#-overview-of-delay-in-packet-switched-networks)
+  - [📊 **Impact of Delays on Applications**](#-impact-of-delays-on-applications)
+
+
+
 ## 🖥️ **Introduction**
 In an ideal world, the Internet would:
 - Instantly transfer unlimited data between any two end systems.
