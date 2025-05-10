@@ -1,6 +1,22 @@
 # 📚 **Types of Delays**
 
+
+
 This guide provides a detailed explanation of **Types of Delay** in computer networks, covering every aspect to help you understand the concept thoroughly. 🚀 Let’s break it down step by step with clear examples and formulas! 😊
+
+## 📑 **Table of Contents**
+- [� **Types of Delays**](#-types-of-delays)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🔍 **What is Nodal Delay?**](#-what-is-nodal-delay)
+  - [🕒 **Types of Delay**](#-types-of-delay)
+    - [🛠️ **Processing Delay**](#️-processing-delay)
+    - [⏳ **Queuing Delay**](#-queuing-delay)
+    - [📤 **Transmission Delay**](#-transmission-delay)
+    - [🌐 **Propagation Delay**](#-propagation-delay)
+  - [🤔 **Transmission vs. Propagation Delay**](#-transmission-vs-propagation-delay)
+  - [📊 **Key Formula for Total Delay**](#-key-formula-for-total-delay)
+  - [🌟 **Conclusion**](#-conclusion)
+
 
 ---
 
