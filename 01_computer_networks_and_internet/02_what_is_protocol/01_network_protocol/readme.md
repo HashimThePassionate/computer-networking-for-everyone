@@ -1,5 +1,18 @@
 # 🌐 **Network Protocols**
 
+## 📑 **Table of Contents**
+- [🌐 **Network Protocols**](#-network-protocols)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🤔 **What Is a Network Protocol?**](#-what-is-a-network-protocol)
+  - [🔧 **Key Features of Network Protocols**](#-key-features-of-network-protocols)
+  - [📄 **Example: Web Browsing Protocol**](#-example-web-browsing-protocol)
+  - [📜 **Defining Characteristics of a Protocol**](#-defining-characteristics-of-a-protocol)
+  - [🌟 **Why Are Protocols Important?**](#-why-are-protocols-important)
+  - [🔬 **Protocols: Simple vs. Complex**](#-protocols-simple-vs-complex)
+  - [🎓 **Mastering Computer Networking**](#-mastering-computer-networking)
+
+
+
 ## 🤔 **What Is a Network Protocol?**
 A **network protocol** is similar to a **human protocol**, but instead of humans exchanging messages, it involves **hardware or software components** of network-capable devices (e.g., computers, smartphones, routers).  
 
