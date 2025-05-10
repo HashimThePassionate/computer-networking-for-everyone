@@ -1,5 +1,20 @@
 # 🌐 **What Is a Protocol?**
 
+## 📑 **Table of Contents**
+- [🌐 **What Is a Protocol?**](#-what-is-a-protocol)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🤔 **Definition of a Protocol**](#-definition-of-a-protocol)
+  - [🧑‍🤝‍🧑 **Understanding Protocols Through Human Analogies**](#-understanding-protocols-through-human-analogies)
+    - [🖐️ **Analogy 1: Asking for the Time**](#️-analogy-1-asking-for-the-time)
+      - [Key Observations:](#key-observations)
+    - [🎓 **Analogy 2: Asking a Question in Class**](#-analogy-2-asking-a-question-in-class)
+      - [Key Observations:](#key-observations-1)
+  - [💻 **How Does This Relate to Computer Networking?**](#-how-does-this-relate-to-computer-networking)
+    - [🔑 Key Features of Networking Protocols:](#-key-features-of-networking-protocols)
+  - [🖼️ **Visual Representation: Human vs. Computer Protocols**](#️-visual-representation-human-vs-computer-protocols)
+  - [🚀 **Why Protocols Are Essential**](#-why-protocols-are-essential)
+
+
 ## 🤔 **Definition of a Protocol**
 A **protocol** in computer networking is a set of rules that define how two or more entities communicate. These rules govern:  
 - The **format** of messages.  
