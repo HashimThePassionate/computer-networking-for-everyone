@@ -76,4 +76,4 @@ Refer to **Figure 1.4** for a detailed illustration of various access networks a
 ## 🚀 **Why Access Networks Are Important**
 - They are the **starting point** for all data communication from end systems.  
 - They determine the **speed** and **reliability** of Internet access for users.  
-- They play a crucial role in connecting diverse environments like homes, enterprises, and mobile users to the **network core**.
+- They play a crucial role in connecting diverse environments like homes, enterprises, and mobile users to the **network core**. 
