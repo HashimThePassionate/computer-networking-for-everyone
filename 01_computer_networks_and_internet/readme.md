@@ -1,5 +1,21 @@
 # 📚 **Computer Networks and the Internet**
 
+## 📑 **Table of Contents**
+- [📚 **Computer Networks and the Internet**](#-computer-networks-and-the-internet)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🌍 **Introduction to the Internet and Networking**](#-introduction-to-the-internet-and-networking)
+  - [🎯 **Section Objectives**](#-section-objectives)
+  - [🔍 **Key Topics Covered**](#-key-topics-covered)
+    - [🖥️ **1. Components of a Computer Network**](#️-1-components-of-a-computer-network)
+    - [🌐 **2. The Internet: A Network of Networks**](#-2-the-internet-a-network-of-networks)
+    - [📊 **3. Delay, Loss, and Throughput**](#-3-delay-loss-and-throughput)
+    - [🏛️ **4. Key Architectural Principles**](#️-4-key-architectural-principles)
+    - [🔐 **5. Security Challenges**](#-5-security-challenges)
+    - [📜 **6. A Brief History of Networking**](#-6-a-brief-history-of-networking)
+  - [🛠️ **Why Learn About Networks?**](#️-why-learn-about-networks)
+
+
+
 ## 🌍 **Introduction to the Internet and Networking**
 
 The Internet stands as one of humanity's most impressive engineering achievements, connecting:
