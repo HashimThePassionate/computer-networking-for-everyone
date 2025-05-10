@@ -1,5 +1,29 @@
 # 🌐 **Packet Switching vs. Circuit Switching**
 
+## 📑 **Table of Contents**
+- [🌐 **Packet Switching vs. Circuit Switching**](#-packet-switching-vs-circuit-switching)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🖥️ **Introduction**](#️-introduction)
+  - [📌 **Comparison at a Glance**](#-comparison-at-a-glance)
+  - [🧩 **Packet Switching: Strengths and Weaknesses**](#-packet-switching-strengths-and-weaknesses)
+    - [🌟 **Strengths**:](#-strengths)
+    - [⚠️ **Weaknesses**:](#️-weaknesses)
+  - [🧩 **Circuit Switching: Strengths and Weaknesses**](#-circuit-switching-strengths-and-weaknesses)
+    - [🌟 **Strengths**:](#-strengths-1)
+    - [⚠️ **Weaknesses**:](#️-weaknesses-1)
+  - [🖼️ **Illustrative Examples**](#️-illustrative-examples)
+    - [Example 1: 35 Users Sharing a 1 Mbps Link](#example-1-35-users-sharing-a-1-mbps-link)
+    - [Example 2: Single Active User with 10 Slots](#example-2-single-active-user-with-10-slots)
+  - [🧮 **Key Performance Insights**](#-key-performance-insights)
+  - [📊 **Current Trends**](#-current-trends)
+  - [🌟 **Key Takeaways**](#-key-takeaways)
+    - [**Real-World Examples of Packet Switching and Circuit Switching**](#real-world-examples-of-packet-switching-and-circuit-switching)
+  - [🌐 **Real-World Example of Packet Switching**](#-real-world-example-of-packet-switching)
+    - [**Scenario**: **Internet Browsing**](#scenario-internet-browsing)
+  - [📞 **2. Real-World Example of Circuit Switching**](#-2-real-world-example-of-circuit-switching)
+    - [**Scenario**: **Traditional Telephone Call**](#scenario-traditional-telephone-call)
+
+
 ## 🖥️ **Introduction**
 **Packet switching** and **circuit switching** are two fundamental methods for transmitting data in communication networks. Both have unique characteristics, strengths, and trade-offs, making them suitable for different applications. This section provides an in-depth comparison and analysis of these two techniques, with examples to highlight their differences.
 
