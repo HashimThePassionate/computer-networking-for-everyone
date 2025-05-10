@@ -1,5 +1,15 @@
 # 🌐 **What is a Bottleneck in Networking?**
 
+## 📑 **Table of Contents**
+- [🌐 **What is a Bottleneck in Networking?**](#-what-is-a-bottleneck-in-networking)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🔧 **Simplified Example: The Factory Analogy**](#-simplified-example-the-factory-analogy)
+  - [🌐 **Bottlenecks in Networking**](#-bottlenecks-in-networking)
+  - [👥 **Multi-Client Scenario: Shared Link Bottlenecks**](#-multi-client-scenario-shared-link-bottlenecks)
+    - [🌟 **Key Insights About Bottlenecks**](#-key-insights-about-bottlenecks)
+    - [🌟 **Why Understanding Bottlenecks Matters?**](#-why-understanding-bottlenecks-matters)
+
+
 A **bottleneck** in networking refers to the **slowest link or resource** that **limits the overall performance or data transfer rate** of the network. It’s like a traffic jam in a system, where the slowest part impacts the speed of the entire process.
 
 ---
