@@ -8,11 +8,11 @@ The transport layer plays a critical role in computer networks by providing end-
 ---
 
 ## 📑 Table of Contents
-- [🌐 Transport Layer Overview](#transport-layer-overview)
-- [🚀 Connectionless Transport: UDP](#connectionless-transport-udp)
-- [🛡️ Reliable Data Transfer Mechanisms](#reliable-data-transfer-mechanisms)
-- [🤝 Connection-Oriented Transport: TCP](#connection-oriented-transport-tcp)
-- [🚧 Congestion Control](#congestion-control-in-transport-layer)
+- [🌐 Transport Layer Overview](#-transport-layer-overview)
+- [🚀 Connectionless Transport: UDP](#-connectionless-transport-udp)
+- [🛡️ Reliable Data Transfer Mechanisms](#-reliable-data-transfer-mechanisms)
+- [🤝 Connection-Oriented Transport: TCP](#-connection-oriented-transport-tcp)
+- [🚧 Congestion Control](#-congestion-control-in-transport-layer)
 
 ---
 
