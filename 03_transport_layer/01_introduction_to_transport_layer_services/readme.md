@@ -1,5 +1,31 @@
 # 🌐 **What is the Transport Layer?**
 
+## 📑 **Table of Contents**
+- [🌐 **What is the Transport Layer?**](#-what-is-the-transport-layer)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [🔄 **The Role of the Transport Layer**](#-the-role-of-the-transport-layer)
+  - [🔌 **Transport Layer Protocols**](#-transport-layer-protocols)
+  - [🔗 **Relationship Between Transport Layer and Network Layer**](#-relationship-between-transport-layer-and-network-layer)
+    - [🏠 **Household Example**:](#-household-example)
+    - [🗺️ **Mapping to Networking**:](#️-mapping-to-networking)
+    - [🔑 **Key Points**:](#-key-points)
+    - [🎯 **Role of the Transport Layer**:](#-role-of-the-transport-layer)
+  - [🔄 **Different Transport Protocols, Different Services**](#-different-transport-protocols-different-services)
+    - [🔄 **Similarly**:](#-similarly)
+  - [⚖️ **Transport Layer Services and Network Layer Limitations**](#️-transport-layer-services-and-network-layer-limitations)
+  - [📊 **Explanation of Figure 3.1**](#-explanation-of-figure-31)
+- [🌟 **Two Protocols of the Transport Layer**](#-two-protocols-of-the-transport-layer)
+    - [1. ⚡ **UDP (User Datagram Protocol)**:](#1--udp-user-datagram-protocol)
+    - [2. 🔒 **TCP (Transmission Control Protocol)**:](#2--tcp-transmission-control-protocol)
+  - [📦 **Terminology: Segment vs. Datagram**](#-terminology-segment-vs-datagram)
+  - [🌐 **Internet's Network Layer: IP**](#-internets-network-layer-ip)
+    - [🚚 **IP's Service Model**:](#-ips-service-model)
+  - [🔀 **Services of UDP and TCP**](#-services-of-udp-and-tcp)
+    - [🔧 **Common Services**:](#-common-services)
+    - [⚡ **UDP's Services**:](#-udps-services)
+    - [🛡️ **TCP's Additional Services**:](#️-tcps-additional-services)
+  - [🧩 **TCP's Complexity**](#-tcps-complexity)
+
 The transport layer is a layer in the network protocol stack that lies above the network layer. This layer provides **logical communication** between application processes running on different hosts (computers). Logical communication means that from the application's perspective, it feels as if the two hosts are directly connected, even if they are actually located at opposite ends of the world with many routers and links in between.
 
 > 💬 **Example**: Imagine you're sending a message to your friend on WhatsApp. You just type the message and hit send, and it reaches your friend. You don't have to think about how the message passed through routers, which internet cable was used, or how packets were delivered. The transport layer handles all of this, making communication easy for the application (like WhatsApp).
@@ -108,6 +134,100 @@ At the receiving host:
 - The transport layer processes the segment and delivers the data to the application.
 
 Routers only operate on network layer data (like IP addresses) and ignore the transport layer segment.
+
+---
+
+
+# 🌟 **Two Protocols of the Transport Layer**
+
+The Internet provides two transport-layer protocols that applications use:
+
+### 1. ⚡ **UDP (User Datagram Protocol)**:
+   - It is an **unreliable** and **connectionless** service.
+   - Unreliable means it does not guarantee that data will reach the destination, or if it does, that it will arrive in the correct order or in correct condition.
+   - Connectionless means no connection is set up before sending data. The data is simply sent as a segment.
+   - It is fast, but it does not provide error recovery or order guarantees. For example, UDP is used in video streaming or online gaming where speed is important.
+
+### 2. 🔒 **TCP (Transmission Control Protocol)**:
+   - It is a **reliable** and **connection-oriented** service.
+   - Reliable means it guarantees that data will reach from the sending process to the receiving process correctly and in the correct order.
+   - Connection-oriented means a connection is established between the two hosts before sending data.
+   - TCP checks for errors, resends lost packets, and also performs congestion control to prevent network overload.
+
+> 💻 **Application Developer's Role**: When a network application is created, the developer must decide whether to use TCP or UDP. This decision is made during socket programming (as we saw in Section 2.7).
+
+---
+
+## 📦 **Terminology: Segment vs. Datagram**
+
+We call the transport layer's packet a **segment**, whether it belongs to TCP or UDP. But in Internet literature (like RFCs):
+
+| Protocol | Packet Name |
+|----------|-------------|
+| TCP | **segments** |
+| UDP | **datagrams** |
+| Network Layer | **datagram** |
+
+> 📝 **Note**: This terminology can be a bit confusing, so in this introductory section, we will call both TCP and UDP packets **segments**, and use the term **datagram** only for the network layer's packet. This keeps things simple.
+
+---
+
+## 🌐 **Internet's Network Layer: IP**
+
+Before understanding the transport layer, let's briefly learn about the Internet's network layer. The network layer's protocol is **IP (Internet Protocol)**. It provides **logical communication** between hosts.
+
+### 🚚 **IP's Service Model**:
+- IP provides a **best-effort delivery service**. This means it tries its best to deliver segments between communicating hosts, but it does not provide any guarantees.
+- It does not guarantee segment delivery, the correct order of segments, or the integrity of the data (that the data won't be corrupted).
+- For this reason, IP is called an **unreliable service**.
+
+> 🔍 **IP Address**: Every host has at least one network-layer address, called an **IP address**. We will explore IP addressing in detail in Chapter 4, but for now, just remember that every host has an IP address.
+
+---
+
+## 🔀 **Services of UDP and TCP**
+
+The most basic job of UDP and TCP is to extend IP's host-to-host delivery service into a **process-to-process delivery** service. That is, IP only sends data between hosts, but UDP and TCP ensure that data reaches from a specific process on one host to a specific process on another host. This process is called **transport-layer multiplexing and demultiplexing** (we will explore this in detail in the next section).
+
+### 🔧 **Common Services**:
+- Both protocols (UDP and TCP) include **error-detection fields** in their segments' headers, which check data integrity.
+- This is their basic job: process-to-process data delivery and error checking.
+
+### ⚡ **UDP's Services**:
+- UDP only provides these two basic services: process-to-process delivery and error checking.
+- It is unreliable, meaning it does not guarantee that data will reach the destination process, or if it does, that it will arrive intact or in the correct order.
+- UDP is fast, so it is suitable for applications where some data loss can be tolerated, such as live video streaming or VoIP calls.
+
+### 🛡️ **TCP's Additional Services**:
+
+TCP provides more services than UDP, which makes it complex but reliable:
+
+1. 📬 **Reliable Data Transfer**:
+   - TCP uses flow control, sequence numbers, acknowledgments, and timers to ensure that data reaches from the sending process to the receiving process correctly and in the correct order.
+   - It converts IP's unreliable service into a reliable service for processes.
+   - If a packet is lost or corrupted, TCP resends it.
+
+2. 🚦 **Congestion Control**:
+   - TCP performs congestion control, which is mostly beneficial for the Internet as a whole, not just for the application.
+   - Congestion control means TCP ensures that no single TCP connection overloads links or routers with excessive traffic.
+   - TCP divides the bandwidth of congested links equally among all TCP connections, so each connection gets a fair share.
+   - It does this by regulating the sending rate, i.e., how fast the sender can send data.
+
+> ⚠️ **UDP and Congestion**:
+> - UDP has no congestion control. An application using UDP can send data at any speed and for as long as it wants.
+> - For this reason, UDP traffic is unregulated, which can sometimes cause network congestion.
+
+---
+
+## 🧩 **TCP's Complexity**
+
+The reliable data transfer and congestion control provided by TCP are quite complex. To understand this, we need to learn several techniques, such as:
+
+- 📊 Flow control
+- 🔢 Sequence numbers
+- ✅ Acknowledgments
+- ⏱️ Timers
+- 🚥 Congestion control mechanisms
 
 ---
 
