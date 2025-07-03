@@ -151,6 +151,10 @@ This way, **without a formal “connection”**, UDP apps can still exchange mes
 
 When applications use **TCP** (Transmission Control Protocol), they establish a **connection** before sending data. To handle multiple simultaneous connections, TCP uses **multiplexing** (combining data) and **demultiplexing** (routing data back) in a more sophisticated way than UDP. Let’s break it down! 😊
 
+<div align="center">
+  <img src="./images/04.jpg" alt="" width="500px"/>
+</div>
+
 ## 1️⃣ TCP Socket Identification: The 4-Tuple
 
 A **TCP socket** is uniquely identified by four values:
@@ -210,7 +214,7 @@ Whenever a TCP segment arrives at the server:
 
 
 <div align="center">
-  <img src="./images/03.jpg" alt="" width="600px"/>
+  <img src="./images/03.jpg" alt="" width="500px"/>
 </div>
 
 ## 4️⃣ Example: Multiple Web Connections (Figure 3.5)
