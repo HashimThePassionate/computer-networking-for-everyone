@@ -79,3 +79,70 @@ When your computer runs multiple network applications at the same time (for exam
 * Port numbers let many applications share the same network interface seamlessly.
 * Both **UDP** and **TCP** use this scheme—TCP adds extra fields for reliability, while UDP keeps things lightweight.
 
+---
+
+#  **Connectionless Multiplexing & Demultiplexing**🔗
+
+When applications use **UDP** (User Datagram Protocol), they send and receive data without setting up a steady connection. To manage multiple apps at once, UDP uses **multiplexing** and **demultiplexing**—just like TCP, but lighter!
+
+## 🏷️ 1. Creating & Binding a UDP Socket
+
+```python
+from socket import *
+# Client creates a UDP socket
+clientSocket = socket(AF_INET, SOCK_DGRAM)
+```
+
+* **Automatic port assignment**
+
+  * By default, your system picks a free port between **1024–65535**.
+* **Manual binding**
+
+  * To use a specific port (e.g., 19157), add:
+
+    ```python
+    clientSocket.bind(('', 19157))
+    ```
+  * This “locks” your socket to port **19157** on your machine.
+
+> 😎 **Tip:**
+>
+> * **Clients** usually let the OS pick a port automatically.
+> * **Servers** often bind to a **well-known port** (like port 53 for DNS).
+
+## 🚀 2. Sending a UDP Segment (Multiplexing)
+
+1. **Application** generates data to send.
+
+2. **Transport layer** builds a UDP segment:
+
+   * **Source port**: your socket’s port (e.g., 19157)
+   * **Destination port**: the server’s port (e.g., 46428)
+   * **Other fields**: checksum, length, etc.
+   * **Data**: your application message
+
+3. **Network layer** wraps the segment in an IP packet and sends it over the Internet.
+
+## 📬 3. Receiving a UDP Segment (Demultiplexing)
+
+1. **Network layer** on Host B delivers the IP packet to UDP.
+2. **UDP** examines the **destination port** (e.g., 46428).
+3. UDP finds **the matching socket** bound to port 46428.
+4. UDP hands the **data** to the application listening on that socket.
+
+> 🔍 **Remember:**
+> UDP uses the pair **(IP address, port)** to identify a socket.
+>
+> * Two segments with the same destination port but different source info still go to the same socket.
+
+## 🔄 4. Source Port as “Return Address”
+
+* The **source port** in each segment tells Host B **where to reply**.
+* When Host B wants to send data back to Host A, it uses:
+
+  * **Destination IP** = Host A’s IP
+  * **Destination port** = the **source port** from the received segment
+
+This way, **without a formal “connection”**, UDP apps can still exchange messages back and forth!
+
+---
