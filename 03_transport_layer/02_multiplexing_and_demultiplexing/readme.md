@@ -146,3 +146,109 @@ clientSocket = socket(AF_INET, SOCK_DGRAM)
 This way, **without a formal “connection”**, UDP apps can still exchange messages back and forth!
 
 ---
+
+# **Connection-Oriented Multiplexing & Demultiplexing** 🔗
+
+When applications use **TCP** (Transmission Control Protocol), they establish a **connection** before sending data. To handle multiple simultaneous connections, TCP uses **multiplexing** (combining data) and **demultiplexing** (routing data back) in a more sophisticated way than UDP. Let’s break it down! 😊
+
+## 1️⃣ TCP Socket Identification: The 4-Tuple
+
+A **TCP socket** is uniquely identified by four values:
+
+| Field                      | Description                                           |
+| -------------------------- | ----------------------------------------------------- |
+| 🌐 **Source IP Addr**      | IP address of the client host                         |
+| 🔢 **Source Port #**       | Port number chosen by the client                      |
+| 🌐 **Destination IP Addr** | IP address of the server host                         |
+| 🔢 **Destination Port #**  | Port number the server listens on (e.g., 80 for HTTP) |
+
+> **Why four?**
+>
+> * Distinguishes multiple connections even if they share one IP or port.
+> * Ensures data from each client goes to the correct connection socket.
+
+## 2️⃣ How a TCP Connection Is Established
+
+1. **Server “welcoming socket”** 🛎️
+
+   * Listens on a **well-known port** (e.g., 12000).
+   * Waits for incoming **SYN** (synchronize) requests.
+
+2. **Client creates & connects** 🔌
+
+   ```python
+   clientSocket = socket(AF_INET, SOCK_STREAM)
+   clientSocket.connect((serverName, 12000))
+   ```
+
+   * OS picks a **source port** (e.g., 49152+).
+   * Sends a **SYN** segment to server’s port 12000.
+
+3. **Server accepts** ✔️
+
+   ```python
+   connectionSocket, addr = serverSocket.accept()
+   ```
+
+   * `accept()` creates a **new socket** bound to the 4-tuple:
+     `(client IP, client port, server IP, server port)`
+   * The **welcoming socket** stays free to accept more connections.
+
+4. **Handshake completes** 🤝
+
+   * After SYN/SYN-ACK/ACK exchange, both sides have a dedicated socket for their conversation.
+
+## 3️⃣ Demultiplexing Incoming Segments
+
+Whenever a TCP segment arrives at the server:
+
+1. **Examine the 4-tuple** in the TCP/IP header.
+2. **Match** it to the correct connection socket (from step 3).
+3. **Deliver** the data to the right application process (or thread).
+
+> 🔍 Even if two clients use the **same source port** by chance, their **different source IPs** guarantee unique 4-tuples—no mix-ups! 🚀
+
+
+<div align="center">
+  <img src="./images/03.jpg" alt="" width="600px"/>
+</div>
+
+## 4️⃣ Example: Multiple Web Connections (Figure 3.5)
+
+* **Host C** opens two browser tabs to **Web Server B**:
+
+  * Tab 1: source port 26145 → dest port 80
+  * Tab 2: source port  7532    → dest port 80
+* **Host A** opens one tab to **Server B**:
+
+  * source port 26145 → dest port 80
+
+**Server B** sees three distinct 4-tuples:
+
+| Client | Source IP | Source Port | Dest IP | Dest Port |
+| ------ | --------- | ----------- | ------- | --------- |
+| C–Tab1 | C         | 26145       | B       | 80        |
+| C–Tab2 | C         | 7532        | B       | 80        |
+| A–Tab1 | A         | 26145       | B       | 80        |
+
+Each connection gets its own socket, so data flows correctly to each browser tab. ❤️
+
+## 5️⃣ Web Servers & Connection Handling
+
+* **Traditional model**: One process per connection.
+* **Modern servers**:
+
+  * Single process, multiple **threads** or **async handlers**.
+  * Each thread/handler uses a different connection socket (unique 4-tuple).
+
+## 6️⃣ Persistent vs. Non-Persistent HTTP
+
+| Mode                 | Connection Usage                                                      |
+| -------------------- | --------------------------------------------------------------------- |
+| ⏳ **Non-Persistent** | New TCP connection **per** HTTP request/response.                     |
+| 🔄 **Persistent**    | **One TCP connection** used for **multiple** HTTP requests/responses. |
+
+* **Non-persistent**: Frequent socket creation/tear-down can slow busy servers.
+* **Persistent**: Reuse the same socket, reducing overhead and improving performance.
+
+---
