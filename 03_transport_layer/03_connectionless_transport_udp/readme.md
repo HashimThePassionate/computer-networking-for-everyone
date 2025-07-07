@@ -348,3 +348,84 @@ Network (reliable!)
 A **reliable protocol** ensures **every letter** arrives **intact**, **in order**, or else gets **re-sent** until the receipt (ACK) is received.
 
 ---
+
+#  **rdt1.0: Reliable Data Transfer over a **Perfectly Reliable** Channel** 📦
+
+In **rdt1.0**, we assume the network below is **perfect**—no packets are ever lost or corrupted, and the receiver can always keep up with the sender. Because nothing can go wrong, the protocol is extremely simple!
+
+<div align="center">
+  <img src="./images/03.jpg" alt="" width="600px"/>
+</div>
+
+## 🏗️ Sender-Side FSM (Figure 3.9a)
+
+```text
+      ┌──────────────────────────────┐
+      │ Wait for call from above    │  ←── initial state
+      └──────────────────────────────┘
+                  │
+    rdt_send(data)│
+                  ▼
+      ┌──────────────────────────────┐
+      │  Actions:                    │
+      │ 1. packet = make_pkt(data)   │
+      │ 2. udt_send(packet)          │
+      │ 3. (no state change)         │
+      └──────────────────────────────┘
+                  │
+                  └───loops back───▶
+```
+
+* **State**: “Waiting for data from the application.”
+* **Event**: `rdt_send(data)`
+
+  * Triggered when the application calls `rdt_send()` with new data.
+* **Actions**:
+
+  1. **Create a packet**: `packet = make_pkt(data)`
+  2. **Send it**: `udt_send(packet)`
+* **No feedback** or additional states—straight back to waiting for more data.
+
+## 🏗️ Receiver-Side FSM (Figure 3.9b)
+
+```text
+      ┌──────────────────────────────┐
+      │ Wait for packet from below  │  ←── initial state
+      └──────────────────────────────┘
+                  │
+     rdt_rcv(packet)│
+                  ▼
+      ┌──────────────────────────────┐
+      │  Actions:                    │
+      │ 1. extract(packet, data)     │
+      │ 2. deliver_data(data)        │
+      │ 3. (no state change)         │
+      └──────────────────────────────┘
+                  │
+                  └───loops back───▶
+```
+
+* **State**: “Waiting for a packet from the (perfect) channel.”
+* **Event**: `rdt_rcv(packet)`
+
+  * Triggered when `udt_send()`’s packet arrives intact.
+* **Actions**:
+
+  1. **Unpack data**: `extract(packet, data)`
+  2. **Deliver up**: `deliver_data(data)` to the application.
+* **No ACKs**, **no checksums**, **no sequence numbers**—just straight delivery.
+
+## 🎯 Why rdt1.0 Is So Simple
+
+1. **Perfect channel** ✅
+
+   * **No losses** → no retransmissions needed.
+   * **No corruptions** → no checksums or error detection.
+2. **Infinite speed** ⚡
+
+   * Receiver is assumed fast enough; no flow-control necessary.
+3. **No feedback loop** 🔄
+
+   * Since nothing can go wrong, the receiver never needs to tell the sender anything.
+
+---
