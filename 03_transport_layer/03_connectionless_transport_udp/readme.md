@@ -545,3 +545,136 @@ This “stop-and-wait” protocol is called **rdt2.0**.
 
 ---
 
+#  **rdt2.1: Stop-and-Wait with Sequence Numbers (Fixing Corrupted ACKs/NAKs)** 🔁
+
+To handle corrupted control packets (ACKs/NAKs) without adding new packet types, **rdt2.1** adds a **1-bit sequence number** to every data packet. This lets the receiver detect duplicates and the sender know exactly which packet is being acknowledged.
+
+<div align="center">
+  <img src="./images/05.jpg" alt="" width="600px"/>
+</div>
+
+## 📶 Sender FSM (Figure 3.11)
+
+The sender now has **four states**, alternating between “sending seq 0” and “sending seq 1”:
+
+```
+ ┌─────────────────────────────────────────────┐
+ │ State S0: “Wait for call 0 from above”     │
+ └─────────────────────────────────────────────┘
+    │ rdt_send(data) when expecting seq 0
+    ▼
+  sndpkt = make_pkt(0, data, checksum)
+  udt_send(sndpkt)
+    │
+    ▼
+ ┌─────────────────────────────────────────────┐
+ │ State S0_ACK: “Wait for ACK/NAK 0”          │
+ └─────────────────────────────────────────────┘
+    ├─ On rdt_rcv(rcvpkt) && (corrupt(rcvpkt)  
+    │      || isNAK(rcvpkt)) ──────────▶
+    │     • udt_send(sndpkt)  (retransmit 0)
+    │     • Remain in State S0_ACK
+    │
+    └─ On rdt_rcv(rcvpkt) && notcorrupt(rcvpkt)
+          && isACK(rcvpkt) (ACK 0) ───▶
+         • Transition to State S1  (ready for seq 1)
+```
+
+Then, **mirror** for sequence 1:
+
+```
+ ┌─────────────────────────────────────────────┐
+ │ State S1: “Wait for call 1 from above”     │
+ └─────────────────────────────────────────────┘
+    │ rdt_send(data) when expecting seq 1
+    ▼
+  sndpkt = make_pkt(1, data, checksum)
+  udt_send(sndpkt)
+    │
+    ▼
+ ┌─────────────────────────────────────────────┐
+ │ State S1_ACK: “Wait for ACK/NAK 1”          │
+ └─────────────────────────────────────────────┘
+    ├─ On rdt_rcv(rcvpkt) && (corrupt(rcvpkt)  
+    │      || isNAK(rcvpkt)) ──────────▶
+    │     • udt_send(sndpkt)  (retransmit 1)
+    │     • Remain in State S1_ACK
+    │
+    └─ On rdt_rcv(rcvpkt) && notcorrupt(rcvpkt)
+          && isACK(rcvpkt) (ACK 1) ───▶
+         • Transition back to State S0  (ready for seq 0)
+```
+
+### 🔑 Key Points
+
+* **Single outstanding packet**: Sender never sends seq 1 until seq 0 is ACKed, and vice versa.
+* **Retransmit on:**
+
+  * **Corrupted ACK/NAK**
+  * **Explicit NAK**
+* **Advance** state only on a **valid ACK** matching the current sequence.
+
+## 📩 Receiver FSM (Figure 3.12)
+
+<div align="center">
+  <img src="./images/06.jpg" alt="" width="600px"/>
+</div>
+
+
+The receiver also has **two states**—“expecting seq 0” and “expecting seq 1”:
+
+```
+ ┌─────────────────────────────────────────────┐
+ │ State R0: “Wait for 0 from below”          │
+ └─────────────────────────────────────────────┘
+    ├─ On rdt_rcv(rcvpkt) && corrupt(rcvpkt) ─▶
+    │     • sndpkt = make_pkt(NAK, checksum)
+    │     • udt_send(sndpkt)  (NAK 0)
+    │     • Stay in State R0
+    │
+    ├─ On rdt_rcv(rcvpkt) && notcorrupt(rcvpkt)
+    │      && has_seq0(rcvpkt) ──────────▶
+    │     • extract(rcvpkt, data)
+    │     • deliver_data(data)
+    │     • sndpkt = make_pkt(ACK, checksum)
+    │     • udt_send(sndpkt)  (ACK 0)
+    │     • Transition to State R1
+    │
+    └─ On rdt_rcv(rcvpkt) && notcorrupt(rcvpkt)
+          && has_seq1(rcvpkt) ──────────▶
+         • sndpkt = make_pkt(ACK, checksum)
+         • udt_send(sndpkt)  (duplicate ACK 1)
+         • Stay in State R0
+```
+
+Then mirror for **State R1** (“wait for seq 1”):
+
+```
+ ┌─────────────────────────────────────────────┐
+ │ State R1: “Wait for 1 from below”          │
+ └─────────────────────────────────────────────┘
+    ├─ On rdt_rcv(rcvpkt) && corrupt(rcvpkt) ─▶
+    │     • send NAK 1, stay in R1
+    │
+    ├─ On rdt_rcv(rcvpkt) && notcorrupt(rcvpkt)
+    │      && has_seq1(rcvpkt) ──────────▶
+    │     • extract/deliver data
+    │     • send ACK 1, move to State R0
+    │
+    └─ On rdt_rcv(rcvpkt) && notcorrupt(rcvpkt)
+          && has_seq0(rcvpkt) ──────────▶
+         • send duplicate ACK 0, stay in R1
+```
+
+## 🎉 Why rdt2.1 Works
+
+* **Corrupted ACKs/NAKs** → Sender re-sends the same seq; receiver recognizes it as a duplicate (same seq) and re-ACKs without re-delivering.
+* **Lost ACKs** → Sender waits (or in rdt2.2, will use timeout) and re-sends; receiver handles duplicates safely.
+* **Bit errors in data** → Detected by checksum → NAK → retransmit.
+
+With these FSMs, rdt2.1 **guarantees** correct, in-order delivery over a channel that:
+
+* May **corrupt** or **lose** packets
+* **Does not** reorder packets
+
+---
