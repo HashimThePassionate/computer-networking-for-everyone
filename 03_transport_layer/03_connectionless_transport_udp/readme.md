@@ -678,3 +678,172 @@ With these FSMs, rdt2.1 **guarantees** correct, in-order delivery over a channel
 * **Does not** reorder packets
 
 ---
+
+#  **rdt3.0: Handling **Lossy** Channels with Bit Errors** ⏲️
+
+**rdt3.0** builds on rdt2.2 by adding a **timer** to detect and recover from **packet loss**. Combined with checksums and sequence numbers, this gives us a fully reliable “alternating-bit” protocol over a channel that can:
+
+* 🔄 **Corrupt** packets
+* ❌ **Lose** packets
+* 🚫 **Not** reorder packets
+
+---
+
+## 📦 Figure 3.14: Sender FSM for rdt3.0
+
+<div align="center">
+  <img src="./images/08.jpg" alt="" width="600px"/>
+</div>
+
+
+```text
+     ┌─────────────────────────────────────────────┐
+     │ State S0: “Wait for call 0 from above”     │
+     └─────────────────────────────────────────────┘
+          │ rdt_send(data)
+          ▼
+       sndpkt = make_pkt(0, data, checksum)
+       udt_send(sndpkt)
+       start_timer()
+          │
+          ▼
+     ┌─────────────────────────────────────────────┐
+     │ State S0_WAIT: “Wait for ACK 0”             │
+     └─────────────────────────────────────────────┘
+          ├─ rdt_rcv(rcvpkt) && notcorrupt(rcvpkt)
+          │      && isACK(rcvpkt,0) ──────────▶
+          │    stop_timer()
+          │    Transition to State S1
+          │
+          ├─ rdt_rcv(rcvpkt) && (corrupt(rcvpkt)
+          │      || isACK(rcvpkt,1)) ──────────▶
+          │    Λ  (ignore spurious/corrupted)
+          │    Remain in State S0_WAIT
+          │
+          └─ timeout ───────────────────────────▶
+               udt_send(sndpkt)   (retransmit)
+               start_timer()
+               Remain in State S0_WAIT
+```
+
+Then, **mirror** for sequence `1`:
+
+```text
+     ┌─────────────────────────────────────────────┐
+     │ State S1: “Wait for call 1 from above”     │
+     └─────────────────────────────────────────────┘
+          │ rdt_send(data)
+          ▼
+       sndpkt = make_pkt(1, data, checksum)
+       udt_send(sndpkt)
+       start_timer()
+          │
+          ▼
+     ┌─────────────────────────────────────────────┐
+     │ State S1_WAIT: “Wait for ACK 1”             │
+     └─────────────────────────────────────────────┘
+          ├─ rdt_rcv(rcvpkt) && notcorrupt(rcvpkt)
+          │      && isACK(rcvpkt,1) ──────────▶
+          │    stop_timer()
+          │    Transition to State S0
+          │
+          ├─ rdt_rcv(rcvpkt) && (corrupt(rcvpkt)
+          │      || isACK(rcvpkt,0)) ──────────▶
+          │    Λ  (ignore)
+          │    Remain in State S1_WAIT
+          │
+          └─ timeout ───────────────────────────▶
+               udt_send(sndpkt)   (retransmit)
+               start_timer()
+               Remain in State S1_WAIT
+```
+
+### 🛠️ Key Sender Actions
+
+1. **`start_timer()`**: begins countdown after each (re)transmission.
+2. **`stop_timer()`**: cancels the timer when a correct ACK arrives.
+3. **`timeout`** event: retransmits the last packet and restarts the timer.
+4. **Sequence numbers (0/1)** ensure the sender knows which packet is being ACKed.
+
+## ⏳ Figure 3.15: Timeline Illustrations
+
+<div align="center">
+  <img src="./images/09.jpg" alt="" width="600px"/>
+</div>
+
+Below are three scenarios showing how **rdt3.0** behaves over time:
+
+```
+Time ▶
+```
+
+### a) No Loss, No Errors
+
+```
+Sender: Snd pkt(0) ───────────▶ Receiver
+             └─ start_timer()
+
+Receiver: Deliver data(0)
+          Snd ACK(0) ───────────▶ Sender
+
+Sender: rdt_rcv(ACK(0)) ➔ stop_timer()
+        Next call → snd pkt(1)...
+```
+
+* **Smooth flow**: data and ACK arrive before timer expires.
+
+### b) Data Packet Lost
+
+```
+Sender: Snd pkt(0) ───────────▶ [lost]
+             └─ start_timer()
+
+(time passes, no ACK)
+
+timeout ➔ Retransmit pkt(0), restart timer
+
+Receiver: Now gets pkt(0)
+          Deliver data(0)
+          Snd ACK(0) ───────────▶ Sender
+
+Sender: rdt_rcv(ACK(0)) ➔ stop_timer()
+        Proceed to pkt(1)
+```
+
+* **Lost data** triggers **timeout** → retransmission → correct delivery.
+
+### c) ACK Packet Lost
+
+```
+Sender: Snd pkt(0) ───────────▶ Receiver
+             └─ start_timer()
+
+Receiver: Deliver data(0)
+          Snd ACK(0) ───▶ [lost]
+
+(time passes, no ACK)
+
+timeout ➔ Retransmit pkt(0), restart timer
+
+Receiver: Receives duplicate pkt(0)
+          ❌ Duplicate → re-send ACK(0)
+          Stay in same state
+
+Sender: rdt_rcv(ACK(0)) ➔ stop_timer()
+        Move to pkt(1)
+```
+
+* **Lost ACK** treated the same as lost data: **timeout** → retransmit.
+* Receiver sees **duplicate data** (same seq), ignores payload but re-ACKs.
+
+
+## 🎉 Why rdt3.0 Works
+
+1. **Checksums** catch bit errors in data and ACKs.
+2. **Sequence numbers** detect duplicates, so duplicate deliveries are blocked.
+3. **ACKs** confirm successful receipt; **timeouts** handle lost packets or ACKs.
+4. **Stop-and-wait** keeps the design simple, ensuring in-order delivery.
+
+With these mechanisms, **rdt3.0** (the “alternating-bit” protocol) provides a **fully reliable**, in-order data channel over an unreliable physical network! 🚀
+
+---
