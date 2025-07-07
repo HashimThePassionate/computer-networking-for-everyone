@@ -1,6 +1,59 @@
 # **Understanding UDP Connectionless** 🥳
 
-**UDP (User Datagram Protocol)** is the simplest way for applications to send messages over the Internet. Think of it like sending postcards—each one goes off on its own, with no guarantee it arrives, but there’s almost no delay in sending.
+## 📑 **Table of Contents**
+
+- [**Understanding UDP Connectionless** 🥳](#understanding-udp-connectionless-)
+  - [📑 **Table of Contents**](#-table-of-contents)
+  - [1. What UDP Does 📬](#1-what-udp-does-)
+  - [2. Why “Connectionless”? 🔌✂️](#2-why-connectionless-️)
+  - [3. When to Use UDP vs. TCP 🤔](#3-when-to-use-udp-vs-tcp-)
+  - [4. Real-World Examples 🌍](#4-real-world-examples-)
+  - [5. Pros \& Cons of UDP 👍👎](#5-pros--cons-of-udp-)
+    - [👍 Advantages](#-advantages)
+    - [👎 Disadvantages](#-disadvantages)
+    - [A bit more on **why TCP vs. UDP**:](#a-bit-more-on-why-tcp-vs-udp)
+- [**UDP Segment Structure** 🚀](#udp-segment-structure-)
+  - [1. UDP Segment Layout 🗂️](#1-udp-segment-layout-️)
+  - [2. The **Length** Field 📏](#2-the-length-field-)
+  - [3. The **Checksum** Field ✅❌](#3-the-checksum-field-)
+    - [3.1 Purpose](#31-purpose)
+    - [3.2 How It’s Computed](#32-how-its-computed)
+    - [3.3 Step-by-Step Example](#33-step-by-step-example)
+      - [a) Sum Word 1 + Word 2](#a-sum-word-1--word-2)
+      - [b) Add Word 3](#b-add-word-3)
+      - [c) Compute 1’s-Complement](#c-compute-1s-complement)
+  - [4. What Happens on Error? 🛑](#4-what-happens-on-error-)
+- [**Principles of Reliable Data Transfer** 🔒](#principles-of-reliable-data-transfer-)
+  - [🖼️ Fig. 3.8(a): **Service Model** (What the upper layer **expects**)](#️-fig-38a-service-model-what-the-upper-layer-expects)
+  - [🔧 Fig. 3.8(b): **Service Implementation** (How RDT is actually built)](#-fig-38b-service-implementation-how-rdt-is-actually-built)
+  - [🎯 Key Building Blocks](#-key-building-blocks)
+  - [💡 Analogy: **Reliable Courier Service**](#-analogy-reliable-courier-service)
+- [**rdt1.0: Reliable Data Transfer over a **Perfectly Reliable** Channel** 📦](#rdt10-reliable-data-transfer-over-a-perfectly-reliable-channel-)
+  - [🏗️ Sender-Side FSM (Figure 3.9a)](#️-sender-side-fsm-figure-39a)
+  - [🏗️ Receiver-Side FSM (Figure 3.9b)](#️-receiver-side-fsm-figure-39b)
+  - [🎯 Why rdt1.0 Is So Simple](#-why-rdt10-is-so-simple)
+- [**rdt2.0: Handling **Bit Errors** with Stop-and-Wait ARQ** 🛠️](#rdt20-handling-bit-errors-with-stop-and-wait-arq-️)
+  - [📊 Sender FSM (Figure 3.10a)](#-sender-fsm-figure-310a)
+  - [📊 Receiver FSM (Figure 3.10b)](#-receiver-fsm-figure-310b)
+  - [🔍 How it Works](#-how-it-works)
+  - [⚠️ The Big Flaw](#️-the-big-flaw)
+- [**rdt2.1: Stop-and-Wait with Sequence Numbers (Fixing Corrupted ACKs/NAKs)** 🔁](#rdt21-stop-and-wait-with-sequence-numbers-fixing-corrupted-acksnaks-)
+  - [📶 Sender FSM (Figure 3.11)](#-sender-fsm-figure-311)
+    - [🔑 Key Points](#-key-points)
+  - [📩 Receiver FSM (Figure 3.12)](#-receiver-fsm-figure-312)
+  - [🎉 Why rdt2.1 Works](#-why-rdt21-works)
+- [**rdt3.0: Handling **Lossy** Channels with Bit Errors** ⏲️](#rdt30-handling-lossy-channels-with-bit-errors-️)
+  - [📦 Figure 3.14: Sender FSM for rdt3.0](#-figure-314-sender-fsm-for-rdt30)
+    - [🛠️ Key Sender Actions](#️-key-sender-actions)
+  - [⏳ Figure 3.15: Timeline Illustrations](#-figure-315-timeline-illustrations)
+    - [a) No Loss, No Errors](#a-no-loss-no-errors)
+    - [b) Data Packet Lost](#b-data-packet-lost)
+    - [c) ACK Packet Lost](#c-ack-packet-lost)
+  - [🎉 Why rdt3.0 Works](#-why-rdt30-works)
+
+---
+
+**UDP (User Datagram Protocol)** is the simplest way for applications to send messages over the Internet. Think of it like sending postcards—each one goes off on its own, with no guarantee it arrives, but there's almost no delay in sending.
 
 
 ## 1. What UDP Does 📬
