@@ -235,3 +235,116 @@ So the **Checksum field** = `0xB53C`.
   * Others **deliver** it to the application but set an error flag.
 
 ---
+
+#  **Principles of Reliable Data Transfer** 🔒
+
+When two programs (sender and receiver) communicate over an **unreliable channel** (where packets can be lost or corrupted), we need a **reliable data transfer (RDT) protocol** to make sure:
+
+1. ✅ **No bits are corrupted**
+2. 📦 **No packets are lost**
+3. 🔢 **Packets arrive in order**
+
+This is exactly what **TCP** does for your web browser, but the same ideas apply at the link layer, application layer, and elsewhere!
+
+<div align="center">
+  <img src="./images/02.jpg" alt="" width="600px"/>
+</div>
+
+## 🖼️ Fig. 3.8(a): **Service Model** (What the upper layer **expects**)
+
+```text
+Application
+   │   rdt_send(data)
+   ▼
+Transport layer (RDT)
+   │   deliver_data(data)
+   ▼
+Network (reliable!)
+```
+
+* **Provided service**: a **reliable channel**
+
+  * You call `rdt_send()` to send data.
+  * You receive data via `deliver_data()`—with **no errors**, **no losses**, and **in correct order**.
+* **Magic**: the layer below looks like a perfect pipe!
+
+## 🔧 Fig. 3.8(b): **Service Implementation** (How RDT is actually built)
+
+```text
+   Application                     Application
+      │                                ▲
+      │ rdt_send(data)                 │ deliver_data(data)
+      ▼                                │
+ ┌───────────────────┐       ┌───────────────────┐
+ │ Reliable Data     │       │ Reliable Data     │
+ │ Transfer Protocol │       │ Transfer Protocol │
+ │   (sender side)   │       │ (receiver side)   │
+ └───────────────────┘       └───────────────────┘
+      │                                ▲
+      │ udt_send(pkt)                  │ rdt_rcv(pkt)
+      ▼                                │
+ ┌───────────────────┐        ┌───────────────────┐
+ │ Unreliable        │◀───────┤ Unreliable        │
+ │ Channel           │        │ Channel           │
+ └───────────────────┘        └───────────────────┘
+```
+
+1. **`rdt_send(data)`**
+
+   * Called by your application to send a chunk of data.
+
+2. **`udt_send(pkt)`**
+
+   * The RDT sender wraps `data` into a **packet** (adds headers, checksums, sequence numbers) and calls `udt_send()`.
+   * **`udt_send()`** hands the packet to the **unreliable channel** (packets may get lost or corrupted).
+
+3. **Unreliable Channel**
+
+   * Can **lose** packets entirely or **corrupt** their bits.
+   * **Assumption**: does **not** reorder packets.
+
+4. **`rdt_rcv(pkt)`**
+
+   * When a packet arrives, the RDT receiver is invoked.
+   * It checks for **corruption** (via checksum) and **sequence correctness**.
+
+5. **`deliver_data(data)`**
+
+   * If packet is good **and** in order, the RDT receiver extracts `data` and delivers it to the application.
+   * Otherwise, it discards or asks for **retransmission** (via ACK/NACK).
+
+
+## 🎯 Key Building Blocks
+
+1. **Checksums** 🧾
+
+   * Detect bit errors.
+   * Sender computes checksum; receiver recomputes and compares.
+
+2. **Sequence Numbers** 🔢
+
+   * Tag each packet (e.g., 0, 1, 2, …) so the receiver can detect losses or duplicates.
+
+3. **Acknowledgments (ACKs) & Retransmissions** ↩️
+
+   * Receiver sends an **ACK** when it gets a good packet.
+   * If sender doesn’t get ACK in time, it **retransmits**.
+
+4. **Timeouts** ⏲️
+
+   * Sender starts a timer after sending.
+   * If timer expires before ACK arrives, **re-send** the packet.
+
+## 💡 Analogy: **Reliable Courier Service**
+
+| Concept              | Courier Analogy                            |
+| -------------------- | ------------------------------------------ |
+| Packet               | A sealed envelope with a tracking number   |
+| Checksum             | Tamper-evident seal                        |
+| Sequence Number      | “Letter #5 of 10” label                    |
+| ACK                  | Signed delivery receipt                    |
+| Timeout & Retransmit | If no receipt arrives, resend the envelope |
+
+A **reliable protocol** ensures **every letter** arrives **intact**, **in order**, or else gets **re-sent** until the receipt (ACK) is received.
+
+---
