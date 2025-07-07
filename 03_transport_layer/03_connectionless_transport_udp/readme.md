@@ -429,3 +429,119 @@ In **rdt1.0**, we assume the network below is **perfect**—no packets are ever 
    * Since nothing can go wrong, the receiver never needs to tell the sender anything.
 
 ---
+
+#  **rdt2.0: Handling **Bit Errors** with Stop-and-Wait ARQ** 🛠️
+
+When the channel can corrupt bits (but still delivers packets in order), we upgrade rdt1.0 by adding:
+
+1. **Error Detection** via **checksums**
+2. **Receiver Feedback** using **ACK** (acknowledgment) and **NAK** (negative acknowledgment)
+3. **Retransmission** of corrupted packets
+
+This “stop-and-wait” protocol is called **rdt2.0**.
+
+<div align="center">
+  <img src="./images/04.jpg" alt="" width="600px"/>
+</div>
+
+
+## 📊 Sender FSM (Figure 3.10a)
+
+```text
+ State A: Wait for call from above
+   │
+   └─ rdt_send(data) ──────────────────▶
+       • sndpkt = make_pkt(data, checksum)
+       • udt_send(sndpkt)
+       • Transition to State B
+
+ State B: Wait for ACK or NAK
+   │
+   ├─ rdt_rcv(rcvpkt) && isACK(rcvpkt) ──▶
+   │     • (valid ACK received)
+   │     • Return to State A
+   │
+   └─ rdt_rcv(rcvpkt) && isNAK(rcvpkt) ──▶
+         • (NAK or corrupted data detected)
+         • udt_send(sndpkt)  ← retransmit same packet
+         • Stay in State B
+```
+
+| State | Description                                |
+| ----- | ------------------------------------------ |
+| **A** | Waiting for application data.              |
+| **B** | Waiting for receiver’s feedback (ACK/NAK). |
+
+* **Event** `rdt_send(data)` in **State A**:
+
+  * **Action**: create packet with data & checksum, send it, move to **State B**.
+* **Event** `rdt_rcv(rcvpkt) && isACK(rcvpkt)` in **State B**:
+
+  * **Action**: Got positive feedback ➡️ back to **State A** to send new data.
+* **Event** `rdt_rcv(rcvpkt) && isNAK(rcvpkt)` in **State B**:
+
+  * **Action**: Got negative feedback ➡️ **retransmit** previous packet, remain in **State B**.
+
+## 📊 Receiver FSM (Figure 3.10b)
+
+```text
+ State R: Wait for call from below (packet arrival)
+   │
+   ├─ rdt_rcv(rcvpkt) && corrupt(rcvpkt) ──▶
+   │     • (packet failed checksum)
+   │     • sndpkt = make_pkt(NAK)
+   │     • udt_send(sndpkt)
+   │     • Stay in State R
+   │
+   └─ rdt_rcv(rcvpkt) && notcorrupt(rcvpkt) ──▶
+         • extract(rcvpkt, data)
+         • deliver_data(data)
+         • sndpkt = make_pkt(ACK)
+         • udt_send(sndpkt)
+         • Stay in State R
+```
+
+* **State R**: Always “waiting for a packet.”
+* **Event** `rdt_rcv(rcvpkt) && corrupt(rcvpkt)`:
+
+  * **Action**: send a **NAK** back, so sender will retry.
+* **Event** `rdt_rcv(rcvpkt) && notcorrupt(rcvpkt)`:
+
+  * **Action**: extract and deliver data to application, send an **ACK**.
+
+
+## 🔍 How it Works
+
+1. **Checksum**
+
+   * Sender computes a checksum over message bits.
+   * Receiver recomputes; mismatch ⇒ **corrupt**.
+
+2. **ACK/NAK Feedback**
+
+   * **ACK** (e.g., a packet with “ACK” flag) tells sender “I got it correctly.”
+   * **NAK** tells sender “Please resend that packet.”
+
+3. **Stop-and-Wait**
+
+   * Sender sends **one** packet and then **waits** for ACK/NAK before sending the next.
+   * Ensures in-order, error-free delivery, but can be slow (idle time while waiting).
+
+
+## ⚠️ The Big Flaw
+
+> **What if the ACK or NAK itself gets corrupted?**
+
+* The sender might misinterpret a **corrupted ACK** as a NAK (or vice versa), leading to:
+
+  * **Unnecessary retransmissions**, or
+  * **Deadlock** (sender stuck waiting).
+
+**Fixes** (in later versions, rdt2.1+ and rdt3.0):
+
+* **Add checksums** to ACK/NAK packets.
+* Use **sequence numbers** (0/1) to distinguish new ACKs from old/corrupted ones.
+* Introduce **timeouts**, so sender can retransmit if no valid ACK arrives in time.
+
+---
+
